@@ -1,7 +1,7 @@
 import './Header.css'
 export function Header() {
     return (
-        <div className="header-container">
+        <header className="header-container">
             <div className="header-start">
                 <span className="menu-icon">
                     <ion-icon name="menu-outline"></ion-icon>
@@ -10,8 +10,6 @@ export function Header() {
 
 
                     <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel-bag" width="60" height="60" color="#000"></svg>
-
-                    {/* <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel" width="100" height="100" color="#000"></svg> */}
                 </span>
             </div>
             <div className="header-center">
@@ -32,6 +30,6 @@ export function Header() {
                     A
                 </button>
             </div>
-        </div>
+        </header>
     )
 }
