@@ -4,10 +4,14 @@ export function Header() {
         <div className="header-container">
             <div className="header-start">
                 <span className="menu-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" >xmlns: <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"></path><path d="M3 6h18"></path><path d="M3 18h18"></path></g></svg>
+                    <ion-icon name="menu-outline"></ion-icon>
                 </span>
                 <span className="logo-span">
-                    Logo_goes_here
+
+
+                    <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel-bag" width="60" height="60" color="#000"></svg>
+
+                    {/* <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel" width="100" height="100" color="#000"></svg> */}
                 </span>
             </div>
             <div className="header-center">
@@ -21,7 +25,12 @@ export function Header() {
             </div>
 
             <div className="header-end">
-
+                <button className="bell-icon">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                </button>
+                <button className="account">
+                    A
+                </button>
             </div>
         </div>
     )
