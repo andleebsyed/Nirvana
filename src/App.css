@@ -1,4 +1,25 @@
-.App {
+.main-outer-div {
+  display: grid;
+  grid-template-columns : 4.5rem auto;
+  grid-template-areas:'header header'
+  'sidebar main' 
+  ;
   text-align: center;
 }
 
+.header{
+  grid-area: header;
+  border: 1px solid red;
+}
+
+.sidebar{
+  grid-area: sidebar;
+    border: 1px solid blue;
+
+}
+
+.main{
+  grid-area: main;
+    border: 1px solid green;
+
+}

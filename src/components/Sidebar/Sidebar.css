@@ -2,8 +2,6 @@ body{
     --hover-bg-color : #E5E7EB ;
 }
 .sidebar{
-    /* border: 1px solid black; */
-    width: 4.5rem;
     height: 100vh;
     display: flex;
     flex-direction: column;
