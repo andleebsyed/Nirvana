@@ -5,7 +5,7 @@ body{
     --account-text-color : white ;
 }
 .header-container{
-    /* border: 1px solid red; */
+    /* border-bottom: 2.5px solid rgb(146, 153, 167); */
     height: 3rem;
     display: flex;
     justify-content: space-between;
@@ -25,14 +25,13 @@ body{
    height: 2rem;
    position: relative;
     top: .1rem;
-    margin-right: .5rem;
- 
+    left : .6rem;
+    margin-right: 2rem;
 }
+
 .menu-icon > ion-icon{
     font-size: 30px;
     --ionicon-stroke-width: 25px;
-    
-
 }
 
 .logo-span{
@@ -49,8 +48,6 @@ body{
     display: flex;
     height: 3rem;
     position: relative;
-    /* left : 1rem; */
-
 }
 
 .search-box{
@@ -142,9 +139,6 @@ body{
 } 
 
 @media only screen and (max-width: 600px){
-    /* .search-box{
-        width: 7rem;
-    } */
       .search-button{
         width: 2rem;
     }
@@ -171,5 +165,8 @@ body{
     }
     .account{
         margin: 0;
+    }
+    .menu-icon{
+        margin-right: 1rem;
     }
 }
