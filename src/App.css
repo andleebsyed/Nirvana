@@ -1,7 +1,13 @@
+body{
+  --border-color : #E5E7EB;
+  --main-bg-color : #F3F4F6;
+}
 .main-outer-div {
   display: grid;
   grid-template-columns : 4.5rem auto;
+  grid-template-rows: 3.3rem 4rem auto;
   grid-template-areas:'header header'
+  'sidebar categories'
   'sidebar main' 
   ;
   text-align: center;
@@ -9,17 +15,22 @@
 
 .header{
   grid-area: header;
-  border: 1px solid red;
+  /* border: 1px solid blue; */
 }
 
 .sidebar{
   grid-area: sidebar;
-    border: 1px solid blue;
+}
+.categories{
+  grid-area: categories;
+  border-top: 2px solid var(--border-color);
+
+    /* border: 1px solid green; */
+    /* text-align: center; */
 
 }
-
 .main{
   grid-area: main;
-    border: 1px solid green;
+  background-color: var(--main-bg-color);
 
 }
