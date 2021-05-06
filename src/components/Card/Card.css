@@ -1,0 +1,45 @@
+.video-card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    margin: .8rem;
+    height: 14.3rem;
+    width: 20rem;
+    text-decoration: none;
+    color : black
+}
+
+.card-image{
+    height: 11rem;
+    width: 20rem;
+}
+
+.video-name{
+    position: relative;
+    bottom: 1rem;
+    right: .7rem;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.card-badge{
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+    bottom: 1.8rem;
+    left: .1rem;
+}
+
+.creator-name{
+    position: relative;
+    bottom: 4.5rem;
+    right: 3rem;
+    font-weight: bold;
+
+}
+/* 
+.creator-details{
+    display: flex;
+    flex-direction: column;
+} */
