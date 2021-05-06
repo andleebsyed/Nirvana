@@ -1,4 +1,5 @@
 import './Header.css'
+import { Link } from 'react-router-dom'
 export function Header() {
     return (
         <header className="header-container">
@@ -6,11 +7,12 @@ export function Header() {
                 <span className="menu-icon">
                     <ion-icon name="menu-outline"></ion-icon>
                 </span>
-                <span className="logo-span">
+                <Link to='/'>
+                    <span className="logo-span">
+                        <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel-bag" width="60" height="60" color="#000"></svg>
+                    </span>
+                </Link>
 
-
-                    <svg data-src="https://s2.svgbox.net/illlustrations.svg?ic=travel-bag" width="60" height="60" color="#000"></svg>
-                </span>
             </div>
             <div className="header-center">
                 <input type="text" className="search-box" placeholder=" Search" />
