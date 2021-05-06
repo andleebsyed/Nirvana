@@ -5,12 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import VideoProvider from './components/Data/Data';
 import { BrowserRouter as Router } from 'react-router-dom'
+import { DataProvider } from './components/Reducer/Reducer';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <VideoProvider>
-        <App />
-      </VideoProvider>
+      <DataProvider>
+        <VideoProvider>
+          <App />
+        </VideoProvider>
+      </DataProvider>
+
     </Router>
 
 
