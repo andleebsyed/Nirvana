@@ -1,19 +1,22 @@
 import './App.css';
 import { Header } from './components/Header/Header'
-import { Main } from './components/Main/Main'
 import { Liked } from './components/Liked/Liked'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { VideoPlayer } from './components/VideoPlayer/VideoPlayer';
 import { Homepage } from './components/Homepage/Homepage';
+import { Sidebar } from './components/Sidebar/Sidebar';
 function App() {
   return (
-    <div className>
+    <div className="main-outer-div">
       <div className="header"><Header /></div>
+      <div className="sidebar"><Sidebar /></div>
+
       <Routes>
         <Route path='/' element={<div><Homepage /></div>} />
-        {/* <Route path='/liked' element={<div><Liked /></div>} /> */}
-        <Route path="watch/:id" element={<div className=""><VideoPlayer /></div>} />
+        <Route path='/liked' element={<div className="main"><Liked /></div>} />
+        <Route path="watch/:id" element={<div className="main"><VideoPlayer /></div>} />
       </Routes>
+
     </div>
   );
 }
