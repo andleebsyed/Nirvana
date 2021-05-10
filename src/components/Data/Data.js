@@ -7,7 +7,8 @@ export const videos = [{
     videoName: 'Daydreams - A Cinematic Roadtrip Adventure',
     thumbnail: 'http://i3.ytimg.com/vi/bx79vJP4zWI/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=bx79vJP4zWI',
-    description: 'Take a road trip with me and my friends as we film our way through Panama to some fun surf. Utilizing GoPro MAX and HERO8, I do my best to show you how to film what you see in the video. '
+    description: 'Take a road trip with me and my friends as we film our way through Panama to some fun surf. Utilizing GoPro MAX and HERO8, I do my best to show you how to film what you see in the video. ',
+    category: 'Road Trip'
 },
 {
     id: 'v=jMwNXQFcBB4',
@@ -16,7 +17,8 @@ export const videos = [{
     videoName: 'GoPro Surf: Discovering the Mentawais in 4K',
     thumbnail: 'http://i3.ytimg.com/vi/jMwNXQFcBB4/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=jMwNXQFcBB4',
-    description: '“It takes a special sort of mindset to truly discover something” - Captain Martin Daly. '
+    description: '“It takes a special sort of mindset to truly discover something” - Captain Martin Daly. ',
+    category: 'Exploration'
 }
 ]
 
