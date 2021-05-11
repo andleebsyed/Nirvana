@@ -1,0 +1,14 @@
+body{
+        --primary-color :  #DC2626;
+}
+.liked-videos{
+    margin: 1rem;
+    border-top: 2px solid var(--primary-color);
+    border-bottom : 2px solid var(--primary-color);
+    padding-left: 1rem;
+}
+
+.liked-intro{
+    font-weight: lighter;
+    text-align: left;
+}
