@@ -7,7 +7,7 @@ body{
   grid-template-columns : 4.5rem auto;
   grid-template-rows: 3.3rem 4rem auto;
   grid-template-areas:'header header'
-  'sidebar categories'
+  'sidebar main'
   'sidebar main' 
   ;
   text-align: center;
