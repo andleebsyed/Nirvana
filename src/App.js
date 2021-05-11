@@ -15,6 +15,7 @@ function App() {
         <Route path='/' element={<div><Homepage /></div>} />
         <Route path='/liked' element={<div className="main"><Liked /></div>} />
         <Route path="watch/:id" element={<div className="main"><VideoPlayer /></div>} />
+        <Route path='library' element={<div className="main"><Library /></div>} />
       </Routes>
 
     </div>
