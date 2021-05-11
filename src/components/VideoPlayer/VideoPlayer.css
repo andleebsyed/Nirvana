@@ -1,6 +1,7 @@
 body{
     --main-bg-color : #F9FAFB;
     --button-hover-color : #E5E7EB;
+    --primary-color :  #DC2626;
 }
 .outer-main{
     display: flex;
@@ -88,7 +89,7 @@ ion-icon {
 }
 
 .notes{
-        border-top: 2px solid #DC2626;
+        border-top: 2px solid var(--primary-color);
 
 }
 .notes-input-box{
@@ -116,8 +117,8 @@ ion-icon {
 }
 
 .creator-details{
-    border-top: 1px solid #DC2626 ;
-    border-bottom: 1px solid #DC2626 ;
+    border-top: 1px solid var(--primary-color) ;
+    border-bottom: 1px solid var(--primary-color) ;
     margin-bottom: 1rem;
     margin-right: 1rem;
     margin-left: 1rem;
