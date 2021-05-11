@@ -1,20 +1,147 @@
 body{
     --main-bg-color : #F9FAFB;
+    --button-hover-color : #E5E7EB;
 }
 .outer-main{
-    height: 100vh;
+    display: flex;
+    justify-content: space-between;
 
 }
 .player{
-    border: 1px solid blue;
-    margin-left: 1rem;
+
 }
 .player-card{
     background-color: var(--main-bg-color);
-    border: 1px solid red;
-     padding: 1rem;
-     margin-top: 1rem;
-     width: 800px;
-     margin-left: 3rem;
+    box-shadow : 0px 0px 8px 1px grey ;
+    margin-top: 1rem;
+    width: 50vw;
+     margin-left: 5vw;
 
+}
+
+.liked{
+    color : blue
+}
+
+.not-liked{
+    color : black;
+}
+
+.video-label{
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-intro{
+    font-size: 20px;
+    margin-left: 1rem;
+}
+
+.interactions{
+    display: flex;
+    width: 10rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    justify-content: space-between;
+}
+
+.buttons{
+    cursor: pointer;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.buttons:hover{
+    background-color: var(--button-hover-color);
+}
+
+.buttons ion-icon{
+    font-size: 1.5rem;
+}
+
+ion-icon {
+  pointer-events: none;
+}
+
+.notes-outer{
+    overflow: auto;
+    box-shadow : 0px 0px 8px 1px grey ;
+    width: 30vw;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-right: 5vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 480px;
+
+}
+
+.notes-heading{
+    display: flex;
+    align-items: flex-start;
+    margin-left: .5rem;
+    font-size: 20px;
+}
+
+.notes{
+        border-top: 2px solid #DC2626;
+
+}
+.notes-input-box{
+    margin-top: auto;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    border-radius: .2rem;
+    border: 1px solid grey  ;
+    padding: .5rem;
+   
+}
+
+.individual-note{
+    background-color: #E5E7EB ;
+    margin-top: .3rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    border-radius: .1rem;
+    height: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    padding: .3rem;
+    padding-left: 1rem;
+}
+
+.creator-details{
+    border-top: 1px solid #DC2626 ;
+    border-bottom: 1px solid #DC2626 ;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+
+}
+
+.thumbnail-and-name{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.thumbnail{
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    margin-top: .5rem;
+}
+
+.name{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.video-description{
+    text-align: left;
 }
