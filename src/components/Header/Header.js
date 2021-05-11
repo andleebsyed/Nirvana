@@ -19,7 +19,7 @@ export function Header() {
                 <button className="search-button">
                     <ion-icon className="search-icon" name="search-outline"></ion-icon>
                 </button>
-                <button className="mic-button">
+                <button title="Upload Video" className="mic-button">
                     <ion-icon name="mic-outline"></ion-icon>
                 </button>
             </div>

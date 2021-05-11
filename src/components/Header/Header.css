@@ -4,6 +4,7 @@ body{
     --account-background-color :  #047857;
     --account-text-color : white ;
 }
+
 .header-container{
     /* border-bottom: 2.5px solid rgb(146, 153, 167); */
     height: 3rem;
