@@ -4,6 +4,7 @@ import ReactPlayer from 'react-player'
 import { useParams } from 'react-router-dom'
 import { useVideo } from '../Data/Data'
 import { useVideoData } from '../Reducer/Reducer'
+import { LibraryModal } from '../LibraryModal/LibraryModal'
 export function VideoPlayer() {
     const { state, dispatch } = useVideoData()
     const { likedVideos } = state
@@ -13,6 +14,10 @@ export function VideoPlayer() {
     const video = currentVideo[0];
     const videoInLiked = likedVideos.filter(videoInIteration => videoInIteration.id === video.id)
     const [notes, setNotes] = useState([])
+    const [show, setShow] = useState(false)
+
+    // to be passed to Library Modal
+    let props = { show: show, setShow: setShow }
 
     function notesHandler(e) {
         setNotes([...notes, e.target.value])
@@ -26,7 +31,7 @@ export function VideoPlayer() {
                     <ReactPlayer
                         url={video.url}
                         controls={true}
-                        width={'50vw'}
+                        width={'55vw'}
                         height={'60vh'}
                     />
                 </div>
@@ -43,7 +48,8 @@ export function VideoPlayer() {
                             <button onClick={() => dispatch({ type: 'REMOVE_FROM_LIKED_VIDEOS', payload: video })} className='liked buttons'><ion-icon name="thumbs-up-sharp"></ion-icon></button>
                         }
 
-                        <button title="Add to Library" className="buttons tooltip" ><ion-icon name="create-outline"></ion-icon></button>
+                        <button title="Add to Library" className="buttons tooltip" onClick={() => setShow(true)} ><ion-icon name="create-outline"></ion-icon></button>
+
 
 
                     </div>
@@ -63,6 +69,7 @@ export function VideoPlayer() {
 
             </div>
 
+
             <div className="notes-outer">
                 <p className="notes-heading">Take Notes</p>
                 <div className="notes">
@@ -77,7 +84,7 @@ export function VideoPlayer() {
             </div>
 
 
-
+            <LibraryModal {...props} />
 
         </div>
     )

@@ -17,7 +17,6 @@ export function DataProvider({ children }) {
     const likedVideos = []
     const watchLaterVideos = []
     const [state, dispatch] = useReducer(videosHandler, { likedVideos, watchLaterVideos })
-    console.log("state is ", state)
     return (
         <VideoHandleContext.Provider value={{ state, dispatch }}>
             {children}

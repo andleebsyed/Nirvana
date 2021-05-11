@@ -1,0 +1,70 @@
+.modal-outer{
+    /* background-color: red; */
+    position: fixed;
+    top : 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.modal{
+    position: fixed;
+    bottom: 10rem;
+    right: 40vw;
+    background-color: white;
+    width: 13rem;
+    height: 13rem;
+    border-radius: .2rem;
+    
+}
+
+.modal-header{
+    border-bottom: 1px solid #F87171;
+    padding: .5rem;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header p{
+    margin-top: 0;
+}
+
+.close-modal{
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+
+}
+
+.close-modal:hover{
+    background-color: #F87171;
+}
+
+.modal-footer{
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    overflow: auto;
+    width: 100%;
+}
+
+.single-playlist{
+    margin-top: 1rem;
+    cursor: pointer;
+    text-align: left;
+    padding-left: .5rem;
+}
+
+.footer-button{
+    cursor: pointer;
+    /* outline-color: #F87171; */
+    /* background-color: #F87171; */
+    /* border: none; */
+    /* padding: .3rem; */
+}

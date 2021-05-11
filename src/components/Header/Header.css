@@ -99,6 +99,7 @@ body{
     display: flex;
     align-items: right;
     margin-right: 1rem;
+    padding-right: .5rem;
 }
 
 .account{
