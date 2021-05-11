@@ -7,7 +7,7 @@ export function Liked() {
     if (likedVideos.length === 0) {
         return (
             <div className="cards-container">
-                <h1>No Liked Videos</h1>
+                <h1 className="none-liked">No Liked Videos Yet...</h1>
             </div>
 
         )

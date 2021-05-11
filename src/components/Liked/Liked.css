@@ -2,3 +2,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.none-liked{
+    font-weight: lighter;
+    font-size: x-large;
+}
