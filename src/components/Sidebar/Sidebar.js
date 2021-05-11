@@ -17,6 +17,12 @@ export function Sidebar() {
 
                 </div>
             </Link>
+            <Link to='/library'>
+                <div className="side-icon">
+                    <a className="adjustment"><ion-icon name="library-outline"></ion-icon></a><span className="adjustment icon-text">Library</span>
+
+                </div>
+            </Link>
 
         </div>
     )
