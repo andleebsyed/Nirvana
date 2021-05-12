@@ -31,3 +31,7 @@ body{
 .icon-text{
     font-size: small;
 }
+.sidebar-link{
+    text-decoration: none;
+    color: black;
+}
