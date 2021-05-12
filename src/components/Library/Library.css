@@ -1,14 +1,19 @@
 body{
         --primary-color :  #DC2626;
 }
-.liked-videos{
-    margin: 1rem;
-    border-top: 2px solid var(--primary-color);
-    border-bottom : 2px solid var(--primary-color);
+.library-section{
+    /* margin: 1rem; */
+    border-top: 1px solid var(--primary-color);
+    border-bottom : 1px solid var(--primary-color);
     padding-left: 1rem;
 }
 
-.liked-intro{
+.heading-intro{
     font-weight: lighter;
     text-align: left;
+}
+
+
+.playlists{
+    border-top: none;
 }

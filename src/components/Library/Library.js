@@ -1,11 +1,16 @@
 import './Library.css'
 import { Liked } from '../Liked/Liked'
+import { Playlists } from '../Playlists/Playlists'
 export function Library() {
     return (
         <div>
-            <div className="liked-videos">
-                <h1 className="liked-intro">Liked Videos|</h1>
+            <div className="liked-videos library-section">
+                <h1 className="heading-intro">Liked Videos|</h1>
                 <Liked />
+            </div>
+            <div className="playlists library-section">
+                <h1 className="heading-intro">Playlists|</h1>
+                <Playlists />
             </div>
 
         </div>
