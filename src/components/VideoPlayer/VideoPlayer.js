@@ -17,7 +17,7 @@ export function VideoPlayer() {
     const [show, setShow] = useState(false)
 
     // to be passed to Library Modal
-    let props = { show: show, setShow: setShow }
+    let props = { show: show, setShow: setShow, video: video }
 
     function notesHandler(e) {
         setNotes([...notes, e.target.value])
