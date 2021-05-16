@@ -2,7 +2,6 @@ body{
         --primary-color :  #DC2626;
 }
 .library-section{
-    /* margin: 1rem; */
     border-top: 1px solid var(--primary-color);
     border-bottom : 1px solid var(--primary-color);
     padding-left: 1rem;
@@ -17,3 +16,6 @@ body{
 .playlists{
     border-top: none;
 }
+/* .playlist-none{
+   text-align: left;
+} */
