@@ -15,15 +15,16 @@ function videosHandler(state, { type, payload }) {
             return { ...state, playlists: [...playlists, { name: payload.name, list: [] }] }
         case 'ADD_TO_PLAYLIST':
             const tempPlaylists = [...playlists]
+            // index which playlist to mess with
             const index = tempPlaylists.findIndex(loopPlaylist => payload.playlist.name === loopPlaylist.name)
+            // update the playlist
             tempPlaylists[index] = { ...tempPlaylists[index], list: [...tempPlaylists[index].list, payload.videoId] }
             return { ...state, playlists: tempPlaylists }
         case 'REMOVE_FROM_PLAYLIST':
             const tempPlaylistsRemove = [...playlists]
             const indexToRemoveFrom = tempPlaylistsRemove.findIndex(loopPlaylist => payload.playlist.name === loopPlaylist.name)
-            const addedVideos = tempPlaylistsRemove[indexToRemoveFrom].list.filter(currentId => currentId !== payload.videoId)
-            const whatToPassToList = addedVideos.length > 0 ? addedVideos : [];
-            tempPlaylistsRemove[indexToRemoveFrom] = { ...tempPlaylistsRemove[indexToRemoveFrom], list: whatToPassToList }
+            const filteredVideos = tempPlaylistsRemove[indexToRemoveFrom].list.filter(currentId => currentId !== payload.videoId)
+            tempPlaylistsRemove[indexToRemoveFrom] = { ...tempPlaylistsRemove[indexToRemoveFrom], list: filteredVideos }
             return { ...state, playlists: tempPlaylistsRemove }
 
     }
