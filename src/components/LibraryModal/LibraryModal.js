@@ -1,6 +1,7 @@
 import './LibraryModal.css'
 import { useState, useRef, createContext, useContext } from 'react'
 import { Playlists } from '../Playlists/Playlists'
+import { checkForIdInPlaylist } from '../../utils/funcs'
 const ModalContext = createContext()
 export function LibraryModal({ show, setShow, video }) {
     const { playlists, setPlaylists } = useModal()
@@ -48,12 +49,7 @@ export function LibraryModal({ show, setShow, video }) {
         }
     }
 
-    function checkForIdInPlaylist(playlistList, videoId) {
-        console.log("list of videos in our playlist ", playlistList, " and video id being ", videoId)
-        const ifPresent = playlistList.filter(item => item === videoId)
-        console.log("should be ticked or not ", ifPresent.length)
-        return ifPresent.length > 0 ? true : false
-    }
+
     if (!show) {
         return null
     }
