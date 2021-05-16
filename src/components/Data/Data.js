@@ -1,6 +1,4 @@
-import { createContext, useContext } from "react"
-
-export const videos = [{
+export const allVideos = [{
     id: 'v=bx79vJP4zWI',
     creatorName: 'Abe Kislevitz',
     creatorThumbnail: "https://yt3.ggpht.com/ytc/AAUvwnimj_GJ01K6a406viYj42z7ByopupESdo204VQ7mg=s88-c-k-c0x00ffffff-no-rj",
@@ -21,17 +19,3 @@ export const videos = [{
     category: 'Exploration'
 }
 ]
-
-const VideoContext = createContext()
-
-export default function VideoProvider({ children }) {
-    return (
-        <VideoContext.Provider value={{ videos }}>
-            {children}
-        </VideoContext.Provider>
-    )
-}
-
-export function useVideo() {
-    return useContext(VideoContext)
-}

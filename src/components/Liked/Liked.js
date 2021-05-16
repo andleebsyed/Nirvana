@@ -1,8 +1,8 @@
 import './Liked.css'
-import { useVideoData } from '../Reducer/Reducer'
+import { useVideo } from '../Reducer/Reducer'
 import { Card } from '../Card/Card'
 export function Liked() {
-    const { state } = useVideoData()
+    const { state } = useVideo()
     const { likedVideos } = state
     if (likedVideos.length === 0) {
         return (

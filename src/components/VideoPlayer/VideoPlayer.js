@@ -2,15 +2,17 @@ import './VideoPlayer.css'
 import { useState } from 'react'
 import ReactPlayer from 'react-player'
 import { useParams } from 'react-router-dom'
-import { useVideo } from '../Data/Data'
-import { useVideoData } from '../Reducer/Reducer'
+import { useData } from '../Data/Data'
+import { useVideo } from '../Reducer/Reducer'
 import { LibraryModal } from '../LibraryModal/LibraryModal'
 export function VideoPlayer() {
-    const { state, dispatch } = useVideoData()
-    const { likedVideos } = state
+    const { state, dispatch } = useVideo()
+    const { likedVideos, videos } = state
     const { id } = useParams()
-    const { videos } = useVideo()
+    console.log("all videos are ", videos)
+    // const { videos } = useData()
     const currentVideo = videos.filter(video => video.id === id)
+    console.log("current video is ", currentVideo)
     const video = currentVideo[0];
     const videoInLiked = likedVideos.filter(videoInIteration => videoInIteration.id === video.id)
     const [notes, setNotes] = useState([])

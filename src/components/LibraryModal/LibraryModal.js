@@ -1,51 +1,30 @@
 import './LibraryModal.css'
-import { useState, useRef, createContext, useContext } from 'react'
-import { Playlists } from '../Playlists/Playlists'
+import { useState, useRef } from 'react'
 import { checkForIdInPlaylist } from '../../utils/funcs'
-const ModalContext = createContext()
+import { useVideo } from '../Reducer/Reducer'
 export function LibraryModal({ show, setShow, video }) {
-    const { playlists, setPlaylists } = useModal()
+    const { state, dispatch } = useVideo()
+    const { playlists } = state
     const [current, setCurrent] = useState('')
     const inputEl = useRef(null)
 
     function keyPressHandler(e) {
-        return e.key === 'Enter' ? (setPlaylists([...playlists, { name: current, list: [] }]), e.currentTarget.value = "") : 'do nothing'
+        return e.key === 'Enter' ? (
+            dispatch({ type: 'ADD_NEW_PLAYLIST', payload: { name: current } }), e.currentTarget.value = "") : 'do nothing'
     }
+
     function onClickHandler(e) {
-        setPlaylists([...playlists, { name: current, list: [] }])
+        dispatch({ type: 'ADD_NEW_PLAYLIST', payload: { name: current } })
         inputEl.current.value = ""
 
     }
-
-    function addVideoToPlaylist(playlist, videoId) {
-        console.log(" i am inside add function")
-        const tempPlaylist = [...playlists]
-        const index = tempPlaylist.findIndex(loopPlaylist => playlist.name === loopPlaylist.name)
-        // console.log("index we got is ", index)
-        // console.log("list which we are updating", tempPlaylist[index])
-        tempPlaylist[index] = { ...tempPlaylist[index], list: [...tempPlaylist[index].list, videoId] }
-        // console.log("updated playlist is ", tempPlaylist)
-        setPlaylists(tempPlaylist)
-    }
-
-    function removeVideoFromPlaylist(playlist, videoId) {
-        const tempPlaylist = [...playlists]
-        const index = tempPlaylist.findIndex(loopPlaylist => playlist.name === loopPlaylist.name)
-        const addedVideos = tempPlaylist[index].list.filter(currentId => currentId !== videoId)
-        const whatToPassToList = addedVideos.length > 0 ? addedVideos : [];
-        tempPlaylist[index] = { ...tempPlaylist[index], list: whatToPassToList }
-        setPlaylists(tempPlaylist)
-    }
     function checkboxHandler(playlist, videoId) {
-        if (checkForIdInPlaylist(playlist.list, videoId) === true
-        ) {
-            console.log("i am coming to remove")
-            removeVideoFromPlaylist(playlist, videoId)
+        if (checkForIdInPlaylist(playlist.list, videoId) === true) {
+
+            dispatch({ type: 'REMOVE_FROM_PLAYLIST', payload: { playlist, videoId } })
         }
         else {
-            console.log("i am coming to add")
-
-            addVideoToPlaylist(playlist, videoId)
+            dispatch({ type: 'ADD_TO_PLAYLIST', payload: { playlist, videoId } })
         }
     }
 
@@ -85,17 +64,4 @@ export function LibraryModal({ show, setShow, video }) {
         )
     }
 
-}
-export default function ModalProvider({ children }) {
-    const [playlists, setPlaylists] = useState([{ name: 'Add to Watch Later', list: [] }])
-
-    return (
-        <ModalContext.Provider value={{ playlists, setPlaylists }}>
-            {children}
-        </ModalContext.Provider>
-    )
-}
-
-export function useModal() {
-    return useContext(ModalContext)
 }

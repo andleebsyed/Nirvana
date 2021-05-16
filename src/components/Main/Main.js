@@ -1,11 +1,11 @@
 import './Main.css'
-import { useParams } from 'react-router-dom'
-import { VideoPlayer } from '../VideoPlayer/VideoPlayer'
-import { useVideo } from '../Data/Data'
+import { useData } from '../Data/Data'
 import { Card } from '../Card/Card'
-import { useVideoData } from '../Reducer/Reducer'
+import { useVideo } from '../Reducer/Reducer'
 export function Main() {
-    const { videos } = useVideo()
+    const { state } = useVideo()
+    const { videos } = state
+
     return (
         <div className="cards-container">
             {videos.map(video => <Card video={video} />)}

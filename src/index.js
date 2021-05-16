@@ -6,19 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import VideoProvider from './components/Data/Data';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { DataProvider } from './components/Reducer/Reducer';
-import ModalProvider from './components/LibraryModal/LibraryModal';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ModalProvider>
-        <DataProvider>
-          <VideoProvider>
-            <App />
-          </VideoProvider>
-        </DataProvider>
-      </ModalProvider>
-
-
+      <DataProvider>
+        {/* <VideoProvider> */}
+        <App />
+        {/* </VideoProvider> */}
+      </DataProvider>
     </Router>
 
 
