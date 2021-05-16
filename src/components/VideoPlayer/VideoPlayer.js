@@ -2,29 +2,24 @@ import './VideoPlayer.css'
 import { useState } from 'react'
 import ReactPlayer from 'react-player'
 import { useParams } from 'react-router-dom'
-import { useData } from '../Data/Data'
 import { useVideo } from '../Reducer/Reducer'
 import { LibraryModal } from '../LibraryModal/LibraryModal'
+import { Notes } from '../Notes/Notes'
 export function VideoPlayer() {
     const { state, dispatch } = useVideo()
     const { likedVideos, videos } = state
     const { id } = useParams()
-    console.log("all videos are ", videos)
-    // const { videos } = useData()
     const currentVideo = videos.filter(video => video.id === id)
     console.log("current video is ", currentVideo)
     const video = currentVideo[0];
     const videoInLiked = likedVideos.filter(videoInIteration => videoInIteration.id === video.id)
-    const [notes, setNotes] = useState([])
+
     const [show, setShow] = useState(false)
 
     // to be passed to Library Modal
     let props = { show: show, setShow: setShow, video: video }
 
-    function notesHandler(e) {
-        setNotes([...notes, e.target.value])
-        e.currentTarget.value = "";
-    }
+
 
     return (
         <div className="outer-main">
@@ -51,9 +46,6 @@ export function VideoPlayer() {
                         }
 
                         <button title="Add to Library" className="buttons tooltip" onClick={() => setShow(true)} ><ion-icon name="create-outline"></ion-icon></button>
-
-
-
                     </div>
 
                 </div>
@@ -65,26 +57,11 @@ export function VideoPlayer() {
                     <div className="video-details">
                         <p className="video-description">{video.description}</p>
                     </div>
-
                 </div>
-
-
             </div>
 
 
-            <div className="notes-outer">
-                <p className="notes-heading">Take Notes</p>
-                <div className="notes">
-
-                    {notes.map(note => <div className="individual-note">
-                        {note}
-                    </div>)}
-                </div>
-                <input className="notes-input-box" type="text" placeholder="Type here..." onKeyPress={(e) => e.key === 'Enter' ? notesHandler(e) : 'do nothing'} />
-
-
-            </div>
-
+            <Notes />
 
             <LibraryModal {...props} />
 

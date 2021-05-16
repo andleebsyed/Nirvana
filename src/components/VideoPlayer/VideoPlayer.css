@@ -67,54 +67,10 @@ ion-icon {
   pointer-events: none;
 }
 
-.notes-outer{
-    overflow: auto;
-    box-shadow : 0px 0px 8px 1px grey ;
-    width: 30vw;
-    margin-left: 2rem;
-    margin-top: 1rem;
-    margin-right: 3vw;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 480px;
 
-}
 
-.notes-heading{
-    display: flex;
-    align-items: flex-start;
-    margin-left: .5rem;
-    font-size: 20px;
-}
 
-.notes{
-        border-top: 2px solid var(--primary-color);
 
-}
-.notes-input-box{
-    margin-top: auto;
-    box-sizing: border-box;
-    width: 100%;
-    outline: none;
-    border-radius: .2rem;
-    border: 1px solid grey  ;
-    padding: .5rem;
-   
-}
-
-.individual-note{
-    background-color: #E5E7EB ;
-    margin-top: .3rem;
-    margin-left: .5rem;
-    margin-right: .5rem;
-    border-radius: .1rem;
-    height: 2rem;
-    display: flex;
-    justify-content: flex-start;
-    padding: .3rem;
-    padding-left: 1rem;
-}
 
 .creator-details{
     border-top: 1px solid var(--primary-color) ;
