@@ -68,3 +68,24 @@
 .footer-button{
     cursor: pointer;
 }
+
+.delete-playlist-button{
+    /* visibility: hidden; */
+     cursor: pointer;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    border: none;
+    /* align-self: flex-end; */
+    float : right;
+    margin-right: .2rem;
+    font-size: x-small;
+    font-weight: bold;
+    background: transparent;
+
+}
+
+.delete-playlist-button:hover{
+    /* visibility: visible; */
+     background-color: #D1D5DB;
+}
