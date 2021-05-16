@@ -3,7 +3,8 @@
     flex-wrap: wrap;
 }
 
-.none-liked{
+.none-selected{
+    text-align: left;
     font-weight: lighter;
-    font-size: x-large;
+    font-size: large;
 }
