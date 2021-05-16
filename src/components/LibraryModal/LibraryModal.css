@@ -54,6 +54,10 @@
     width: 100%;
 }
 
+.playlists{
+    overflow: auto;
+    height: 10rem;
+}
 .single-playlist{
     margin-top: 1rem;
     cursor: pointer;
@@ -63,8 +67,4 @@
 
 .footer-button{
     cursor: pointer;
-    /* outline-color: #F87171; */
-    /* background-color: #F87171; */
-    /* border: none; */
-    /* padding: .3rem; */
 }
