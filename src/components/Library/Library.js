@@ -14,10 +14,7 @@ export function Library() {
             </div>
             <div className="library-section">
                 <h1 className="heading-intro">Playlists|</h1>
-                {playlists.length > 0 ?
-                    playlists.map(playlist => <Playlists playlist={playlist} />) :
-                    <h1 className="none-selected">No playlists added currently...</h1>
-                }
+                <Playlists />
             </div>
 
         </div>
