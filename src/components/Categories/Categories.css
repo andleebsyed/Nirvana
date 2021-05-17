@@ -1,0 +1,17 @@
+.buttons-outer{
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories-button{
+    cursor: pointer;
+    border-radius: 1rem;
+    height: 2rem;
+    width: 6rem;
+    outline: none;
+    border: 1px solid grey;
+    background-color : white;
+}

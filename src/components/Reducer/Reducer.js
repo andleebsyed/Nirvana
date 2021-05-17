@@ -4,7 +4,8 @@ import { Playlists } from '../Playlists/Playlists';
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
-    const { likedVideos, playlists, videos } = state
+    const { likedVideos, playlists, videos, originalVideos } = state
+    // const tempVideos = allVideos
     switch (type) {
         case 'ADD_TO_LIKED_VIDEOS':
             return { ...state, likedVideos: [...likedVideos, payload] }
@@ -27,6 +28,14 @@ function videosHandler(state, { type, payload }) {
             const filteredVideos = tempPlaylistsRemove[indexToRemoveFrom].list.filter(currentVideo => currentVideo.id !== payload.video.id)
             tempPlaylistsRemove[indexToRemoveFrom] = { ...tempPlaylistsRemove[indexToRemoveFrom], list: filteredVideos }
             return { ...state, playlists: tempPlaylistsRemove }
+        case 'SHOW_ALL':
+            return { ...state, videos: originalVideos }
+        case 'FILTER_OUT_CATEGORIES':
+            if (payload.category === 'All') {
+                return { ...state, videos: originalVideos }
+            }
+            else
+                return { ...state, videos: originalVideos.filter(video => video.category === payload.category) }
 
     }
 }
@@ -37,7 +46,8 @@ export function DataProvider({ children }) {
     const watchLaterVideos = []
     const playlists = [{ name: 'Watch Later', list: [] }];
     const videos = allVideos
-    const [state, dispatch] = useReducer(videosHandler, { likedVideos, watchLaterVideos, playlists, videos })
+    const originalVideos = allVideos
+    const [state, dispatch] = useReducer(videosHandler, { likedVideos, watchLaterVideos, playlists, videos, originalVideos })
     return (
         <VideoHandleContext.Provider value={{ state, dispatch }}>
             {children}
