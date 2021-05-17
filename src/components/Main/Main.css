@@ -1,4 +1,12 @@
+body{
+    --border-color : #E5E7EB;
+}
 .cards-container{
     display: flex;
     flex-wrap: wrap;
+}
+
+.abc{
+    margin-top: 1rem;
+    border-top: 2px solid var(--border-color);
 }

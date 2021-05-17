@@ -22,10 +22,13 @@ body{
 }
 .categories{
   grid-area: categories;
+    background-color: var(--main-bg-color);
+
   border-top: 2px solid var(--border-color);
 }
 .main{
   grid-area: main;
   background-color: var(--main-bg-color);
+  /* margin-top: 1rem; */
 
 }

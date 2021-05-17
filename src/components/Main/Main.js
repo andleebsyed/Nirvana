@@ -1,5 +1,4 @@
 import './Main.css'
-import { useData } from '../Data/Data'
 import { Card } from '../Card/Card'
 import { useVideo } from '../Reducer/Reducer'
 export function Main() {
@@ -7,7 +6,7 @@ export function Main() {
     const { videos } = state
 
     return (
-        <div className="cards-container">
+        <div className="cards-container abc">
             {videos.map(video => <Card video={video} />)}
         </div>
     )

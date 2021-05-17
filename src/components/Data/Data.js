@@ -16,7 +16,7 @@ export const allVideos = [{
     thumbnail: 'http://i3.ytimg.com/vi/jMwNXQFcBB4/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=jMwNXQFcBB4',
     description: '“It takes a special sort of mindset to truly discover something” - Captain Martin Daly. ',
-    category: 'Exploration'
+    category: 'Explore'
 },
 {
     id: 'v=wxC8We3HtKc',
@@ -26,7 +26,7 @@ export const allVideos = [{
     thumbnail: 'http://i3.ytimg.com/vi/wxC8We3HtKc/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=wxC8We3HtKc',
     description: 'This talk provides practical travel tips and makes the case that there should be no such thing as a once in a lifetime trip. Jared Kamrowski is the founder of Thrifty Traveler, the leading source for flight deals, cheap travel tips, and maximizing travel rewards.   ',
-    category: 'Get Inspired'
+    category: 'Inspirational'
 },
 {
     id: 'v=kYXiegTXsEs',
@@ -36,7 +36,7 @@ export const allVideos = [{
     thumbnail: 'http://i3.ytimg.com/vi/kYXiegTXsEs/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=kYXiegTXsEs',
     description: "After spending 4 months a year for the last 30 years living out of a suitcase, Rick Steves reflects on the value of thoughtful travel. Sharing lessons learned from Iran to El Salvador and from India to Denmark, Steves tells why spending all that time and money away from home has broadened his perspective, enriched his life, and made it clear to him, as he says in his talk, 'Fear is for people who don't get out very much.'",
-    category: 'Get Inspired'
+    category: 'Inspirational'
 },
 {
     id: 'v=AlCqyZEXM1I',
@@ -46,7 +46,7 @@ export const allVideos = [{
     thumbnail: 'http://i3.ytimg.com/vi/AlCqyZEXM1I/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=AlCqyZEXM1I',
     description: "We live in a world of consumption. Before you buy your next item for your 'man cave' or 'she shed,' think again. Adventure and exploration is the best way to learn and expand your horizons. The idea here is simple and enlightening, that one should have a passport full of stamps rather than a house full of stuff. Travel more. Buy less.",
-    category: 'Get Inspired'
+    category: 'Inspirational'
 },
 {
     id: 'v=S0TemlxiMdw',
@@ -66,7 +66,7 @@ export const allVideos = [{
     thumbnail: 'http://i3.ytimg.com/vi/bXBgitBX5Q0/maxresdefault.jpg',
     url: 'https://www.youtube.com/watch?v=bXBgitBX5Q0',
     description: "In this engaging talk, Phil Cha describes his decision to drop everything and travel the world while he was still in medical school. See how this path not frequently taken turned into a path of finding for the serial martial artist and marathon runner and the surprising takeaways at the end of it all",
-    category: 'Get Inspired'
+    category: 'Inspirational'
 },
 {
     id: 'v=CsUQJXXCVe8',
