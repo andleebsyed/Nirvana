@@ -28,8 +28,6 @@ function videosHandler(state, { type, payload }) {
             const filteredVideos = tempPlaylistsRemove[indexToRemoveFrom].list.filter(currentVideo => currentVideo.id !== payload.video.id)
             tempPlaylistsRemove[indexToRemoveFrom] = { ...tempPlaylistsRemove[indexToRemoveFrom], list: filteredVideos }
             return { ...state, playlists: tempPlaylistsRemove }
-        case 'SHOW_ALL':
-            return { ...state, videos: originalVideos }
         case 'FILTER_OUT_CATEGORIES':
             if (payload.category === 'All') {
                 return { ...state, videos: originalVideos }
