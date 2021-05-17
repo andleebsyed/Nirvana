@@ -4,7 +4,7 @@ import { Playlists } from "../Playlists/Playlists";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
-  const { likedVideos, playlists, originalVideos } = state;
+  const { likedVideos, playlists, videos, originalVideos } = state;
   switch (type) {
     case "ADD_TO_LIKED_VIDEOS":
       return { ...state, likedVideos: [...likedVideos, payload] };
@@ -62,6 +62,16 @@ function videosHandler(state, { type, payload }) {
             (video) => video.category === payload.category
           ),
         };
+    case "SEARCH_FOR_VIDEOS":
+      console.log("what to match ", payload.searchKeyword);
+      return {
+        ...state,
+        videos: originalVideos.filter((video) =>
+          video.videoName
+            .toLowerCase()
+            .includes(payload.searchKeyword.toLowerCase(), 0)
+        ),
+      };
   }
 }
 
