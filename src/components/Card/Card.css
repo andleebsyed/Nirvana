@@ -16,9 +16,9 @@
 }
 
 .video-name{
+    text-align: left;
     position: relative;
-    bottom: 1rem;
-    right: .7rem;
+    bottom: .8rem;
     font-size: .9rem;
     font-weight: 500;
 }
