@@ -68,6 +68,14 @@ function App() {
             </div>
           }
         />
+        <Route
+          path="/categories"
+          element={
+            <div className="main">
+              <Explore />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );
