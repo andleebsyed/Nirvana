@@ -1,10 +1,9 @@
 import { useReducer, useContext, createContext, useEffect } from "react";
 import { allVideos } from "../Data/Data";
-import { Playlists } from "../Playlists/Playlists";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
-  const { likedVideos, playlists, videos, originalVideos } = state;
+  const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
     case "ADD_TO_LIKED_VIDEOS":
       return { ...state, likedVideos: [...likedVideos, payload] };
@@ -63,13 +62,13 @@ function videosHandler(state, { type, payload }) {
           ),
         };
     case "SEARCH_FOR_VIDEOS":
-      console.log("what to match ", payload.searchKeyword);
       return {
         ...state,
-        videos: originalVideos.filter((video) =>
-          video.videoName
-            .toLowerCase()
-            .includes(payload.searchKeyword.toLowerCase(), 0)
+        videos: originalVideos.filter(
+          (video) =>
+            video.videoName
+              .toLowerCase()
+              .indexOf(payload.searchKeyword.toLowerCase()) === 0
         ),
       };
   }
