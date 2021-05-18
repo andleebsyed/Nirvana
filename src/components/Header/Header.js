@@ -1,13 +1,15 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useVideo } from "../Reducer/Reducer";
 export function Header() {
   const { dispatch } = useVideo();
   const [searchKeyword, setSearchKeyword] = useState("");
+  let navigate = useNavigate();
   function keyPressHandler(e) {
     if (e.key === "Enter") {
       dispatch({ type: "SEARCH_FOR_VIDEOS", payload: { searchKeyword } });
+      navigate(`/search/?keyword=${searchKeyword}`, { replace: true });
     }
   }
   return (
@@ -35,14 +37,21 @@ export function Header() {
           onKeyPress={(e) => keyPressHandler(e)}
           onChange={(e) => setSearchKeyword(e.target.value)}
         />
-        <button
-          className="search-button"
-          onClick={() =>
-            dispatch({ type: "SEARCH_FOR_VIDEOS", payload: { searchKeyword } })
-          }
-        >
-          <ion-icon className="search-icon" name="search-outline"></ion-icon>
-        </button>
+
+        <Link to={{ pathname: `/search`, search: `?keyword=${searchKeyword}` }}>
+          <button
+            className="search-button"
+            onClick={() =>
+              dispatch({
+                type: "SEARCH_FOR_VIDEOS",
+                payload: { searchKeyword },
+              })
+            }
+          >
+            <ion-icon className="search-icon" name="search-outline"></ion-icon>
+          </button>
+        </Link>
+
         <button title="Upload Video" className="mic-button">
           <ion-icon name="mic-outline"></ion-icon>
         </button>
