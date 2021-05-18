@@ -1,16 +1,14 @@
 import "./Categories.css";
 import { useVideo } from "../Reducer/Reducer";
 import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 export function Categories() {
-  const [bgColor, setBgColor] = useState("white");
-  const [clicked, setClicked] = useState(false);
   const { state, dispatch } = useVideo();
-  const { videos, originalVideos } = state;
+  const { originalVideos } = state;
   let categories = ["All"];
   let classes = "categories-button";
   function bgColorHandler(category) {
-    console.log("i cam eto change");
     classes = "categories-button enabled";
   }
   originalVideos.map((video) => {
@@ -20,18 +18,20 @@ export function Categories() {
     <div className="buttons-outer">
       {categories.map((category) => (
         <>
-          <button
-            onClick={() => (
-              dispatch({
-                type: "FILTER_OUT_CATEGORIES",
-                payload: { category },
-              }),
-              bgColorHandler(category)
-            )}
-            className="categories-button"
-          >
-            {category}
-          </button>
+          <NavLink to="/categories">
+            <button
+              onClick={() => (
+                dispatch({
+                  type: "FILTER_OUT_CATEGORIES",
+                  payload: { category },
+                }),
+                bgColorHandler(category)
+              )}
+              className="categories-button"
+            >
+              {category}
+            </button>
+          </NavLink>
         </>
       ))}
     </div>
