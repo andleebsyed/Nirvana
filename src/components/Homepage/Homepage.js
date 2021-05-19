@@ -10,7 +10,7 @@ export function Homepage() {
         <Link to="/explore">
           <button className="homepage-single-button">Explore</button>
         </Link>
-        <Link to="#">
+        <Link to="/login">
           <button className="homepage-single-button">Login</button>
         </Link>
       </div>
