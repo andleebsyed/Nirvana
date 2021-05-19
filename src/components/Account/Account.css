@@ -1,0 +1,42 @@
+body {
+  --primary-color: #dc2626;
+  --secondary-color: #2563eb;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-top: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.logout-button-custom {
+  margin-top: 1rem;
+  height: 3rem;
+  width: 5rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 10rem;
+  border: 2.5px solid var(--primary-color);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.welcome-text {
+  color: var(--secondary-color);
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cards-container {
+    flex-direction: column;
+  }
+}
