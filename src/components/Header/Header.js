@@ -61,7 +61,9 @@ export function Header() {
         <button className="bell-icon">
           <ion-icon name="notifications-outline"></ion-icon>
         </button>
-        <button className="account">A</button>
+        <Link to="/account" className="account">
+          A
+        </Link>
       </div>
     </header>
   );
