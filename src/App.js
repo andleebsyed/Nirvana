@@ -11,6 +11,7 @@ import { Search } from "./components/Search/Search";
 import { Account } from "./components/Account/Account";
 import { SignIn } from "./components/SignIn/SignIn";
 import { SignUp } from "./components/SignUp/SignUp";
+import { NotFound } from "./components/NotFound/NotFound";
 function App() {
   return (
     <div className="main-outer-div">
@@ -100,6 +101,14 @@ function App() {
           element={
             <div className="main">
               <SignUp />
+            </div>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <div className="main">
+              <NotFound />
             </div>
           }
         />

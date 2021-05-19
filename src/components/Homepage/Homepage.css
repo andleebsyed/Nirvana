@@ -5,13 +5,10 @@ body {
 }
 .homepage {
   display: flex;
-  min-height: -webkit-fill-available;
-  height: 90vh;
+  height: calc(100vh - 3.3rem);
   flex-direction: column;
   background-image: url("../../images/Homepage.svg");
-  background-size: cover;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
   align-items: center;
   justify-content: center;
 }
