@@ -1,3 +1,6 @@
+body {
+  --button-color: #dc2626;
+}
 .none-found {
   height: 100vh;
   display: flex;
@@ -11,7 +14,7 @@
   height: 2.5rem;
   width: 10rem;
   border-radius: 0.5rem;
-  background-color: #dc2626;
+  background-color: var(--button-color);
   border: hidden;
   color: white;
   font-weight: bold;
