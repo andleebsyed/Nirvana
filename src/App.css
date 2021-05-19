@@ -1,34 +1,30 @@
-body{
-  --border-color : #E5E7EB;
-  --main-bg-color : #F3F4F6;
+body {
+  --border-color: #e5e7eb;
+  --main-bg-color: #f3f4f6;
 }
 .main-outer-div {
   display: grid;
-  grid-template-columns : 4.5rem auto;
+  grid-template-columns: 4.5rem auto;
   grid-template-rows: 3.3rem 4rem auto;
-  grid-template-areas:'header header'
-  'sidebar main'
-  'sidebar main' 
-  ;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar main";
   text-align: center;
 }
 
-.header{
+.header {
   grid-area: header;
 }
 
-.sidebar{
+.sidebar {
   grid-area: sidebar;
 }
-.categories{
+.categories {
   grid-area: categories;
-    background-color: var(--main-bg-color);
 
   border-top: 2px solid var(--border-color);
 }
-.main{
+.main {
   grid-area: main;
-  background-color: var(--main-bg-color);
-  /* margin-top: 1rem; */
-
 }
