@@ -39,18 +39,25 @@ export function VideoPlayer() {
             {videoInLiked.length === 0 ? (
               <button
                 title="Like"
-                onClick={() =>
-                  dispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
-                }
+                onClick={() => {
+                  dispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: { video } });
+                  // setShowModal(true);
+                  // setText("Added To Liked Videos");
+                }}
                 className="not-liked buttons"
               >
                 <ion-icon name="thumbs-up-outline"></ion-icon>
               </button>
             ) : (
               <button
-                onClick={() =>
-                  dispatch({ type: "REMOVE_FROM_LIKED_VIDEOS", payload: video })
-                }
+                onClick={() => {
+                  dispatch({
+                    type: "REMOVE_FROM_LIKED_VIDEOS",
+                    payload: { video },
+                  });
+                  // setShowModal(false);
+                  // setText("Removed from Liked Videos");
+                }}
                 className="liked buttons"
               >
                 <ion-icon name="thumbs-up-sharp"></ion-icon>
