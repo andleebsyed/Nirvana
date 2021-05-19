@@ -1,3 +1,7 @@
+body {
+  --off-red: #ef4444;
+  --primary-color: #dc2626;
+}
 .buttons-outer {
   margin-top: 1rem;
   padding-left: 1rem;
@@ -12,9 +16,30 @@
   height: 2rem;
   width: 6rem;
   outline: none;
-  border: 1px solid grey;
-  background-color: white;
+  border: none;
+  background-color: lightgray;
+  /* background-color: white; */
 }
-.enabled {
+/* .enabled {
   background-color: grey;
+} */
+
+.selected {
+  background-color: var(--primary-color);
+
+  /* color: red; */
+}
+.selected button {
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+.categories-button-specific {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 1rem;
+  height: 2rem;
+  width: 6rem;
 }

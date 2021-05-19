@@ -69,7 +69,7 @@ function App() {
           }
         />
         <Route
-          path="/categories"
+          path="/categories/:category"
           element={
             <div className="main">
               <Explore />

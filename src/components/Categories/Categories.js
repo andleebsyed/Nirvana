@@ -7,10 +7,6 @@ export function Categories() {
   const { state, dispatch } = useVideo();
   const { originalVideos } = state;
   let categories = ["All"];
-  let classes = "categories-button";
-  function bgColorHandler(category) {
-    classes = "categories-button enabled";
-  }
   originalVideos.map((video) => {
     if (!categories.includes(video.category)) categories.push(video.category);
   });
@@ -18,16 +14,20 @@ export function Categories() {
     <div className="buttons-outer">
       {categories.map((category) => (
         <>
-          <NavLink to="/categories">
+          <NavLink
+            // replace used to remove whitespaces in param
+            to={`/categories/${category.replace(/ /g, "")}`}
+            className="categories-button"
+            activeClassName="selected"
+          >
             <button
-              onClick={() => (
+              onClick={() =>
                 dispatch({
                   type: "FILTER_OUT_CATEGORIES",
                   payload: { category },
-                }),
-                bgColorHandler(category)
-              )}
-              className="categories-button"
+                })
+              }
+              className="categories-button-specific"
             >
               {category}
             </button>

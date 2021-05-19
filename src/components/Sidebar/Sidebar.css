@@ -4,7 +4,6 @@ body {
   padding: 0px;
 }
 .sidebar {
-  /* height: 100vh; */
   border: 3px;
   display: flex;
   flex-direction: column;
