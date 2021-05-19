@@ -8,6 +8,9 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Library } from "./components/Library/Library";
 import { Homepage } from "./components/Homepage/Homepage";
 import { Search } from "./components/Search/Search";
+import { Account } from "./components/Account/Account";
+import { SignIn } from "./components/SignIn/SignIn";
+import { SignUp } from "./components/SignUp/SignUp";
 function App() {
   return (
     <div className="main-outer-div">
@@ -73,6 +76,30 @@ function App() {
           element={
             <div className="main">
               <Explore />
+            </div>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <div className="main">
+              <Account />
+            </div>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <div className="main">
+              <SignIn />
+            </div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <div className="main">
+              <SignUp />
             </div>
           }
         />
