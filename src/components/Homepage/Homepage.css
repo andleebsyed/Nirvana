@@ -1,0 +1,35 @@
+body {
+  --button-color: #dc2626;
+  margin: 0;
+  padding: 0;
+}
+.homepage {
+  display: flex;
+  min-height: -webkit-fill-available;
+  height: 90vh;
+  flex-direction: column;
+  background-image: url("../../images/Homepage.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  align-items: center;
+  justify-content: center;
+}
+.homepage p {
+  font-size: 1.4rem;
+}
+.homepage-buttons-outer {
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.homepage-single-button {
+  margin: 1rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 10rem;
+  border: 2.5px solid var(--button-color);
+  border-radius: 0.5rem;
+  color: var(--button-color);
+  font-weight: bold;
+}

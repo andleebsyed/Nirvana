@@ -1,37 +1,40 @@
-body{
-    --hover-bg-color : #E5E7EB ;
+body {
+  --hover-bg-color: #e5e7eb;
+  margin: 0px;
+  padding: 0px;
 }
-.sidebar{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.adjustment >ion-icon{
-    font-size: 25px;
-    --ionicon-stroke-width: 25px;
-}
-.adjustment{
-    position: relative;
-    top : .7rem ;
-     font-size: 25px;
-}
-.side-icon{
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    height: 4rem;
-
+.sidebar {
+  /* height: 100vh; */
+  border: 3px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
-.side-icon:hover{
-    background-color: var(--hover-bg-color);
+.adjustment > ion-icon {
+  font-size: 25px;
+  --ionicon-stroke-width: 25px;
+}
+.adjustment {
+  position: relative;
+  top: 0.7rem;
+  font-size: 25px;
+}
+.side-icon {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 4rem;
 }
 
-.icon-text{
-    font-size: small;
+.side-icon:hover {
+  background-color: var(--hover-bg-color);
 }
-.sidebar-link{
-    text-decoration: none;
-    color: black;
+
+.icon-text {
+  font-size: small;
+}
+.sidebar-link {
+  text-decoration: none;
+  color: black;
 }
