@@ -2,6 +2,7 @@ body {
   --hover-bg-color: #e5e7eb;
   margin: 0px;
   padding: 0px;
+  --primary-color: #dc2626;
 }
 .sidebar {
   border: 3px;
@@ -26,14 +27,22 @@ body {
   height: 4rem;
 }
 
-.side-icon:hover {
-  background-color: var(--hover-bg-color);
-}
-
 .icon-text {
   font-size: small;
 }
 .sidebar-link {
   text-decoration: none;
   color: black;
+}
+.sidebar-link:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.sidebar-icon-selected {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+.sidebar-icon-selected:hover {
+  background-color: var(--primary-color);
 }
