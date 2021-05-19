@@ -6,7 +6,7 @@ function videosHandler(state, { type, payload }) {
   const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
     case "ADD_TO_LIKED_VIDEOS":
-      return { ...state, likedVideos: [...likedVideos, payload] };
+      return { ...state, likedVideos: [...likedVideos, payload.video] };
     case "REMOVE_FROM_LIKED_VIDEOS":
       return {
         ...state,
