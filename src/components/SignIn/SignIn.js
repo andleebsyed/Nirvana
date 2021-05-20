@@ -5,7 +5,6 @@ import { UserSignIn } from "../ApiCalls/ApiCalls";
 export function SignIn() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  // const [message, setMessage] = useState("");
   const [displayError, setDisplayError] = useState("none");
   const [loginButtonText, setLoginButtonText] = useState("Sign In");
   let userResponseFromServer;
