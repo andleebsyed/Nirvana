@@ -28,7 +28,6 @@ export async function UserSignUp(userDetails) {
     userDetails: userDetails,
   };
   let isSignUpSuccessfull;
-  console.log("data in api function ", signUpDataFromView);
   try {
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/users/signup",
@@ -48,7 +47,6 @@ export async function UserSignUp(userDetails) {
         }
       }
     }
-    console.log("response object", response);
   } catch (error) {
     console.log("error occured ", error.message);
   }

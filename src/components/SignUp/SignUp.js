@@ -10,19 +10,17 @@ export function SignUp() {
   });
   const [exisitingOne, setExistingOne] = useState("");
   const [displayError, setDisplayError] = useState("none");
+
   let isSignUpSuccessful;
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("user details are ", userDetails);
     isSignUpSuccessful = await UserSignUp(userDetails);
     if (isSignUpSuccessful.status === false) {
       setExistingOne(isSignUpSuccessful.existingField);
       setDisplayError("block");
     } else {
       setDisplayError("none");
-      console.log("signed up successfully");
-      setExistingOne("");
     }
   }
   return (
