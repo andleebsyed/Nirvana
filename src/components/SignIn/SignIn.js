@@ -1,21 +1,43 @@
 import "./SignIn.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { UserSignIn } from "../ApiCalls/ApiCalls";
 export function SignIn() {
-  function handleSubmit() {}
-  function onSubmit() {}
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  // const [message, setMessage] = useState("");
+  const [displayError, setDisplayError] = useState("none");
+  const [loginButtonText, setLoginButtonText] = useState("Sign In");
+  let userResponseFromServer;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoginButtonText("Signing In...");
+    userResponseFromServer = await UserSignIn(username, password);
+    setLoginButtonText("Sign In");
+    if (userResponseFromServer.allowUser === false) {
+      setDisplayError("block");
+    } else {
+      setDisplayError("none");
+    }
+  }
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit}>
       <div className="login-main">
         <h1 className="login-heading">Login</h1>
-        {/* <p className="error-message" style={{ display: failure, color: "red" }}>
+        <p
+          className="error-message"
+          style={{ display: displayError, color: "red" }}
+        >
           Username or password is incorrect
-        </p> */}
+        </p>
         <input
           className="input-field username"
           type="text"
           placeholder="Enter Username"
           name="username"
           required
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
           className="input-field password"
@@ -23,8 +45,9 @@ export function SignIn() {
           placeholder="Enter Password"
           name="password"
           required
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="submit" className="login-button" value="Login" />
+        <input type="submit" className="login-button" value={loginButtonText} />
         <Link to="#" className="password-reset">
           Forgot Password?
         </Link>
