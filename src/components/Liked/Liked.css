@@ -1,10 +1,10 @@
-.cards-container{
-    display: flex;
-    flex-wrap: wrap;
+.liked-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.none-selected{
-    text-align: left;
-    font-weight: lighter;
-    font-size: large;
+.none-selected {
+  text-align: left;
+  font-weight: lighter;
+  font-size: large;
 }
