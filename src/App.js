@@ -18,18 +18,20 @@ function App() {
   const { isUserAuthenticated } = state;
   console.log("user auth or not ", isUserAuthenticated);
   function PrivateRoute(props) {
-    return isUserAuthenticated ? (
-      <Route {...props} />
-    ) : (
-      <Route
-        {...props}
-        element={
-          <div className="main">
-            <SignIn />
-          </div>
-        }
-      />
-    );
+    if (isUserAuthenticated) {
+      return <Route {...props} />;
+    } else {
+      return (
+        <Route
+          {...props}
+          element={
+            <div className="main">
+              <SignIn />
+            </div>
+          }
+        />
+      );
+    }
   }
   return (
     <div className="main-outer-div">
