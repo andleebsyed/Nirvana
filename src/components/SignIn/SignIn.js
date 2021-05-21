@@ -1,23 +1,34 @@
 import "./SignIn.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { UserSignIn } from "../ApiCalls/ApiCalls";
+import { useAuth } from "../Reducer/AuthReducer";
 export function SignIn() {
+  const { dispatchAuth } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [displayError, setDisplayError] = useState("none");
   const [loginButtonText, setLoginButtonText] = useState("Sign In");
   let userResponseFromServer;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoginButtonText("Signing In...");
     userResponseFromServer = await UserSignIn(username, password);
     setLoginButtonText("Sign In");
+
     if (userResponseFromServer.allowUser === false) {
       setDisplayError("block");
-    } else {
+    } else if (userResponseFromServer.allowUser === true) {
+      dispatchAuth({
+        type: "CHECK_IF_USER_AUTHENTICATED",
+        payload: { status: true },
+      });
+      localStorage.setItem("username", username);
       setDisplayError("none");
+      // navigate("/explore");
     }
   }
   return (
