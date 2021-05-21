@@ -6,15 +6,17 @@ import { useVideo } from "../Reducer/Reducer";
 import { LibraryModal } from "../LibraryModal/LibraryModal";
 import { Notes } from "../Notes/Notes";
 import { useAuth } from "../Reducer/AuthReducer";
+import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
+import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
 export function VideoPlayer() {
   const navigate = useNavigate();
-  const { state, dispatch } = useVideo();
+  const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
-  const { stateAuth, dispathAuth } = useAuth();
+  const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const { id } = useParams();
-  const currentVideo = originalVideos.filter((video) => video.id === id);
-  const video = currentVideo[0];
+  const video = originalVideos.find((video) => video.id === id);
+  // const video = currentVideo[0];
 
   const videoInLiked = likedVideos.filter(
     (videoInIteration) => videoInIteration.id === video.id
@@ -24,7 +26,6 @@ export function VideoPlayer() {
 
   // to be passed to Library Modal
   let props = { show: show, setShow: setShow, video: video };
-
   return (
     <div className="outer-main">
       <div className="player-card">
@@ -40,64 +41,15 @@ export function VideoPlayer() {
           <p className="video-intro">{video.videoName}</p>
 
           <div className="interactions">
-            {/* load this if user is not authenticated */}
-            {!isUserAuthenticated ? (
-              <Link to="/login">
-                <button title="Like" className="not-liked buttons">
-                  <ion-icon name="thumbs-up-outline"></ion-icon>
-                </button>
-              </Link>
-            ) : // if authenticated check if liked or not : revese what is already present by clicking the button
-            videoInLiked.length === 0 ? (
-              <button
-                title="Like"
-                onClick={() => {
-                  dispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: { video } });
-                }}
-                className="not-liked buttons"
-              >
-                <ion-icon name="thumbs-up-outline"></ion-icon>
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "REMOVE_FROM_LIKED_VIDEOS",
-                    payload: { video },
-                  });
-                }}
-                className="liked buttons"
-              >
-                <ion-icon name="thumbs-up-sharp"></ion-icon>
-              </button>
-            )}
-            }
             {isUserAuthenticated ? (
-              <button
-                title="Add to Library"
-                className="buttons tooltip"
-                onClick={() => setShow(true)}
-              >
-                <ion-icon name="create-outline"></ion-icon>
-              </button>
+              <UserLoggedIn
+                videoInLiked={videoInLiked}
+                video={video}
+                setShow={setShow}
+              />
             ) : (
-              <Link to="/login">
-                <button
-                  title="Add to Library"
-                  className="buttons tooltip"
-                  // onClick={() => setShow(true)}
-                >
-                  <ion-icon name="create-outline"></ion-icon>
-                </button>
-              </Link>
+              <UserNotLoggedIn />
             )}
-            {/* <button
-              title="Add to Library"
-              className="buttons tooltip"
-              onClick={() => setShow(true)}
-            >
-              <ion-icon name="create-outline"></ion-icon>
-            </button> */}
           </div>
         </div>
         <div className="creator-details">
