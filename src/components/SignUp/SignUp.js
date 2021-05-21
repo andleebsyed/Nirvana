@@ -1,8 +1,10 @@
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UserSignUp } from "../ApiCalls/ApiCalls";
 export function SignUp() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
@@ -20,7 +22,10 @@ export function SignUp() {
       setExistingOne(isSignUpSuccessful.existingField);
       setDisplayError("block");
     } else {
+      console.log("Signed up successfully");
       setDisplayError("none");
+      localStorage.setItem("username", `${isSignUpSuccessful.username}`);
+      navigate("/explore");
     }
   }
   return (
