@@ -12,7 +12,25 @@ import { Account } from "./components/Account/Account";
 import { SignIn } from "./components/SignIn/SignIn";
 import { SignUp } from "./components/SignUp/SignUp";
 import { NotFound } from "./components/NotFound/NotFound";
+import { useAuth } from "./components/Reducer/AuthReducer";
 function App() {
+  const { state } = useAuth();
+  const { isUserAuthenticated } = state;
+  console.log("user auth or not ", isUserAuthenticated);
+  function PrivateRoute(props) {
+    return isUserAuthenticated ? (
+      <Route {...props} />
+    ) : (
+      <Route
+        {...props}
+        element={
+          <div className="main">
+            <SignIn />
+          </div>
+        }
+      />
+    );
+  }
   return (
     <div className="main-outer-div">
       <div className="header">
@@ -56,7 +74,7 @@ function App() {
             </div>
           }
         />
-        <Route
+        <PrivateRoute
           path="library"
           element={
             <div className="main">
@@ -80,7 +98,7 @@ function App() {
             </div>
           }
         />
-        <Route
+        <PrivateRoute
           path="/account"
           element={
             <div className="main">
