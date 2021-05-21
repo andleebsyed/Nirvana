@@ -35,7 +35,10 @@ export async function UserSignUp(userDetails) {
     );
     if (response.status === 200) {
       if (response.data.status === true) {
-        return (isSignUpSuccessfull = { status: true });
+        return (isSignUpSuccessfull = {
+          status: true,
+          username: userDetails.username,
+        });
       } else if (response.data.status === false) {
         //  11000 is returned when we send data which is already there for common field
         if (response.data.errorDetail.code === 11000) {
