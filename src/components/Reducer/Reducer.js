@@ -1,10 +1,24 @@
-import { useReducer, useContext, createContext } from "react";
-import { allVideos } from "../Data/Data";
+import {
+  useReducer,
+  useContext,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
+// import { allVideos } from "../Data/Data";
+import { GetVideos } from "../ApiCalls/ApiCalls";
+import { useSearchParams } from "react-router-dom";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
   const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
+    case "INITIAL_RENDER":
+      return {
+        ...state,
+        videos: payload.videos,
+        originalVideos: payload.videos,
+      };
     case "ADD_TO_LIKED_VIDEOS":
       return { ...state, likedVideos: [...likedVideos, payload.video] };
     case "REMOVE_FROM_LIKED_VIDEOS":
@@ -79,8 +93,15 @@ export function DataProvider({ children }) {
   const likedVideos = [];
   const watchLaterVideos = [];
   const playlists = [{ name: "Watch Later", list: [] }];
-  const videos = allVideos;
-  const originalVideos = allVideos;
+  const videos = [];
+  const originalVideos = [];
+  useEffect(() => {
+    async function Apicall() {
+      const videos = await GetVideos();
+      dispatch({ type: "INITIAL_RENDER", payload: { videos } });
+    }
+    Apicall();
+  }, []);
 
   const [state, dispatch] = useReducer(videosHandler, {
     likedVideos,

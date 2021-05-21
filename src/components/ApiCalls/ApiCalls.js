@@ -54,3 +54,16 @@ export async function UserSignUp(userDetails) {
     console.log("error occured ", error.message);
   }
 }
+
+export async function GetVideos() {
+  try {
+    const response = await axios.get(
+      "https://video-library-api.andydev7.repl.co/videos"
+    );
+    if (response.status === 200) {
+      return response.data.videos;
+    }
+  } catch (error) {
+    console.log("error occurred ", error);
+  }
+}
