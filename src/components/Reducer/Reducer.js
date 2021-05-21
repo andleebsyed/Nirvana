@@ -1,4 +1,4 @@
-import { useReducer, useContext, createContext, useEffect } from "react";
+import { useReducer, useContext, createContext } from "react";
 import { allVideos } from "../Data/Data";
 const VideoHandleContext = createContext();
 
@@ -81,6 +81,7 @@ export function DataProvider({ children }) {
   const playlists = [{ name: "Watch Later", list: [] }];
   const videos = allVideos;
   const originalVideos = allVideos;
+
   const [state, dispatch] = useReducer(videosHandler, {
     likedVideos,
     watchLaterVideos,
