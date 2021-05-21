@@ -1,7 +1,7 @@
 import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Liked } from "./components/Liked/Liked";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { VideoPlayer } from "./components/VideoPlayer/VideoPlayer";
 import { Explore } from "./components/Explore/Explore";
 import { Sidebar } from "./components/Sidebar/Sidebar";
@@ -14,12 +14,41 @@ import { SignUp } from "./components/SignUp/SignUp";
 import { NotFound } from "./components/NotFound/NotFound";
 import { useAuth } from "./components/Reducer/AuthReducer";
 function App() {
-  const { state } = useAuth();
-  const { isUserAuthenticated } = state;
+  const navigate = useNavigate();
+  const { stateAuth } = useAuth();
+  const { isUserAuthenticated } = stateAuth;
   console.log("user auth or not ", isUserAuthenticated);
   function PrivateRoute(props) {
     if (isUserAuthenticated) {
       return <Route {...props} />;
+    } else {
+      return (
+        <Route
+          {...props}
+          element={
+            <div className="main">
+              <SignIn />
+            </div>
+          }
+        />
+      );
+    }
+  }
+
+  function LoginRoute(props) {
+    if (isUserAuthenticated) {
+      return (
+        <Route
+          {...props}
+          element={
+            <div className="main">
+              {" "}
+              <Explore />
+            </div>
+          }
+        />
+      );
+      // navigate(-1);
     } else {
       return (
         <Route
@@ -108,7 +137,7 @@ function App() {
             </div>
           }
         />
-        <Route
+        <LoginRoute
           path="/login"
           element={
             <div className="main">

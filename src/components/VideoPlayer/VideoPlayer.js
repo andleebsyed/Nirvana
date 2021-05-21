@@ -1,13 +1,17 @@
 import "./VideoPlayer.css";
 import { useState } from "react";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useVideo } from "../Reducer/Reducer";
 import { LibraryModal } from "../LibraryModal/LibraryModal";
 import { Notes } from "../Notes/Notes";
+import { useAuth } from "../Reducer/AuthReducer";
 export function VideoPlayer() {
+  const navigate = useNavigate();
   const { state, dispatch } = useVideo();
   const { originalVideos, likedVideos } = state;
+  const { stateAuth, dispathAuth } = useAuth();
+  const { isUserAuthenticated } = stateAuth;
   const { id } = useParams();
   const currentVideo = originalVideos.filter((video) => video.id === id);
   const video = currentVideo[0];
@@ -36,13 +40,19 @@ export function VideoPlayer() {
           <p className="video-intro">{video.videoName}</p>
 
           <div className="interactions">
-            {videoInLiked.length === 0 ? (
+            {/* load this if user is not authenticated */}
+            {!isUserAuthenticated ? (
+              <Link to="/login">
+                <button title="Like" className="not-liked buttons">
+                  <ion-icon name="thumbs-up-outline"></ion-icon>
+                </button>
+              </Link>
+            ) : // if authenticated check if liked or not : revese what is already present by clicking the button
+            videoInLiked.length === 0 ? (
               <button
                 title="Like"
                 onClick={() => {
                   dispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: { video } });
-                  // setShowModal(true);
-                  // setText("Added To Liked Videos");
                 }}
                 className="not-liked buttons"
               >
@@ -55,22 +65,39 @@ export function VideoPlayer() {
                     type: "REMOVE_FROM_LIKED_VIDEOS",
                     payload: { video },
                   });
-                  // setShowModal(false);
-                  // setText("Removed from Liked Videos");
                 }}
                 className="liked buttons"
               >
                 <ion-icon name="thumbs-up-sharp"></ion-icon>
               </button>
             )}
-
-            <button
+            }
+            {isUserAuthenticated ? (
+              <button
+                title="Add to Library"
+                className="buttons tooltip"
+                onClick={() => setShow(true)}
+              >
+                <ion-icon name="create-outline"></ion-icon>
+              </button>
+            ) : (
+              <Link to="/login">
+                <button
+                  title="Add to Library"
+                  className="buttons tooltip"
+                  // onClick={() => setShow(true)}
+                >
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+              </Link>
+            )}
+            {/* <button
               title="Add to Library"
               className="buttons tooltip"
               onClick={() => setShow(true)}
             >
               <ion-icon name="create-outline"></ion-icon>
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="creator-details">

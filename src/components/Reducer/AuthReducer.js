@@ -1,14 +1,14 @@
 import { useReducer, createContext, useContext } from "react";
 
-function AuthHandler(state, { type, payload }) {
+function AuthHandler(stateAuth, { type, payload }) {
   switch (type) {
     case "CHECK_IF_USER_AUTHENTICATED":
       return payload.status === true
-        ? { ...state, isUserAuthenticated: true }
-        : { ...state, isUserAuthenticated: false };
+        ? { ...stateAuth, isUserAuthenticated: true }
+        : { ...stateAuth, isUserAuthenticated: false };
     case "LOGOUT_USER":
       localStorage.clear();
-      return { ...state, isUserAuthenticated: false };
+      return { ...stateAuth, isUserAuthenticated: false };
   }
 }
 
@@ -23,10 +23,10 @@ export function AuthProvider({ children }) {
   }
 
   const initialState = { isUserAuthenticated };
-  const [state, dispatchAuth] = useReducer(AuthHandler, initialState);
+  const [stateAuth, dispatchAuth] = useReducer(AuthHandler, initialState);
 
   return (
-    <AuthContext.Provider value={{ state, dispatchAuth }}>
+    <AuthContext.Provider value={{ stateAuth, dispatchAuth }}>
       {children}
     </AuthContext.Provider>
   );
