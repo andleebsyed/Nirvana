@@ -24,9 +24,9 @@ export function SignIn() {
     } else if (userResponseFromServer.allowUser === true) {
       dispatchAuth({
         type: "CHECK_IF_USER_AUTHENTICATED",
-        payload: { status: true },
+        payload: { status: true, user: username },
       });
-      localStorage.setItem("username", username);
+      // localStorage.setItem("username", username);
       setDisplayError("none");
       // navigate("/explore");
     }

@@ -2,7 +2,9 @@ import "./SignUp.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UserSignUp } from "../ApiCalls/ApiCalls";
+import { useAuth } from "../Reducer/AuthReducer";
 export function SignUp() {
+  const { stateAuth, dispatchAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
@@ -21,10 +23,14 @@ export function SignUp() {
     if (isSignUpSuccessful.status === false) {
       setExistingOne(isSignUpSuccessful.existingField);
       setDisplayError("block");
-    } else {
+    } else if (isSignUpSuccessful.status === true) {
       console.log("Signed up successfully");
       setDisplayError("none");
-      localStorage.setItem("username", `${isSignUpSuccessful.username}`);
+      dispatchAuth({
+        type: "CHECK_IF_USER_AUTHENTICATED",
+        payload: { status: true, user: isSignUpSuccessful.username },
+      });
+      // localStorage.setItem("username", `${isSignUpSuccessful.username}`);
       navigate("/explore");
     }
   }

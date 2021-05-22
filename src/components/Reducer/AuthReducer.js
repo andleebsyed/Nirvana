@@ -3,9 +3,13 @@ import { useReducer, createContext, useContext } from "react";
 function AuthHandler(stateAuth, { type, payload }) {
   switch (type) {
     case "CHECK_IF_USER_AUTHENTICATED":
-      return payload.status === true
-        ? { ...stateAuth, isUserAuthenticated: true }
-        : { ...stateAuth, isUserAuthenticated: false };
+      if (payload.status === true) {
+        localStorage.setItem("username", payload.user);
+        return { ...stateAuth, isUserAuthenticated: true };
+      } else {
+        return { ...stateAuth, isUserAuthenticated: false };
+      }
+
     case "LOGOUT_USER":
       localStorage.clear();
       return { ...stateAuth, isUserAuthenticated: false };
