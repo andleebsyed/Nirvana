@@ -10,8 +10,6 @@ export function SignIn() {
   const [displayError, setDisplayError] = useState("none");
   const [loginButtonText, setLoginButtonText] = useState("Sign In");
   let userResponseFromServer;
-  const navigate = useNavigate();
-  const location = useLocation();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,9 +24,7 @@ export function SignIn() {
         type: "CHECK_IF_USER_AUTHENTICATED",
         payload: { status: true, user: username },
       });
-      // localStorage.setItem("username", username);
       setDisplayError("none");
-      // navigate("/explore");
     }
   }
   return (

@@ -30,7 +30,6 @@ export function SignUp() {
         type: "CHECK_IF_USER_AUTHENTICATED",
         payload: { status: true, user: isSignUpSuccessful.username },
       });
-      // localStorage.setItem("username", `${isSignUpSuccessful.username}`);
       navigate("/explore");
     }
   }
