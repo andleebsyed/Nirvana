@@ -1,5 +1,5 @@
 import "./VideoPlayer.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useVideo } from "../Reducer/Reducer";
@@ -12,12 +12,11 @@ export function VideoPlayer() {
   const navigate = useNavigate();
   const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
+
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const { id } = useParams();
   const video = originalVideos.find((video) => video.id === id);
-  // const video = currentVideo[0];
-
   const videoInLiked = likedVideos.filter(
     (videoInIteration) => videoInIteration.id === video.id
   );
