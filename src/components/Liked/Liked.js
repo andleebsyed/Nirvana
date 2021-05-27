@@ -1,9 +1,11 @@
 import "./Liked.css";
 import { useVideo } from "../Reducer/Reducer";
 import { Card } from "../Card/Card";
+import { RemoveFromLikedVideos } from "../ApiCalls/ApiCalls";
 export function Liked() {
   const { state, dispatch } = useVideo();
   const { likedVideos, playlist } = state;
+  const userId = localStorage.getItem("userId");
   if (likedVideos.length === 0) {
     return (
       <div className="cards-container">
@@ -18,12 +20,7 @@ export function Liked() {
             <Card video={video} />
             <button
               className=" remove-video-button trash-button"
-              onClick={() =>
-                dispatch({
-                  type: "REMOVE_FROM_LIKED_VIDEOS",
-                  payload: { video },
-                })
-              }
+              onClick={() => RemoveFromLikedVideos(dispatch, video, userId)}
             >
               <ion-icon name="trash"></ion-icon>
             </button>
