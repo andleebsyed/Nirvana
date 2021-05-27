@@ -5,12 +5,16 @@ import { useVideo } from "../Reducer/Reducer";
 import { useAuth } from "../Reducer/AuthReducer";
 export function Account() {
   const { dispatchAuth } = useAuth();
+  const { dispatch } = useVideo();
   return (
     <div className="outer-div">
       <div className="heading">
         <h1 className="welcome-text">user</h1>
         <button
-          onClick={() => dispatchAuth({ type: "LOGOUT_USER" })}
+          onClick={() => {
+            dispatchAuth({ type: "LOGOUT_USER" });
+            dispatch({ type: "CLEAR_STATE_ON_LOGOUT" });
+          }}
           className="logout-button-custom"
           //   onClick={handleLogout}
         >
