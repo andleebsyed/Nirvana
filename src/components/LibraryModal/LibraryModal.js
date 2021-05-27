@@ -26,15 +26,15 @@ export function LibraryModal({ show, setShow, video }) {
     inputEl.current.value = "";
   }
   function checkboxHandler(playlist, video) {
-    if (checkForIdInPlaylist(playlist.list, video.id) === true) {
+    if (checkForIdInPlaylist(playlist.videos, video.id) === true) {
       dispatch({ type: "REMOVE_FROM_PLAYLIST", payload: { playlist, video } });
-      setModalText(`Removed from ${playlist.name}`);
+      setModalText(`Removed from ${playlist.playlistName}`);
       setShowModal(true);
       setTimeout(() => setShowModal(false), 1300);
     } else {
       dispatch({ type: "ADD_TO_PLAYLIST", payload: { playlist, video } });
 
-      setModalText(`Added to  ${playlist.name}`);
+      setModalText(`Added to  ${playlist.playlistName}`);
       setShowModal(true);
       setTimeout(() => setShowModal(false), 1300);
     }
@@ -57,10 +57,10 @@ export function LibraryModal({ show, setShow, video }) {
               <div className="single-playlist">
                 <input
                   type="checkbox"
-                  checked={checkForIdInPlaylist(playlist.list, video.id)}
+                  checked={checkForIdInPlaylist(playlist.videos, video.id)}
                   onChange={() => checkboxHandler(playlist, video)}
                 />
-                <label>{playlist.name}</label>
+                <label>{playlist.playlistName}</label>
               </div>
             ))}
           </div>
