@@ -4,7 +4,7 @@ function AuthHandler(stateAuth, { type, payload }) {
   switch (type) {
     case "CHECK_IF_USER_AUTHENTICATED":
       if (payload.status === true) {
-        localStorage.setItem("username", payload.user);
+        localStorage.setItem("userId", payload.userId);
         return { ...stateAuth, isUserAuthenticated: true };
       } else {
         return { ...stateAuth, isUserAuthenticated: false };
@@ -20,7 +20,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   let isUserAuthenticated;
-  if (localStorage.getItem("username")) {
+  if (localStorage.getItem("userId")) {
     isUserAuthenticated = true;
   } else {
     isUserAuthenticated = false;
