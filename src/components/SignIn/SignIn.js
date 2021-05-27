@@ -6,7 +6,7 @@ import { useAuth } from "../Reducer/AuthReducer";
 import { useVideo } from "../Reducer/Reducer";
 export function SignIn() {
   const { dispatch, state } = useVideo();
-  const { setUserIdTry, userIdTry } = state;
+  // const { setUserIdTry } = state;
   const { dispatchAuth } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ export function SignIn() {
         type: "CHECK_IF_USER_AUTHENTICATED",
         payload: { status: true, userId: userResponseFromServer.userId },
       });
-      setUserIdTry(true);
+      // setUserIdTry(true);
       setDisplayError("none");
     }
   }
