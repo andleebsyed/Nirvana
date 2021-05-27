@@ -5,7 +5,11 @@ import {
   useEffect,
   useState,
 } from "react";
-import { GetVideos, GetLikedVideos } from "../ApiCalls/ApiCalls";
+import {
+  GetVideos,
+  GetLikedVideos,
+  GetUserPlaylists,
+} from "../ApiCalls/ApiCalls";
 import { useAuth } from "./AuthReducer";
 const VideoHandleContext = createContext();
 
@@ -22,6 +26,11 @@ function videosHandler(state, { type, payload }) {
       return {
         ...state,
         likedVideos: payload.userLikedVideos,
+      };
+    case "INITIAL_PLAYLISTS_RENDER":
+      return {
+        ...state,
+        playlists: payload.userPlaylists,
       };
     case "ADD_TO_LIKED_VIDEOS":
       return { ...state, likedVideos: [...likedVideos, payload.video] };
@@ -92,7 +101,6 @@ function videosHandler(state, { type, payload }) {
         ),
       };
     case "CLEAR_STATE_ON_LOGOUT":
-      // setUserIdTry(false);
       return { ...state, likedVideos: [], playlists: [] };
   }
 }
@@ -101,7 +109,7 @@ export function DataProvider({ children }) {
   const { stateAuth } = useAuth();
   const likedVideos = [];
   const watchLaterVideos = [];
-  const playlists = [{ name: "Watch Later", list: [] }];
+  const playlists = [{ playlistName: "Watch Later", videos: [] }];
   const videos = [];
   const originalVideos = [];
   const userId = localStorage.getItem("userId");
@@ -123,6 +131,21 @@ export function DataProvider({ children }) {
         dispatch({
           type: "INITIAL_LIKED_VIDEOS_RENDER",
           payload: { userLikedVideos },
+        });
+      }
+    }
+    Apicall();
+  }, [stateAuth]);
+
+  // get all playlotst for authenticated user
+  useEffect(() => {
+    async function Apicall() {
+      if (userId) {
+        const userPlaylists = await GetUserPlaylists();
+        console.log("playlist fetch in useeffect ", userPlaylists);
+        dispatch({
+          type: "INITIAL_PLAYLISTS_RENDER",
+          payload: { userPlaylists },
         });
       }
     }
