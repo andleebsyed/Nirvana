@@ -90,9 +90,9 @@ export async function GetLikedVideos() {
   }
 }
 
-export async function SaveToLiked(dispatch, video) {
+export async function SaveToLiked(dispatch, video, userId) {
   try {
-    const userId = localStorage.getItem("userId");
+    // const userId = localStorage.getItem("userId");
     const data = { userId: userId, videoId: video._id };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/liked/add",
@@ -113,7 +113,6 @@ export async function SaveToLiked(dispatch, video) {
 export async function RemoveFromLikedVideos(dispatch, video, userId) {
   console.log(" i am called to remove video from liked videos");
   try {
-    // const userId = localStorage.getItem("userId");
     const data = { videoId: video._id, userId: userId };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/liked/delete",
