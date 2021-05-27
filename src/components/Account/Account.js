@@ -16,7 +16,6 @@ export function Account() {
             dispatch({ type: "CLEAR_STATE_ON_LOGOUT" });
           }}
           className="logout-button-custom"
-          //   onClick={handleLogout}
         >
           Logout
         </button>
