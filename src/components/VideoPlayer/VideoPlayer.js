@@ -9,10 +9,8 @@ import { useAuth } from "../Reducer/AuthReducer";
 import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
 import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
 export function VideoPlayer() {
-  const navigate = useNavigate();
   const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
-
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const { id } = useParams();
