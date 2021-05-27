@@ -129,3 +129,18 @@ export async function RemoveFromLikedVideos(dispatch, video, userId) {
     console.log("error occured ", error.response.data);
   }
 }
+
+export async function GetUserPlaylists() {
+  try {
+    const userId = localStorage.getItem("userId");
+    const response = await axios.get(
+      `https://video-library-api.andydev7.repl.co/playlists/all/${userId}`
+    );
+    if (response.status === 200) {
+      return response.data.playlists;
+    }
+    console.log("response in playlists ", response);
+  } catch (error) {
+    console.log("an error occured ", error.response.data);
+  }
+}
