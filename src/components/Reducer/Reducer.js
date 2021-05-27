@@ -6,11 +6,11 @@ import {
   useState,
 } from "react";
 import { GetVideos, GetLikedVideos } from "../ApiCalls/ApiCalls";
+import { useAuth } from "./AuthReducer";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
-  const { likedVideos, playlists, originalVideos, userIdTry, setUserIdTry } =
-    state;
+  const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
     case "INITIAL_VIDEOS_RENDER":
       return {
@@ -21,7 +21,7 @@ function videosHandler(state, { type, payload }) {
     case "INITIAL_LIKED_VIDEOS_RENDER":
       return {
         ...state,
-        likedVideos: payload.likedVideos,
+        likedVideos: payload.userLikedVideos,
       };
     case "ADD_TO_LIKED_VIDEOS":
       return { ...state, likedVideos: [...likedVideos, payload.video] };
@@ -92,19 +92,19 @@ function videosHandler(state, { type, payload }) {
         ),
       };
     case "CLEAR_STATE_ON_LOGOUT":
-      setUserIdTry(false);
+      // setUserIdTry(false);
       return { ...state, likedVideos: [], playlists: [] };
   }
 }
 
 export function DataProvider({ children }) {
+  const { stateAuth } = useAuth();
   const likedVideos = [];
   const watchLaterVideos = [];
   const playlists = [{ name: "Watch Later", list: [] }];
   const videos = [];
   const originalVideos = [];
   const userId = localStorage.getItem("userId");
-  const [userIdTry, setUserIdTry] = useState(false);
   //get all videos
 
   useEffect(() => {
@@ -118,25 +118,22 @@ export function DataProvider({ children }) {
   //get all liked videos for a particular user
   useEffect(() => {
     async function Apicall() {
-      let likedVideos = [];
-
       if (userId) {
-        likedVideos = await GetLikedVideos();
+        const userLikedVideos = await GetLikedVideos();
         dispatch({
           type: "INITIAL_LIKED_VIDEOS_RENDER",
-          payload: { likedVideos },
+          payload: { userLikedVideos },
         });
       }
     }
     Apicall();
-  }, [userIdTry]);
+  }, [stateAuth]);
   const [state, dispatch] = useReducer(videosHandler, {
     likedVideos,
     watchLaterVideos,
     playlists,
     videos,
     originalVideos,
-    setUserIdTry,
   });
   return (
     <VideoHandleContext.Provider value={{ state, dispatch }}>
