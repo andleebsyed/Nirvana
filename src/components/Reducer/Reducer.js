@@ -17,6 +17,7 @@ function videosHandler(state, { type, payload }) {
   const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
     case "INITIAL_VIDEOS_RENDER":
+      console.log("am i getting called or not ", payload.videos);
       return {
         ...state,
         videos: payload.videos,
@@ -45,7 +46,10 @@ function videosHandler(state, { type, payload }) {
     case "ADD_NEW_PLAYLIST":
       return {
         ...state,
-        playlists: [...playlists, { name: payload.name, list: [] }],
+        playlists: [
+          ...playlists,
+          { playlistName: payload.playlistName, videos: [payload.video] },
+        ],
       };
     case "REMOVE_PLAYLIST":
       return {
@@ -56,14 +60,16 @@ function videosHandler(state, { type, payload }) {
       };
     case "ADD_TO_PLAYLIST":
       const tempPlaylists = [...playlists];
+      console.log("temp playlist is ", tempPlaylists);
       // index which playlist to mess with
       const index = tempPlaylists.findIndex(
-        (loopPlaylist) => payload.playlist.name === loopPlaylist.name
+        (loopPlaylist) =>
+          payload.playlist.playlistName === loopPlaylist.playlistName
       );
       // update the playlist
       tempPlaylists[index] = {
         ...tempPlaylists[index],
-        list: [...tempPlaylists[index].list, payload.video],
+        videos: [...tempPlaylists[index].videos, payload.video],
       };
       return { ...state, playlists: tempPlaylists };
     case "REMOVE_FROM_PLAYLIST":
