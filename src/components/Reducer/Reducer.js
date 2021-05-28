@@ -75,14 +75,14 @@ function videosHandler(state, { type, payload }) {
     case "REMOVE_FROM_PLAYLIST":
       const tempPlaylistsRemove = [...playlists];
       const indexToRemoveFrom = tempPlaylistsRemove.findIndex(
-        (loopPlaylist) => payload.playlist.name === loopPlaylist.name
+        (loopPlaylist) => payload.playlistId === loopPlaylist._id
       );
-      const filteredVideos = tempPlaylistsRemove[indexToRemoveFrom].list.filter(
-        (currentVideo) => currentVideo.id !== payload.video.id
-      );
+      const filteredVideos = tempPlaylistsRemove[
+        indexToRemoveFrom
+      ].videos.filter((currentVideo) => currentVideo._id !== payload.videoId);
       tempPlaylistsRemove[indexToRemoveFrom] = {
         ...tempPlaylistsRemove[indexToRemoveFrom],
-        list: filteredVideos,
+        videos: filteredVideos,
       };
       return { ...state, playlists: tempPlaylistsRemove };
     case "FILTER_OUT_CATEGORIES":
