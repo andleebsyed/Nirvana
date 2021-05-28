@@ -2,7 +2,11 @@ import "./LibraryModal.css";
 import { useState, useRef } from "react";
 import { checkForIdInPlaylist } from "../../utils/funcs";
 import { useVideo } from "../Reducer/Reducer";
-import { AddVideoToPlaylist, AddNewPlaylist } from "../ApiCalls/ApiCalls";
+import {
+  AddVideoToPlaylist,
+  AddNewPlaylist,
+  DeleteFromPlaylist,
+} from "../ApiCalls/ApiCalls";
 export function LibraryModal({ show, setShow, video }) {
   const { state, dispatch } = useVideo();
   const { playlists } = state;
@@ -23,18 +27,16 @@ export function LibraryModal({ show, setShow, video }) {
   }
 
   function onClickHandler(e) {
-    // dispatch({ type: "ADD_NEW_PLAYLIST", payload: { name: current } });
     AddNewPlaylist(dispatch, current, video);
     inputEl.current.value = "";
   }
   async function checkboxHandler(playlist, video) {
     if (checkForIdInPlaylist(playlist.videos, video.id) === true) {
-      dispatch({ type: "REMOVE_FROM_PLAYLIST", payload: { playlist, video } });
+      await DeleteFromPlaylist(video._id, playlist._id, dispatch);
       setModalText(`Removed from ${playlist.playlistName}`);
       setShowModal(true);
       setTimeout(() => setShowModal(false), 1300);
     } else {
-      // dispatch({ type: "ADD_TO_PLAYLIST", payload: { playlist, video } });
       await AddVideoToPlaylist(dispatch, video, playlist);
 
       setModalText(`Added to  ${playlist.playlistName}`);
