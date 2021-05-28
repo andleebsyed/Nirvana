@@ -1,6 +1,7 @@
 import "./Playlists.css";
 import { Card } from "../Card/Card";
 import { useVideo } from "../Reducer/Reducer";
+import { DeleteFromPlaylist } from "../ApiCalls/ApiCalls";
 
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
@@ -31,12 +32,16 @@ export function Playlists({ playlist }) {
                     <Card video={video} />
                     <button
                       className=" remove-video-button trash-button"
-                      onClick={() =>
-                        dispatch({
-                          type: "REMOVE_FROM_PLAYLIST",
-                          payload: { playlist, video },
-                        })
-                      }
+                      onClick={async () => {
+                        await DeleteFromPlaylist(
+                          video._id,
+                          playlist._id,
+                          dispatch
+                        );
+                        //   setModalText(`Removed video from ${playlist.playlistName}`);
+                        //   setShowModal(true);
+                        //   setTimeout(() => setShowModal(false), 1300);
+                      }}
                     >
                       <ion-icon name="trash"></ion-icon>
                     </button>
