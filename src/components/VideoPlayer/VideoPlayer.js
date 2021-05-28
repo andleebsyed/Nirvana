@@ -8,7 +8,9 @@ import { Notes } from "../Notes/Notes";
 import { useAuth } from "../Reducer/AuthReducer";
 import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
 import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
+import { GetVideos } from "../ApiCalls/ApiCalls";
 export function VideoPlayer() {
+  const { dispatch } = useVideo();
   const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
   const { stateAuth } = useAuth();
