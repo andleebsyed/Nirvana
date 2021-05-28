@@ -20,7 +20,9 @@ export function Liked() {
             <Card video={video} />
             <button
               className=" remove-video-button trash-button"
-              onClick={() => RemoveFromLikedVideos(dispatch, video, userId)}
+              onClick={async () =>
+                await RemoveFromLikedVideos(dispatch, video, userId)
+              }
             >
               <ion-icon name="trash"></ion-icon>
             </button>

@@ -21,13 +21,14 @@ export function LibraryModal({ show, setShow, video }) {
 
   function keyPressHandler(e) {
     return e.key === "Enter"
-      ? (dispatch({ type: "ADD_NEW_PLAYLIST", payload: { name: current } }),
+      ? (AddNewPlaylist(dispatch, current, video),
+        // dispatch({ type: "ADD_NEW_PLAYLIST", payload: { name: current } })
         (e.currentTarget.value = ""))
       : "do nothing";
   }
 
-  function onClickHandler(e) {
-    AddNewPlaylist(dispatch, current, video);
+  async function onClickHandler(e) {
+    await AddNewPlaylist(dispatch, current, video);
     inputEl.current.value = "";
   }
   async function checkboxHandler(playlist, video) {
