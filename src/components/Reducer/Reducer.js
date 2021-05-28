@@ -55,7 +55,7 @@ function videosHandler(state, { type, payload }) {
       return {
         ...state,
         playlists: playlists.filter(
-          (playlist) => playlist.name !== payload.playlist.name
+          (playlist) => playlist._id !== payload.playlistId
         ),
       };
     case "ADD_TO_PLAYLIST":

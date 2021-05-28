@@ -1,7 +1,7 @@
 import "./Playlists.css";
 import { Card } from "../Card/Card";
 import { useVideo } from "../Reducer/Reducer";
-import { DeleteFromPlaylist } from "../ApiCalls/ApiCalls";
+import { DeleteFromPlaylist, RemovePlaylist } from "../ApiCalls/ApiCalls";
 
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
@@ -17,8 +17,9 @@ export function Playlists({ playlist }) {
                 {playlist.playlistName}
               </h1>
               <button
-                onClick={() =>
-                  dispatch({ type: "REMOVE_PLAYLIST", payload: { playlist } })
+                onClick={
+                  async () => await RemovePlaylist(playlist._id, dispatch)
+                  //   dispatch({ type: "REMOVE_PLAYLIST", payload: { playlist } })
                 }
                 className="trash-button"
               >

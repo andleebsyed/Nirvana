@@ -191,7 +191,7 @@ export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
   try {
     const data = { videoId, playlistId };
     const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/playlists/deletevideo",
+      "https://video-library-api.andydev7.repl.co/playlists/removevideo",
       data
     );
     console.log("respnse on dekletingf ", response);
@@ -203,5 +203,21 @@ export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
     }
   } catch (error) {
     console.log("error occured ", error);
+  }
+}
+
+export async function RemovePlaylist(playlistId, dispatch) {
+  try {
+    const userId = localStorage.getItem("userId");
+    const data = { userId, playlistId };
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/playlists/removeplaylist",
+      data
+    );
+    if (response.status === 200) {
+      dispatch({ type: "REMOVE_PLAYLIST", payload: { playlistId } });
+    }
+  } catch (error) {
+    console.log("an error occurred while removing playlist", error);
   }
 }
