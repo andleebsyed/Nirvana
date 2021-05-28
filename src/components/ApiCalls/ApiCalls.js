@@ -186,3 +186,22 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
     console.log("error in creating new playlist ", error.response);
   }
 }
+
+export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
+  try {
+    const data = { videoId, playlistId };
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/playlists/deletevideo",
+      data
+    );
+    console.log("respnse on dekletingf ", response);
+    if (response.status === 200) {
+      dispatch({
+        type: "REMOVE_FROM_PLAYLIST",
+        payload: { videoId, playlistId },
+      });
+    }
+  } catch (error) {
+    console.log("error occured ", error);
+  }
+}
