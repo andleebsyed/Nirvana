@@ -144,3 +144,45 @@ export async function GetUserPlaylists() {
     console.log("an error occured ", error.response.data);
   }
 }
+
+export async function AddVideoToPlaylist(dispatch, video, playlist) {
+  try {
+    const userId = localStorage.getItem("userId");
+    const data = { playlistId: playlist._id, videoId: video._id };
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/playlists/addvideo",
+      data
+    );
+    console.log("tresposne on saving videoo to playlist ", response);
+    if (response.status === 200) {
+      dispatch({
+        type: "ADD_TO_PLAYLIST",
+        payload: { playlist, video },
+      });
+    }
+  } catch (error) {
+    console.log("error occured ", error.response);
+  }
+}
+
+export async function AddNewPlaylist(dispatch, playlistName, video) {
+  try {
+    const userId = localStorage.getItem("userId");
+    const data = {
+      playlistName: playlistName,
+      videoId: video._id,
+      userId: userId,
+    };
+    console.log("data beign sent ", data);
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/playlists/newplaylist",
+      data
+    );
+    console.log("response on adding new playlist ", response);
+    if (response.status === 200) {
+      dispatch({ type: "ADD_NEW_PLAYLIST", payload: { playlistName, video } });
+    }
+  } catch (error) {
+    console.log("error in creating new playlist ", error.response);
+  }
+}
