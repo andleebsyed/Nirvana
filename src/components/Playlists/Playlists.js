@@ -29,7 +29,7 @@ export function Playlists({ playlist }) {
             {playlist.videos.length > 0 ? (
               <div className="video-container">
                 {playlist.videos.map((video) => (
-                  <div className="video-container">
+                  <div>
                     <Card video={video} />
                     <button
                       className=" remove-video-button trash-button"
