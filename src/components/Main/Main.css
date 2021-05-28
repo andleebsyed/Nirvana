@@ -6,7 +6,7 @@ body {
   flex-wrap: wrap;
 }
 
-.abc {
+.cards-margin {
   margin-top: 1rem;
   border-top: 2px solid var(--border-color);
 }

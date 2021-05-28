@@ -1,33 +1,31 @@
-body{
-    --trash-bg-color : #E5E7EB ;
+body {
+  --trash-bg-color: #e5e7eb;
 }
-.single-playlist-show{
-     border-top: 1px solid black;
-     display: flex;
-     align-items: flex-start;
-
-}
-
-.trash-button{
-    cursor: pointer;
-    position: relative;
-    top : 2.3rem;
-    left : .3rem;
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-}
-.trash-button ion-icon{
-    font-size: 20px;
+.single-playlist-show {
+  border-top: 1px solid black;
+  display: flex;
+  align-items: flex-start;
 }
 
-.remove-video-button{
-    align-self: flex-start;
-    position: relative;
-    top : .7rem;
-    left: -1rem;
+.trash-button {
+  cursor: pointer;
+  position: relative;
+  top: 2.3rem;
+  left: 0.3rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
 }
-.video-container{
-    display: flex;
-    flex-wrap: wrap;
+.trash-button ion-icon {
+  font-size: 20px;
+}
+
+.remove-video-button {
+  position: relative;
+  top: 6rem;
+  left: -3rem;
+}
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
 }
