@@ -221,3 +221,19 @@ export async function RemovePlaylist(playlistId, dispatch) {
     console.log("an error occurred while removing playlist", error);
   }
 }
+
+export async function GetAccountDetails() {
+  try {
+    const userId = localStorage.getItem("userId");
+    const data = { userId };
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/account",
+      data
+    );
+    if (response.status === 200) {
+      return response.data.accountDetails;
+    }
+  } catch (error) {
+    console.log("an error occurred while fetching account details", error);
+  }
+}
