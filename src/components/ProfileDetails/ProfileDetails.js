@@ -1,5 +1,24 @@
 import "./ProfileDetails.css";
+import { useEffect, useState, useRef } from "react";
+import { useAuth } from "../Reducer/AuthReducer";
+import { GetAccountDetails } from "../ApiCalls/ApiCalls";
 export function ProfileDetails() {
+  const { stateAuth } = useAuth();
+  const { isUserAuthenticated } = stateAuth;
+  const usernameEl = useRef(null);
+  const emailEl = useRef(null);
+  useEffect(() => {
+    async function ApiCall() {
+      if (isUserAuthenticated) {
+        const response = await GetAccountDetails();
+        if (usernameEl.current !== null || undefined) {
+          usernameEl.current.value = response.username;
+          emailEl.current.value = response.email;
+        }
+      }
+    }
+    ApiCall();
+  }, []);
   return (
     <form>
       <div className="profile-details width-adjust">
@@ -9,6 +28,7 @@ export function ProfileDetails() {
             Username
           </label>
           <input
+            ref={usernameEl}
             type="text"
             name="username"
             type="username"
@@ -22,6 +42,7 @@ export function ProfileDetails() {
             Email
           </label>
           <input
+            ref={emailEl}
             type="text"
             name="email"
             type="email"
