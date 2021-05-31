@@ -1,3 +1,7 @@
+body {
+  --primary-color: #dc2626;
+  --success-color: #047857;
+}
 .profile-details {
   display: flex;
   flex-direction: column;
@@ -47,11 +51,24 @@
   width: 10rem;
   border: 2.5px solid var(--button-color);
   border-radius: 0.5rem;
-  /* color: var(--button-color); */
   font-weight: bold;
   background-color: transparent;
 }
+.update-inital-render-class {
+  display: none;
+}
+.update-status {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+}
+.update-success {
+  color: var(--success-color);
+}
 
+.update-failure {
+  color: var(--primary-color);
+}
 @media only screen and (max-width: 1024px) {
   .profile-details {
     margin-right: 10vw;
