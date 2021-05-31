@@ -267,3 +267,19 @@ export async function UpdateUserDetails(newUsername, newEmail) {
     }
   }
 }
+
+export async function UpdatePassword(oldPassword, newPassword) {
+  const userId = localStorage.getItem("userId");
+
+  const data = { userId, oldPassword, newPassword };
+  const response = await axios.post(
+    "https://video-library-api.andydev7.repl.co/password/update",
+    data
+  );
+  if (response.status === 200) {
+    // return response.data.status === true ?
+    return response.data;
+  }
+  console.log("response on passwrd update is ", response);
+  // return response;
+}
