@@ -237,3 +237,33 @@ export async function GetAccountDetails() {
     console.log("an error occurred while fetching account details", error);
   }
 }
+
+export async function UpdateUserDetails(newUsername, newEmail) {
+  try {
+    const userId = localStorage.getItem("userId");
+    const data = { userId, newUsername, newEmail };
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/account/update",
+      data
+    );
+    console.log("response coming ", response);
+    if (response.status === 200) {
+      return { status: true, message: "User updated successfully" };
+    }
+  } catch ({ response }) {
+    if (response.data.error.code === 11000) {
+      return Object.keys(response.data.error.keyPattern)[0] === "username"
+        ? { staus: false, message: "Couldn't Update.Username already exists" }
+        : {
+            staus: false,
+            message:
+              "Couldn't update.Email is already linked to a different account",
+          };
+    } else {
+      console.log(
+        "Oops!!unexpected error occurred while updating user details ",
+        response.data.errMessage
+      );
+    }
+  }
+}
