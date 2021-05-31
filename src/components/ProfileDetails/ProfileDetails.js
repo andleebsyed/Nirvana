@@ -2,7 +2,8 @@ import "./ProfileDetails.css";
 import { useEffect, useState, useRef } from "react";
 import { useAuth } from "../Reducer/AuthReducer";
 import { GetAccountDetails, UpdateUserDetails } from "../ApiCalls/ApiCalls";
-export function ProfileDetails() {
+export function ProfileDetails({ props }) {
+  const { getUser } = props;
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const usernameEl = useRef(null);
@@ -13,7 +14,6 @@ export function ProfileDetails() {
     message: "a",
     styleClass: "update-inital-render-class",
   });
-  console.log("state for update ", updateMessage);
   useEffect(() => {
     async function ApiCall() {
       if (isUserAuthenticated) {
@@ -23,6 +23,7 @@ export function ProfileDetails() {
           emailEl.current.value = response.email;
           setNewUsername(response.username);
           setNewEmail(response.email);
+          getUser(response.username);
         }
       }
     }
@@ -30,8 +31,6 @@ export function ProfileDetails() {
   }, []);
   async function AccountUpdateHandler(e) {
     e.preventDefault();
-    console.log("i came in form submit");
-
     const response = await UpdateUserDetails(newUsername, newEmail);
     console.log("user respo ", response);
     response.status === true
@@ -70,7 +69,6 @@ export function ProfileDetails() {
           <input
             ref={emailEl}
             onChange={(e) => setNewEmail(e.target.value)}
-            // type="text"
             name="email"
             type="email"
             className="input-box acc-password"
