@@ -6,6 +6,7 @@ export function ProfileDetails({ props }) {
   const { getUser } = props;
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
+  console.log("user auth or not for account", isUserAuthenticated);
   const usernameEl = useRef(null);
   const emailEl = useRef(null);
   const [newUsername, setNewUsername] = useState("");
@@ -18,12 +19,15 @@ export function ProfileDetails({ props }) {
     async function ApiCall() {
       if (isUserAuthenticated) {
         const response = await GetAccountDetails();
-        if (usernameEl.current !== null || undefined) {
-          usernameEl.current.value = response.username;
-          emailEl.current.value = response.email;
-          setNewUsername(response.username);
-          setNewEmail(response.email);
-          getUser(response.username);
+        if (response) {
+          if (usernameEl.current !== null || undefined) {
+            usernameEl.current.value = response.username;
+            emailEl.current.value = response.email;
+            setNewUsername(response.username);
+            setNewEmail(response.email);
+            console.log("setting enai to ", response.email);
+            getUser(response.username);
+          }
         }
       }
     }
