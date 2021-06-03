@@ -11,7 +11,12 @@ import {
   GetUserPlaylists,
 } from "../ApiCalls/ApiCalls";
 import { useAuth } from "./AuthReducer";
-import { setupAuthHeaderForServiceCalls } from "../../utils/funcs";
+import {
+  setupAuthHeaderForServiceCalls,
+  setupAuthExceptionHandler,
+} from "../../utils/funcs";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
@@ -117,12 +122,15 @@ function videosHandler(state, { type, payload }) {
 export function DataProvider({ children }) {
   const token = localStorage.getItem("token");
   setupAuthHeaderForServiceCalls(token);
-  const { stateAuth } = useAuth();
+  const { stateAuth, dispatchAuth } = useAuth();
+  const navigate = useNavigate();
   const likedVideos = [];
   const watchLaterVideos = [];
   const playlists = [{ playlistName: "Watch Later", videos: [] }];
   const videos = [];
   const originalVideos = [];
+
+  setupAuthExceptionHandler(navigate, dispatchAuth);
   useEffect(() => {
     async function Apicall() {
       const videos = await GetVideos();
