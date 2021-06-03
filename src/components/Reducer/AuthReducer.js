@@ -25,7 +25,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   let isUserAuthenticated;
-  if (localStorage.getItem("userId")) {
+  if (localStorage.getItem("token")) {
     isUserAuthenticated = true;
   } else {
     isUserAuthenticated = false;
