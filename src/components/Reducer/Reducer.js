@@ -108,6 +108,8 @@ function videosHandler(state, { type, payload }) {
       };
     case "CLEAR_STATE_ON_LOGOUT":
       return { ...state, likedVideos: [], playlists: [] };
+    default:
+      return state;
   }
 }
 
