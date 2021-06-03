@@ -1,10 +1,13 @@
 import { useReducer, createContext, useContext } from "react";
+import { setupAuthHeaderForServiceCalls } from "../../utils/funcs";
 
 function AuthHandler(stateAuth, { type, payload }) {
   switch (type) {
     case "CHECK_IF_USER_AUTHENTICATED":
       if (payload.status === true) {
         localStorage.setItem("userId", payload.userId);
+        localStorage.setItem("token", payload.token);
+        setupAuthHeaderForServiceCalls(localStorage.getItem("token"));
         return { ...stateAuth, isUserAuthenticated: true };
       } else {
         return { ...stateAuth, isUserAuthenticated: false };
@@ -12,7 +15,10 @@ function AuthHandler(stateAuth, { type, payload }) {
 
     case "LOGOUT_USER":
       localStorage.clear();
+      setupAuthHeaderForServiceCalls(localStorage.getItem("token"));
       return { ...stateAuth, isUserAuthenticated: false };
+    default:
+      return stateAuth;
   }
 }
 
