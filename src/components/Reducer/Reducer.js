@@ -1,10 +1,4 @@
-import {
-  useReducer,
-  useContext,
-  createContext,
-  useEffect,
-  useState,
-} from "react";
+import { useReducer, useContext, createContext, useEffect } from "react";
 import {
   GetVideos,
   GetLikedVideos,
@@ -15,8 +9,8 @@ import {
   setupAuthHeaderForServiceCalls,
   setupAuthExceptionHandler,
 } from "../../utils/funcs";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
