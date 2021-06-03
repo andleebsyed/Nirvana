@@ -22,3 +22,19 @@ export function setupAuthHeaderForServiceCalls(token) {
   console.log("token nahi aaraha delete krna padega");
   delete axios.defaults.headers.common["Authorization"];
 }
+
+export function setupAuthExceptionHandler(navigate, dispatchAuth) {
+  const UNAUTHORIZED = 401;
+  console.log("i came to chdelc fo rauth");
+  axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error?.response?.status === UNAUTHORIZED) {
+        console.log("unauthorized i am ");
+        dispatchAuth("LOGOUT_USER");
+        navigate("login");
+      }
+      return Promise.reject(error);
+    }
+  );
+}
