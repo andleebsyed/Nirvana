@@ -1,13 +1,9 @@
 import "./SignIn.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { UserSignIn } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";
-import { useVideo } from "../Reducer/Reducer";
-import { setupAuthHeaderForServiceCalls } from "../../utils/funcs";
 export function SignIn() {
-  const { dispatch, state } = useVideo();
-  // const { setUserIdTry } = state;
   const { dispatchAuth } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +16,6 @@ export function SignIn() {
     setLoginButtonText("Signing In...");
     userResponseFromServer = await UserSignIn(username, password);
     setLoginButtonText("Sign In");
-    console.log("user response ion signin ", userResponseFromServer);
     if (userResponseFromServer.allowUser === false) {
       setDisplayError("block");
     } else if (userResponseFromServer.allowUser === true) {

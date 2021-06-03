@@ -1,8 +1,7 @@
 import "./App.css";
-import { useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { Liked } from "./components/Liked/Liked";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { VideoPlayer } from "./components/VideoPlayer/VideoPlayer";
 import { Explore } from "./components/Explore/Explore";
 import { Sidebar } from "./components/Sidebar/Sidebar";
@@ -14,18 +13,7 @@ import { SignIn } from "./components/SignIn/SignIn";
 import { SignUp } from "./components/SignUp/SignUp";
 import { NotFound } from "./components/NotFound/NotFound";
 import { useAuth } from "./components/Reducer/AuthReducer";
-import { useVideo } from "./components/Reducer/Reducer";
-import { GetVideos } from "./components/ApiCalls/ApiCalls";
 function App() {
-  const { dispatch } = useVideo();
-  // useEffect(() => {
-  //   async function Apicall() {
-  //     const videos = await GetVideos();
-  //     dispatch({ type: "INITIAL_VIDEOS_RENDER", payload: { videos } });
-  //   }
-  //   Apicall();
-  // }, []);
-  const navigate = useNavigate();
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   console.log("user auth or not ", isUserAuthenticated);

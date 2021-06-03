@@ -12,7 +12,6 @@ export async function UserSignIn(username, password) {
       dataFromView
     );
     if (response.status === 200) {
-      console.log("data in response ", response.data);
       const userResponseFromServer = {
         allowUser: response.data.allowUser,
         messageToShowOnView: response.data.message,
@@ -75,7 +74,6 @@ export async function GetLikedVideos() {
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/liked/all"
     );
-    console.log("response on fetchng liked videos ", response);
     if (response.status === 200) {
       return response.data.likedVideos;
     }

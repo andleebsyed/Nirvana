@@ -6,7 +6,6 @@ import { DeleteFromPlaylist, RemovePlaylist } from "../ApiCalls/ApiCalls";
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
-  console.log("my user's playlists ", playlists);
   if (playlists.length > 0) {
     return (
       <>
@@ -17,9 +16,8 @@ export function Playlists({ playlist }) {
                 {playlist.playlistName}
               </h1>
               <button
-                onClick={
-                  async () => await RemovePlaylist(playlist._id, dispatch)
-                  //   dispatch({ type: "REMOVE_PLAYLIST", payload: { playlist } })
+                onClick={async () =>
+                  await RemovePlaylist(playlist._id, dispatch)
                 }
                 className="trash-button"
               >
