@@ -17,7 +17,6 @@ function videosHandler(state, { type, payload }) {
   const { likedVideos, playlists, originalVideos } = state;
   switch (type) {
     case "INITIAL_VIDEOS_RENDER":
-      console.log("am i getting called or not ", payload.videos);
       return {
         ...state,
         videos: payload.videos,
@@ -123,8 +122,13 @@ export function DataProvider({ children }) {
   const playlists = [{ playlistName: "Watch Later", videos: [] }];
   const videos = [];
   const originalVideos = [];
+  useEffect(() => {
+    setupAuthHeaderForServiceCalls(token);
+  }, [token]);
+  useEffect(() => {
+    setupAuthExceptionHandler(navigate, dispatchAuth);
+  }, []);
 
-  setupAuthExceptionHandler(navigate, dispatchAuth);
   useEffect(() => {
     async function Apicall() {
       const videos = await GetVideos();
@@ -136,8 +140,6 @@ export function DataProvider({ children }) {
   //get all liked videos for a particular user
   useEffect(() => {
     async function Apicall() {
-      console.log("token in Getting olaylist s", token);
-
       if (token) {
         const userLikedVideos = await GetLikedVideos();
         dispatch({
@@ -152,7 +154,6 @@ export function DataProvider({ children }) {
   // get all playlotst for authenticated user
   useEffect(() => {
     async function Apicall() {
-      console.log("token in Getting olaylist s", token);
       if (token) {
         const userPlaylists = await GetUserPlaylists();
         console.log("playlist fetch in useeffect ", userPlaylists);
