@@ -28,7 +28,11 @@ export function SignUp() {
       setDisplayError("none");
       dispatchAuth({
         type: "CHECK_IF_USER_AUTHENTICATED",
-        payload: { status: true, userId: isSignUpSuccessful.userId },
+        payload: {
+          status: true,
+          userId: isSignUpSuccessful.userId,
+          token: isSignUpSuccessful.token,
+        },
       });
       navigate("/explore");
     }

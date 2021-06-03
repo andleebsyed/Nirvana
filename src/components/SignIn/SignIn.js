@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { UserSignIn } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";
 import { useVideo } from "../Reducer/Reducer";
+import { setupAuthHeaderForServiceCalls } from "../../utils/funcs";
 export function SignIn() {
   const { dispatch, state } = useVideo();
   // const { setUserIdTry } = state;
@@ -25,8 +26,13 @@ export function SignIn() {
     } else if (userResponseFromServer.allowUser === true) {
       dispatchAuth({
         type: "CHECK_IF_USER_AUTHENTICATED",
-        payload: { status: true, userId: userResponseFromServer.userId },
+        payload: {
+          status: true,
+          userId: userResponseFromServer.userId,
+          token: userResponseFromServer.token,
+        },
       });
+      // setupAuthHeaderForServiceCalls(userResponseFromServer.token);
       // setUserIdTry(true);
       setDisplayError("none");
     }
