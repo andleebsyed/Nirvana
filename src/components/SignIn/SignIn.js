@@ -32,8 +32,6 @@ export function SignIn() {
           token: userResponseFromServer.token,
         },
       });
-      // setupAuthHeaderForServiceCalls(userResponseFromServer.token);
-      // setUserIdTry(true);
       setDisplayError("none");
     }
   }

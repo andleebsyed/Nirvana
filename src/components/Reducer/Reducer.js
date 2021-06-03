@@ -11,6 +11,7 @@ import {
   GetUserPlaylists,
 } from "../ApiCalls/ApiCalls";
 import { useAuth } from "./AuthReducer";
+import { setupAuthHeaderForServiceCalls } from "../../utils/funcs";
 const VideoHandleContext = createContext();
 
 function videosHandler(state, { type, payload }) {
@@ -114,15 +115,14 @@ function videosHandler(state, { type, payload }) {
 }
 
 export function DataProvider({ children }) {
+  const token = localStorage.getItem("token");
+  setupAuthHeaderForServiceCalls(token);
   const { stateAuth } = useAuth();
   const likedVideos = [];
   const watchLaterVideos = [];
   const playlists = [{ playlistName: "Watch Later", videos: [] }];
   const videos = [];
   const originalVideos = [];
-  const userId = localStorage.getItem("userId");
-  //get all videos
-
   useEffect(() => {
     async function Apicall() {
       const videos = await GetVideos();
@@ -134,7 +134,9 @@ export function DataProvider({ children }) {
   //get all liked videos for a particular user
   useEffect(() => {
     async function Apicall() {
-      if (userId) {
+      console.log("token in Getting olaylist s", token);
+
+      if (token) {
         const userLikedVideos = await GetLikedVideos();
         dispatch({
           type: "INITIAL_LIKED_VIDEOS_RENDER",
@@ -148,7 +150,8 @@ export function DataProvider({ children }) {
   // get all playlotst for authenticated user
   useEffect(() => {
     async function Apicall() {
-      if (userId) {
+      console.log("token in Getting olaylist s", token);
+      if (token) {
         const userPlaylists = await GetUserPlaylists();
         console.log("playlist fetch in useeffect ", userPlaylists);
         dispatch({
