@@ -17,6 +17,7 @@ export async function UserSignIn(username, password) {
         allowUser: response.data.allowUser,
         messageToShowOnView: response.data.message,
         userId: response.data.user?._id,
+        token: response.data.token,
       };
       return userResponseFromServer;
     }
@@ -41,7 +42,8 @@ export async function UserSignUp(userDetails) {
         console.log("resposne on signup ", response);
         return (isSignUpSuccessfull = {
           status: true,
-          userId: response.data.user._id,
+          userId: response.data.user?._id,
+          token: response.data.token,
         });
       } else if (response.data.status === false) {
         //  11000 is returned when we send data which is already there for common field
