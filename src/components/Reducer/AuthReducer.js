@@ -5,7 +5,6 @@ function AuthHandler(stateAuth, { type, payload }) {
   switch (type) {
     case "CHECK_IF_USER_AUTHENTICATED":
       if (payload.status === true) {
-        localStorage.setItem("userId", payload.userId);
         localStorage.setItem("token", payload.token);
         setupAuthHeaderForServiceCalls(localStorage.getItem("token"));
         return { ...stateAuth, isUserAuthenticated: true };

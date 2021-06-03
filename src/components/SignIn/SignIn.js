@@ -28,7 +28,6 @@ export function SignIn() {
         type: "CHECK_IF_USER_AUTHENTICATED",
         payload: {
           status: true,
-          userId: userResponseFromServer.userId,
           token: userResponseFromServer.token,
         },
       });

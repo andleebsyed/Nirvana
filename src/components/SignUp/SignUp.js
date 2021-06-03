@@ -30,7 +30,6 @@ export function SignUp() {
         type: "CHECK_IF_USER_AUTHENTICATED",
         payload: {
           status: true,
-          userId: isSignUpSuccessful.userId,
           token: isSignUpSuccessful.token,
         },
       });

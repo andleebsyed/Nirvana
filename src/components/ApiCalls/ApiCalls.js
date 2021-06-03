@@ -16,7 +16,6 @@ export async function UserSignIn(username, password) {
       const userResponseFromServer = {
         allowUser: response.data.allowUser,
         messageToShowOnView: response.data.message,
-        userId: response.data.user?._id,
         token: response.data.token,
       };
       return userResponseFromServer;
@@ -36,13 +35,10 @@ export async function UserSignUp(userDetails) {
       "https://video-library-api.andydev7.repl.co/users/signup",
       signUpDataFromView
     );
-    console.log("resposne on signup ", response);
     if (response.status === 200) {
       if (response.data.status === true) {
-        console.log("resposne on signup ", response);
         return (isSignUpSuccessfull = {
           status: true,
-          userId: response.data.user?._id,
           token: response.data.token,
         });
       } else if (response.data.status === false) {
@@ -75,10 +71,7 @@ export async function GetVideos() {
 }
 
 export async function GetLikedVideos() {
-  // const userId = localStorage.getItem("userId");
-
   try {
-    // const data = { UserId: userId };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/liked/all"
     );
@@ -91,9 +84,8 @@ export async function GetLikedVideos() {
   }
 }
 
-export async function SaveToLiked(dispatch, video, userId) {
+export async function SaveToLiked(dispatch, video) {
   try {
-    // const userId = localStorage.getItem("userId");
     const data = { videoId: video._id };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/liked/add",
@@ -111,8 +103,7 @@ export async function SaveToLiked(dispatch, video, userId) {
   }
 }
 
-export async function RemoveFromLikedVideos(dispatch, video, userId) {
-  console.log(" i am called to remove video from liked videos");
+export async function RemoveFromLikedVideos(dispatch, video) {
   try {
     const data = { videoId: video._id };
     const response = await axios.post(
@@ -133,7 +124,6 @@ export async function RemoveFromLikedVideos(dispatch, video, userId) {
 
 export async function GetUserPlaylists() {
   try {
-    const userId = localStorage.getItem("userId");
     const response = await axios.post(
       `https://video-library-api.andydev7.repl.co/playlists/all/`
     );
@@ -148,13 +138,11 @@ export async function GetUserPlaylists() {
 
 export async function AddVideoToPlaylist(dispatch, video, playlist) {
   try {
-    const userId = localStorage.getItem("userId");
     const data = { playlistId: playlist._id, videoId: video._id };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/playlists/addvideo",
       data
     );
-    console.log("tresposne on saving videoo to playlist ", response);
     if (response.status === 200) {
       dispatch({
         type: "ADD_TO_PLAYLIST",
@@ -168,17 +156,14 @@ export async function AddVideoToPlaylist(dispatch, video, playlist) {
 
 export async function AddNewPlaylist(dispatch, playlistName, video) {
   try {
-    const userId = localStorage.getItem("userId");
     const data = {
       playlistName: playlistName,
       videoId: video._id,
     };
-    console.log("data beign sent ", data);
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/playlists/newplaylist",
       data
     );
-    console.log("response on adding new playlist ", response);
     if (response.status === 200) {
       dispatch({ type: "ADD_NEW_PLAYLIST", payload: { playlistName, video } });
     }
@@ -208,7 +193,6 @@ export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
 
 export async function RemovePlaylist(playlistId, dispatch) {
   try {
-    const userId = localStorage.getItem("userId");
     const data = { playlistId };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/playlists/removeplaylist",
@@ -224,11 +208,8 @@ export async function RemovePlaylist(playlistId, dispatch) {
 
 export async function GetAccountDetails() {
   try {
-    const userId = localStorage.getItem("userId");
-    const data = {};
     const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/account",
-      data
+      "https://video-library-api.andydev7.repl.co/account"
     );
     if (response.status === 200) {
       return response.data.accountDetails;
@@ -240,7 +221,6 @@ export async function GetAccountDetails() {
 
 export async function UpdateUserDetails(newUsername, newEmail) {
   try {
-    const userId = localStorage.getItem("userId");
     const data = { newUsername, newEmail };
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/account/update",
@@ -269,17 +249,13 @@ export async function UpdateUserDetails(newUsername, newEmail) {
 }
 
 export async function UpdatePassword(oldPassword, newPassword) {
-  const userId = localStorage.getItem("userId");
-
   const data = { oldPassword, newPassword };
   const response = await axios.post(
     "https://video-library-api.andydev7.repl.co/password/update",
     data
   );
   if (response.status === 200) {
-    // return response.data.status === true ?
     return response.data;
   }
   console.log("response on passwrd update is ", response);
-  // return response;
 }
