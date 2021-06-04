@@ -144,7 +144,7 @@ function App() {
             </div>
           }
         />
-        <Route
+        <LoginRoute
           path="/signup"
           element={
             <div className="main">
