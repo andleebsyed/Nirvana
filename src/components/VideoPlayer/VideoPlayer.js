@@ -53,7 +53,11 @@ export function VideoPlayer() {
         </div>
         <div className="creator-details">
           <div className="thumbnail-and-name">
-            <img className="thumbnail" src={video.creatorThumbnail} />
+            <img
+              className="thumbnail"
+              src={video.creatorThumbnail}
+              alt="creator-thumbnail"
+            />
             <p className="name">{video.creatorName}</p>
           </div>
           <div className="video-details">
@@ -62,7 +66,7 @@ export function VideoPlayer() {
         </div>
       </div>
 
-      <Notes />
+      <Notes video={video} />
 
       <LibraryModal {...props} />
     </div>
