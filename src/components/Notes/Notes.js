@@ -1,16 +1,16 @@
 import "./Notes.css";
 import { useState, useEffect } from "react";
-import { AddNote, GetNotes } from "../ApiCalls/Notes";
+import { AddNote, GetNotes, DeleteNote } from "../ApiCalls/Notes";
 export function Notes({ video }) {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
     async function ApiCall() {
-      const videoId = video._id;
-      const response = await GetNotes(videoId);
+      const dataToApi = { videoId: video._id };
+      const response = await GetNotes(dataToApi);
       response ? setNotes([...response]) : setNotes([]);
     }
     ApiCall();
-  }, []);
+  }, [video._id]);
   console.log("video  which we have is ", video);
 
   async function notesHandler(e) {
@@ -20,9 +20,13 @@ export function Notes({ video }) {
     setNotes([...notes, e.target.value]);
     // e.currentTarget.value = "";
   }
-  function deleteHandler(note) {
+  async function deleteHandler(note) {
+    const dataToApi = { videoId: video._id, note: note };
     // const tempNotes = [...notes]
-    setNotes(notes.filter((item) => item !== note));
+    const response = await DeleteNote(dataToApi);
+    response
+      ? setNotes(notes.filter((item) => item !== note))
+      : setNotes(notes);
   }
   return (
     <div className="notes-outer">
