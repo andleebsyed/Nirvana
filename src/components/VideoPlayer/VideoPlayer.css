@@ -1,104 +1,95 @@
-body{
-    --main-bg-color : #F9FAFB;
-    --button-hover-color : #E5E7EB;
-    --primary-color :  #DC2626;
+body {
+  --main-bg-color: #f9fafb;
+  --button-hover-color: #e5e7eb;
+  --primary-color: #dc2626;
 }
-.outer-main{
-    display: flex;
-    justify-content: space-between;
-
+.outer-main {
+  display: flex;
+  justify-content: space-between;
 }
-.player{
-
+.player {
 }
-.player-card{
-    background-color: var(--main-bg-color);
-    box-shadow : 0px 0px 8px 1px grey ;
-    margin-top: 1rem;
-    width: 55vw;
-     margin-left: 3vw;
-
+.player-card {
+  background-color: var(--main-bg-color);
+  box-shadow: 0px 0px 8px 1px grey;
+  margin-top: 1rem;
+  width: 55vw;
+  margin-left: 3vw;
 }
 
-.liked{
-    color : blue
+.liked {
+  color: blue;
 }
 
-.not-liked{
-    color : black;
+.not-liked {
+  color: black;
 }
 
-.video-label{
-    display: flex;
-    justify-content: space-between;
+.video-label {
+  display: flex;
+  justify-content: space-between;
 }
 
-.video-intro{
-    font-size: 20px;
-    margin-left: 1rem;
+.video-intro {
+  font-size: 20px;
+  margin-left: 1rem;
 }
 
-.interactions{
-    display: flex;
-    width: 10rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    justify-content: space-between;
+.interactions {
+  display: flex;
+  width: 10rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  justify-content: space-between;
 }
 
-.buttons{
-    cursor: pointer;
-    border: none;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: transparent;
+.buttons {
+  cursor: pointer;
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: transparent;
 }
 
-.buttons:hover{
-    background-color: var(--button-hover-color);
+.buttons:hover {
+  background-color: var(--button-hover-color);
 }
 
-.buttons ion-icon{
-    font-size: 1.5rem;
+.buttons ion-icon {
+  font-size: 1.5rem;
 }
 
 ion-icon {
   pointer-events: none;
 }
 
-
-
-
-
-
-.creator-details{
-    border-top: 1px solid var(--primary-color) ;
-    border-bottom: 1px solid var(--primary-color) ;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
-
+.creator-details {
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
-.thumbnail-and-name{
-    display: flex;
-    justify-content: flex-start;
+.thumbnail-and-name {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.thumbnail{
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    margin-right: 1rem;
-    margin-top: .5rem;
+.thumbnail {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
 }
 
-.name{
-    font-size: 15px;
-    font-weight: bold;
+.name {
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.video-description{
-    text-align: left;
+.video-description {
+  text-align: left;
 }
