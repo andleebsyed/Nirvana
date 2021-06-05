@@ -1,14 +1,14 @@
 import "./VideoPlayer.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactPlayer from "react-player";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useVideo } from "../Reducer/Reducer";
 import { LibraryModal } from "../LibraryModal/LibraryModal";
 import { Notes } from "../Notes/Notes";
 import { useAuth } from "../Reducer/AuthReducer";
 import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
 import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
-// import { GetVideos } from "../ApiCalls/ApiCalls";
+import { SetLoader } from "../Loader/Loader";
 export function VideoPlayer() {
   // const { dispatch } = useVideo();
   const { state } = useVideo();
@@ -16,9 +16,9 @@ export function VideoPlayer() {
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const { id } = useParams();
-  const video = originalVideos.find((video) => video.id === id);
+  const video = originalVideos.find((video) => video?.id === id);
   const videoInLiked = likedVideos.filter(
-    (videoInIteration) => videoInIteration.id === video.id
+    (videoInIteration) => videoInIteration.id === video?.id
   );
 
   const [show, setShow] = useState(false);
@@ -73,10 +73,6 @@ export function VideoPlayer() {
       </div>
     );
   } else {
-    return (
-      <div>
-        <h1>loading</h1>
-      </div>
-    );
+    return <SetLoader />;
   }
 }
