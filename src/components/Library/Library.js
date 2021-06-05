@@ -5,8 +5,8 @@ import { useVideo } from "../Reducer/Reducer";
 import { SetLoader } from "../Loader/Loader";
 export function Library() {
   const { state } = useVideo();
-  const { videos } = state;
-  if (videos.length > 0) {
+  const { originalVideos } = state;
+  if (originalVideos.length > 0) {
     return (
       <div>
         <div className="liked-videos library-section">

@@ -1,6 +1,7 @@
 import "./Notes.css";
 import { useState, useEffect } from "react";
 import { AddNote, GetNotes, DeleteNote } from "../ApiCalls/Notes";
+import { SetLoader } from "../Loader/Loader";
 export function Notes({ video }) {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
@@ -32,14 +33,26 @@ export function Notes({ video }) {
     <div className="notes-outer">
       <p className="notes-heading">Fill Your Bucket List...</p>
       <div className="notes">
-        {notes.map((note) => (
-          <div className="individual-note">
-            <p className="note-text">{note}</p>
-            <button className="delete-note" onClick={() => deleteHandler(note)}>
-              X
-            </button>
-          </div>
-        ))}
+        {
+          //   notes !== null ? (
+          notes.map((note) => (
+            <div className="individual-note">
+              <p className="note-text">{note}</p>
+              <button
+                className="delete-note"
+                onClick={() => deleteHandler(note)}
+              >
+                X
+              </button>
+            </div>
+          ))
+          // )
+          // : (
+          //   <div>
+          //     <SetLoader />
+          //   </div>
+          // )
+        }
       </div>
       <input
         className="notes-input-box"
