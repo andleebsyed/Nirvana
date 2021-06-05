@@ -47,7 +47,6 @@ function App() {
           }
         />
       );
-      // navigate(-1);
     } else {
       return (
         <Route
