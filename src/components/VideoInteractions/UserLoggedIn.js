@@ -49,12 +49,12 @@ export function UserLoggedIn({ videoInLiked, video, setShow }) {
       >
         <ion-icon name="create-outline"></ion-icon>
       </button>
-      {showModal && (
-        <div>
-          {" "}
-          <PopUpModal modalText={modalText} />
-        </div>
-      )}
+      {/* {showModal && ( */}
+      <div>
+        {" "}
+        <PopUpModal props={{ showModal, modalText }} />
+      </div>
+      {/* )} */}
     </div>
   );
 }

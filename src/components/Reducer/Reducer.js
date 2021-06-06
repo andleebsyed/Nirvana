@@ -47,7 +47,7 @@ function videosHandler(state, { type, payload }) {
         ...state,
         playlists: [
           ...playlists,
-          { playlistName: payload.playlistName, videos: [payload.video] },
+          { ...payload.newPlaylist, videos: [payload.video] },
         ],
       };
     case "REMOVE_PLAYLIST":
@@ -119,7 +119,7 @@ export function DataProvider({ children }) {
   const navigate = useNavigate();
   const likedVideos = [];
   const watchLaterVideos = [];
-  const playlists = [{ playlistName: "Watch Later", videos: [] }];
+  const playlists = [{ playlist: { playlistName: "Watch Later" }, videos: [] }];
   const videos = [];
   const originalVideos = [];
   useEffect(() => {

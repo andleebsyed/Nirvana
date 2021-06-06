@@ -128,7 +128,7 @@ export async function GetUserPlaylists() {
     if (response.status === 200) {
       return response.data.playlists;
     }
-    console.log("response in playlists ", response);
+    console.log("response in playlists ", response.playlists);
   } catch (error) {
     console.log("an error occured ", error.response.data);
   }
@@ -162,8 +162,13 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
       "https://video-library-api.andydev7.repl.co/playlists/newplaylist",
       data
     );
+    console.log("response on addign new playlist", response);
     if (response.status === 200) {
-      dispatch({ type: "ADD_NEW_PLAYLIST", payload: { playlistName, video } });
+      console.log("data on adding new wplaylist", response.data);
+      dispatch({
+        type: "ADD_NEW_PLAYLIST",
+        payload: { newPlaylist: response.data.newPlaylist, video },
+      });
     }
   } catch (error) {
     console.log("error in creating new playlist ", error.response);
