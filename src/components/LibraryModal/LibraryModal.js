@@ -7,11 +7,13 @@ import {
   AddNewPlaylist,
   DeleteFromPlaylist,
 } from "../ApiCalls/ApiCalls";
+import { PopUpModal } from "../PopUpModal/PopUpModal";
 export function LibraryModal({ show, setShow, video }) {
   const { state, dispatch } = useVideo();
   const { playlists } = state;
   const [current, setCurrent] = useState("");
   const inputEl = useRef(null);
+  let result;
   const modalClass = {
     offclick: "modale",
     onclick: "modale active",
@@ -37,9 +39,14 @@ export function LibraryModal({ show, setShow, video }) {
       setModalText(`Removed from ${playlist.playlistName}`);
       setShowModal(true);
       setTimeout(() => setShowModal(false), 1300);
+
+      // const text = `Removed from ${playlist.playlistName}`;
+      // let status = true;
+      // result = <PopUpModal props={{ status, text }} />;
+      // status = false;
+      // result = setTimeout(() => <PopUpModal props={{ status, text }} />, 1300);
     } else {
       await AddVideoToPlaylist(dispatch, video, playlist);
-
       setModalText(`Added to  ${playlist.playlistName}`);
       setShowModal(true);
       setTimeout(() => setShowModal(false), 1300);
@@ -87,9 +94,12 @@ export function LibraryModal({ show, setShow, video }) {
             </button>
           </div>
         </div>
-        <div className={showModal ? modalClass.onclick : modalClass.offclick}>
-          {modalText}
-        </div>
+        {showModal && (
+          <div>
+            {" "}
+            <PopUpModal modalText={modalText} />
+          </div>
+        )}
       </div>
     );
   }
