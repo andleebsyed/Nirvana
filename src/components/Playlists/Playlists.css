@@ -12,9 +12,10 @@ body {
   position: relative;
   top: 2.3rem;
   left: 0.3rem;
+  outline: none;
   background-color: transparent;
   border: none;
-  border-radius: 50%;
+  color: var(--primary-color);
 }
 .trash-button ion-icon {
   font-size: 20px;
@@ -23,7 +24,7 @@ body {
 .remove-video-button {
   position: relative;
   left: 9rem;
-  top: -2.7rem;
+  top: -2.4rem;
 }
 .video-container {
   display: flex;
