@@ -13,25 +13,25 @@ export function LibraryModal({ show, setShow, video }) {
   const { playlists } = state;
   const [current, setCurrent] = useState("");
   const inputEl = useRef(null);
-  let result;
-  const modalClass = {
-    offclick: "modale",
-    onclick: "modale active",
-  };
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
 
-  function keyPressHandler(e) {
-    return e.key === "Enter"
-      ? (AddNewPlaylist(dispatch, current, video),
-        // dispatch({ type: "ADD_NEW_PLAYLIST", payload: { name: current } })
-        (e.currentTarget.value = ""))
-      : "do nothing";
+  async function keyPressHandler(e) {
+    if (e.key === "Enter") {
+      const playlistName = await AddNewPlaylist(dispatch, current, video);
+      e.target.value = "";
+      setModalText(`Added to  ${playlistName}`);
+      setShowModal(true);
+      setTimeout(() => setShowModal(false), 1300);
+    }
   }
 
   async function onClickHandler(e) {
-    await AddNewPlaylist(dispatch, current, video);
+    const playlistName = await AddNewPlaylist(dispatch, current, video);
     inputEl.current.value = "";
+    setModalText(`Added to  ${playlistName}`);
+    setShowModal(true);
+    setTimeout(() => setShowModal(false), 1300);
   }
   async function checkboxHandler(playlist, video) {
     if (checkForIdInPlaylist(playlist.videos, video.id) === true) {

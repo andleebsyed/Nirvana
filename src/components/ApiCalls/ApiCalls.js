@@ -169,6 +169,7 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
         type: "ADD_NEW_PLAYLIST",
         payload: { newPlaylist: response.data.newPlaylist, video },
       });
+      return response.data.newPlaylist.playlistName;
     }
   } catch (error) {
     console.log("error in creating new playlist ", error.response);
