@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { DataProvider } from "./components/Reducer/Reducer";
 import { AuthProvider } from "./components/Reducer/AuthReducer";
+import { ActionManagementProvider } from "./components/Contexts/ActionManagementContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <DataProvider>
-          <App />
-        </DataProvider>
-      </AuthProvider>
+      <ActionManagementProvider>
+        <AuthProvider>
+          <DataProvider>
+            <App />
+          </DataProvider>
+        </AuthProvider>
+      </ActionManagementProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
