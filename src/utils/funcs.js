@@ -36,10 +36,7 @@ export function setupAuthExceptionHandler(navigate, dispatchAuth) {
 export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
   setAction({
     ...action,
-    isLoading: {
-      status: false,
-      playlistName: "",
-    },
+    isLoading: false,
     showModal: true,
     modalText: textPassedToModal,
   });
@@ -53,16 +50,9 @@ export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
   }, 4000);
 }
 
-export function BeforeAsyncOperation({
-  action,
-  setAction,
-  playlistNamePassed,
-}) {
+export function BeforeAsyncOperation({ action, setAction }) {
   setAction({
     ...action,
-    isLoading: {
-      status: true,
-      playlistName: playlistNamePassed,
-    },
+    isLoading: true,
   });
 }

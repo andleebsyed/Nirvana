@@ -6,11 +6,13 @@ import { SetLoader } from "../Loader/Loader";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 import { PopUpModal } from "../PopUpModal/PopUpModal";
 import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
+import { useState } from "react";
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
   const { action, setAction } = useActionManager();
   const { isLoading } = action;
+  const [playlistName, setPlaylistName] = useState("");
   console.log("let's see if states are modifying", { action });
   if (playlists.length > 0) {
     return (
@@ -23,11 +25,12 @@ export function Playlists({ playlist }) {
               </h1>
               <button
                 onClick={async () => {
+                  setPlaylistName(playlist.playlistName);
                   BeforeAsyncOperation({
                     action,
                     setAction,
-                    playlistNamePassed: playlist.playlistName,
                   });
+
                   await RemovePlaylist(playlist._id, dispatch);
                   AfterAsyncOperation({
                     action,
@@ -39,12 +42,11 @@ export function Playlists({ playlist }) {
               >
                 <ion-icon name="trash"></ion-icon>
               </button>
-              {isLoading.status &&
-                isLoading.playlistName === playlist.playlistName && (
-                  <div className="playlist-loader">
-                    <SetLoader />
-                  </div>
-                )}
+              {isLoading && playlistName === playlist.playlistName && (
+                <div className="playlist-loader">
+                  <SetLoader />
+                </div>
+              )}
             </div>
             {playlist.videos.length > 0 ? (
               <div className="video-container">
@@ -54,11 +56,12 @@ export function Playlists({ playlist }) {
                     <button
                       className=" remove-video-button trash-button"
                       onClick={async () => {
+                        setPlaylistName(playlist.playlistName);
                         BeforeAsyncOperation({
                           action,
                           setAction,
-                          playlistNamePassed: playlist.playlistName,
                         });
+
                         await DeleteFromPlaylist(
                           video._id,
                           playlist._id,
