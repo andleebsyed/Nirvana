@@ -30,3 +30,13 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
+.playlist-loader {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 1rem;
+  top: 1.8rem;
+}

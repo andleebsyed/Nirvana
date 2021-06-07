@@ -1,21 +1,17 @@
-body{
-        --primary-color :  #DC2626;
+body {
+  --primary-color: #dc2626;
 }
-.library-section{
-    border-top: 1px solid var(--primary-color);
-    border-bottom : 1px solid var(--primary-color);
-    padding-left: 1rem;
-}
-
-.heading-intro{
-    font-weight: lighter;
-    text-align: left;
+.library-section {
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  padding-left: 1rem;
 }
 
-
-.playlists{
-    border-top: none;
+.heading-intro {
+  font-weight: lighter;
+  text-align: left;
 }
-/* .playlist-none{
-   text-align: left;
-} */
+
+.playlists {
+  border-top: none;
+}
