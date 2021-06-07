@@ -1,11 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 const ActionManagementContext = createContext();
 
 export function ActionManagementProvider({ children }) {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const [modalText, setModalText] = useState("");
   const [action, setAction] = useState({
     isLoading: false,
     showModal: false,
@@ -20,5 +17,5 @@ export function ActionManagementProvider({ children }) {
 }
 
 export function useActionManager() {
-  return ActionManagementContext.useContext();
+  return useContext(ActionManagementContext);
 }

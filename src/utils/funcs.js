@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export function checkForIdInPlaylist(playlist, videoId) {
   console.log(
     "list of videos in our playlist ",
@@ -30,4 +31,38 @@ export function setupAuthExceptionHandler(navigate, dispatchAuth) {
       return Promise.reject(error);
     }
   );
+}
+
+export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
+  setAction({
+    ...action,
+    isLoading: {
+      status: false,
+      playlistName: "",
+    },
+    showModal: true,
+    modalText: textPassedToModal,
+  });
+
+  setTimeout(() => {
+    setAction({
+      ...action,
+      showModal: false,
+      modalText: "",
+    });
+  }, 4000);
+}
+
+export function BeforeAsyncOperation({
+  action,
+  setAction,
+  playlistNamePassed,
+}) {
+  setAction({
+    ...action,
+    isLoading: {
+      status: true,
+      playlistName: playlistNamePassed,
+    },
+  });
 }
