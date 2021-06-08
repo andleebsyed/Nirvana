@@ -11,7 +11,7 @@ export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
   const { action, setAction } = useActionManager();
-  const { isLoading } = action;
+  const { isLoading, showModal, modalText } = action;
   const [playlistName, setPlaylistName] = useState("");
   console.log("let's see if states are modifying", { action });
   if (playlists.length > 0) {
@@ -93,8 +93,8 @@ export function Playlists({ playlist }) {
           <div>
             <PopUpModal
               props={{
-                showModal: action.showModal,
-                modalText: action.modalText,
+                showModal,
+                modalText,
               }}
             />
           </div>
