@@ -4,10 +4,15 @@ import { Card } from "../Card/Card";
 import { RemoveFromLikedVideos } from "../ApiCalls/ApiCalls";
 import { SetLoader } from "../Loader/Loader";
 import { useState } from "react";
+import { useActionManager } from "../Contexts/ActionManagementContext";
+import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
+import { PopUpModal } from "../PopUpModal/PopUpModal";
 export function Liked() {
   const { state, dispatch } = useVideo();
-  const { likedVideos, playlist } = state;
-  const [isLoading, setIsLoading] = useState(false);
+  const { likedVideos } = state;
+  // const [isLoading, setIsLoading] = useState(false);
+  const { action, setAction } = useActionManager();
+  const { isLoading, showModal, modalText } = action;
   const userId = localStorage.getItem("userId");
   if (likedVideos.length === 0) {
     return (
@@ -24,9 +29,15 @@ export function Liked() {
             <button
               className=" remove-video-button trash-button"
               onClick={async () => {
-                setIsLoading(true);
+                BeforeAsyncOperation({ action, setAction });
+                // setIsLoading(true);
                 await RemoveFromLikedVideos(dispatch, video, userId);
-                setIsLoading(false);
+                AfterAsyncOperation({
+                  action,
+                  setAction,
+                  textPassedToModal: "Removed From Liked Videos Successfully",
+                });
+                // setIsLoading(false);
               }}
             >
               <ion-icon name="trash"></ion-icon>
@@ -36,6 +47,16 @@ export function Liked() {
         {isLoading && (
           <div className="remove-like-loader">
             <SetLoader />
+          </div>
+        )}
+        {action.showModal && (
+          <div>
+            <PopUpModal
+              props={{
+                showModal,
+                modalText,
+              }}
+            />
           </div>
         )}
       </div>
