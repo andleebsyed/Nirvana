@@ -33,6 +33,12 @@ export function setupAuthExceptionHandler(navigate, dispatchAuth) {
   );
 }
 
+export function BeforeAsyncOperation({ action, setAction }) {
+  setAction({
+    ...action,
+    isLoading: true,
+  });
+}
 export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
   setAction({
     ...action,
@@ -48,11 +54,4 @@ export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
       modalText: "",
     });
   }, 4000);
-}
-
-export function BeforeAsyncOperation({ action, setAction }) {
-  setAction({
-    ...action,
-    isLoading: true,
-  });
 }
