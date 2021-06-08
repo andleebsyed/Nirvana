@@ -7,7 +7,7 @@ export function ActionManagementProvider({ children }) {
     isLoading: { playlist: false, liked: false },
     showModal: false,
     modalText: "",
-    module: "",
+    component: "",
   });
 
   return (

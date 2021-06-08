@@ -10,7 +10,7 @@ export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
   const { action, setAction } = useActionManager();
-  const { isLoading, module } = action;
+  const { isLoading, component } = action;
   const [playlistName, setPlaylistName] = useState("");
 
   if (playlists.length > 0) {
@@ -28,7 +28,7 @@ export function Playlists({ playlist }) {
                   BeforeAsyncOperation({
                     action,
                     setAction,
-                    module: "playlists",
+                    component: "playlists",
                   });
 
                   await RemovePlaylist(playlist._id, dispatch);
@@ -43,7 +43,7 @@ export function Playlists({ playlist }) {
                 <ion-icon name="trash"></ion-icon>
               </button>
               {isLoading &&
-                module === "playlists" &&
+                component === "playlists" &&
                 playlistName === playlist.playlistName && (
                   <div className="playlist-loader">
                     <SetLoader />
@@ -62,7 +62,7 @@ export function Playlists({ playlist }) {
                         BeforeAsyncOperation({
                           action,
                           setAction,
-                          module: "playlists",
+                          component: "playlists",
                         });
 
                         await DeleteFromPlaylist(

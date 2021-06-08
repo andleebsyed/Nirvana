@@ -9,12 +9,20 @@ export function Library() {
   const { action } = useActionManager();
   const { modalText, showModal } = action;
   const { state } = useVideo();
+  const { isLoading, component } = action;
   const { originalVideos } = state;
   if (originalVideos.length > 0) {
     return (
       <div>
-        <div className="liked-videos library-section">
-          <h1 className="heading-intro">Liked Videos|</h1>
+        <div className=" library-section">
+          <div className="liked-videos-heading">
+            <h1 className="heading-intro">Liked Videos|</h1>
+            {isLoading && component === "videos" && (
+              <div className="remove-like-loader">
+                <SetLoader />
+              </div>
+            )}
+          </div>
           <Liked />
         </div>
         <div className="library-section">

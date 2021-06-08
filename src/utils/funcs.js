@@ -33,11 +33,11 @@ export function setupAuthExceptionHandler(navigate, dispatchAuth) {
   );
 }
 
-export function BeforeAsyncOperation({ action, setAction, module }) {
+export function BeforeAsyncOperation({ action, setAction, component }) {
   setAction({
     ...action,
     isLoading: true,
-    module: module,
+    component: component,
   });
 }
 export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {

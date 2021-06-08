@@ -12,6 +12,18 @@ body {
   text-align: left;
 }
 
+.liked-videos-heading {
+  display: flex;
+  align-items: flex-start;
+}
+
+.remove-like-loader {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  margin-top: 1rem;
+}
+
 .playlists {
   border-top: none;
 }
