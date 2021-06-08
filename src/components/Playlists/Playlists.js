@@ -4,16 +4,15 @@ import { useVideo } from "../Reducer/Reducer";
 import { DeleteFromPlaylist, RemovePlaylist } from "../ApiCalls/ApiCalls";
 import { SetLoader } from "../Loader/Loader";
 import { useActionManager } from "../Contexts/ActionManagementContext";
-import { PopUpModal } from "../PopUpModal/PopUpModal";
 import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { useState } from "react";
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
   const { action, setAction } = useActionManager();
-  const { isLoading, showModal, modalText } = action;
+  const { isLoading, module } = action;
   const [playlistName, setPlaylistName] = useState("");
-  console.log("let's see if states are modifying", { action });
+
   if (playlists.length > 0) {
     return (
       <>
@@ -29,24 +28,27 @@ export function Playlists({ playlist }) {
                   BeforeAsyncOperation({
                     action,
                     setAction,
+                    module: "playlists",
                   });
 
                   await RemovePlaylist(playlist._id, dispatch);
                   AfterAsyncOperation({
                     action,
                     setAction,
-                    textPassedToModal: "Playlist Removed Successfully",
+                    textPassedToModal: "Playlist removed successfully",
                   });
                 }}
                 className="trash-button"
               >
                 <ion-icon name="trash"></ion-icon>
               </button>
-              {isLoading && playlistName === playlist.playlistName && (
-                <div className="playlist-loader">
-                  <SetLoader />
-                </div>
-              )}
+              {isLoading &&
+                module === "playlists" &&
+                playlistName === playlist.playlistName && (
+                  <div className="playlist-loader">
+                    <SetLoader />
+                  </div>
+                )}
             </div>
             {playlist.videos.length > 0 ? (
               <div className="video-container">
@@ -60,6 +62,7 @@ export function Playlists({ playlist }) {
                         BeforeAsyncOperation({
                           action,
                           setAction,
+                          module: "playlists",
                         });
 
                         await DeleteFromPlaylist(
@@ -70,8 +73,7 @@ export function Playlists({ playlist }) {
                         AfterAsyncOperation({
                           action,
                           setAction,
-                          textPassedToModal:
-                            "Removed Video From Playlist Successfully",
+                          textPassedToModal: "Video removed successfully",
                         });
                       }}
                     >
@@ -89,32 +91,12 @@ export function Playlists({ playlist }) {
             )}
           </>
         ))}
-        {action.showModal && (
-          <div>
-            <PopUpModal
-              props={{
-                showModal,
-                modalText,
-              }}
-            />
-          </div>
-        )}
       </>
     );
   } else {
     return (
       <>
         <h1 className="none-selected">No playlists added currently...</h1>
-        {action.showModal && (
-          <div>
-            <PopUpModal
-              props={{
-                showModal: action.showModal,
-                modalText: action.modalText,
-              }}
-            />
-          </div>
-        )}
       </>
     );
   }

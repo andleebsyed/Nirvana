@@ -4,9 +4,10 @@ const ActionManagementContext = createContext();
 
 export function ActionManagementProvider({ children }) {
   const [action, setAction] = useState({
-    isLoading: false,
+    isLoading: { playlist: false, liked: false },
     showModal: false,
     modalText: "",
+    module: "",
   });
 
   return (
