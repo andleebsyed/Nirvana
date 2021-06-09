@@ -2,7 +2,11 @@ import "./Notes.css";
 import { useState, useEffect } from "react";
 import { AddNote, GetNotes, DeleteNote } from "../ApiCalls/Notes";
 import { SetLoader } from "../Loader/Loader";
+import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
+import { useActionManager } from "../Contexts/ActionManagementContext";
 export function Notes({ video }) {
+  const { action, setAction } = useActionManager();
+  const { isLoading, showModal, modalText, component } = action;
   const [notes, setNotes] = useState([]);
   useEffect(() => {
     async function ApiCall() {
@@ -16,43 +20,43 @@ export function Notes({ video }) {
 
   async function notesHandler(e) {
     const dataToApi = { note: e.target.value, videoId: video._id };
+    BeforeAsyncOperation({ action, setAction, component: "notes" });
     const response = await AddNote(dataToApi);
     console.log("response in notes comp ", response);
     setNotes([...notes, e.target.value]);
-    // e.currentTarget.value = "";
+    AfterAsyncOperation({ action, setAction, textPassedToModal: "Note Added" });
+    e.target.value = "";
   }
   async function deleteHandler(note) {
     const dataToApi = { videoId: video._id, note: note };
-    // const tempNotes = [...notes]
+    BeforeAsyncOperation({ action, setAction, component: "notes" });
     const response = await DeleteNote(dataToApi);
     response
       ? setNotes(notes.filter((item) => item !== note))
       : setNotes(notes);
+    AfterAsyncOperation({
+      action,
+      setAction,
+      textPassedToModal: "Note Removed",
+    });
   }
   return (
     <div className="notes-outer">
       <p className="notes-heading">Fill Your Bucket List...</p>
+      {isLoading && component === "notes" && (
+        <div className="notes-interaction-loader">
+          <SetLoader />
+        </div>
+      )}
       <div className="notes">
-        {
-          //   notes !== null ? (
-          notes.map((note) => (
-            <div className="individual-note">
-              <p className="note-text">{note}</p>
-              <button
-                className="delete-note"
-                onClick={() => deleteHandler(note)}
-              >
-                X
-              </button>
-            </div>
-          ))
-          // )
-          // : (
-          //   <div>
-          //     <SetLoader />
-          //   </div>
-          // )
-        }
+        {notes.map((note) => (
+          <div className="individual-note">
+            <p className="note-text">{note}</p>
+            <button className="delete-note" onClick={() => deleteHandler(note)}>
+              X
+            </button>
+          </div>
+        ))}
       </div>
       <input
         className="notes-input-box"
