@@ -38,9 +38,10 @@ body {
 .interactions {
   display: flex;
   width: 10rem;
-  margin-right: 2rem;
   margin-top: 1rem;
+  align-items: flex-start;
   justify-content: space-between;
+  position: relative;
 }
 
 .buttons {
@@ -52,9 +53,9 @@ body {
   background-color: transparent;
 }
 
-.buttons:hover {
+/* .buttons:hover {
   background-color: var(--button-hover-color);
-}
+} */
 
 .buttons ion-icon {
   font-size: 1.5rem;
@@ -92,4 +93,14 @@ ion-icon {
 
 .video-description {
   text-align: left;
+}
+
+.like-interaction-loader {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1.2rem;
 }

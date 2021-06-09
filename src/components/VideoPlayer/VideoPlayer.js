@@ -10,7 +10,6 @@ import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
 import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
 import { SetLoader } from "../Loader/Loader";
 export function VideoPlayer() {
-  // const { dispatch } = useVideo();
   const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
   const { stateAuth } = useAuth();
