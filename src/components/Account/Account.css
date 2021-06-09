@@ -34,6 +34,16 @@ body {
   justify-content: space-between;
   margin-top: 3rem;
 }
+/* for loaders in ProfileDetails AND PasswordReset */
+.account-interaction-loader {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  align-self: flex-end;
+}
 
 @media only screen and (max-width: 1024px) {
   .cards-container {

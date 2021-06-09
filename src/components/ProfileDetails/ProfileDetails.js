@@ -2,7 +2,12 @@ import "./ProfileDetails.css";
 import { useEffect, useState, useRef } from "react";
 import { useAuth } from "../Reducer/AuthReducer";
 import { GetAccountDetails, UpdateUserDetails } from "../ApiCalls/ApiCalls";
+import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
+import { useActionManager } from "../Contexts/ActionManagementContext";
+import { SetLoader } from "../Loader/Loader";
 export function ProfileDetails({ props }) {
+  const { action, setAction } = useActionManager();
+  const { isLoading, component, modalText, showModal } = action;
   const { getUser } = props;
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
@@ -35,7 +40,13 @@ export function ProfileDetails({ props }) {
   }, []);
   async function AccountUpdateHandler(e) {
     e.preventDefault();
+    BeforeAsyncOperation({ action, setAction, component: "profile" });
     const response = await UpdateUserDetails(newUsername, newEmail);
+    AfterAsyncOperation({
+      action,
+      setAction,
+      textPassedToModal: "process completed",
+    });
     console.log("user respo ", response);
     response.status === true
       ? setUpdateMessage({
@@ -51,6 +62,11 @@ export function ProfileDetails({ props }) {
     <form onSubmit={AccountUpdateHandler}>
       <div className="profile-details width-adjust">
         <p className="label">Account</p>
+        {isLoading && component === "profile" && (
+          <div className="account-interaction-loader">
+            <SetLoader />
+          </div>
+        )}
         <p className={updateMessage.styleClass}>{updateMessage.message}</p>
         <div className="holder">
           <label className="labels-acc" for="username">

@@ -1,7 +1,12 @@
 import "./PasswordReset.css";
 import { useState } from "react";
 import { UpdatePassword } from "../ApiCalls/ApiCalls";
+import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
+import { useActionManager } from "../Contexts/ActionManagementContext";
+import { SetLoader } from "../Loader/Loader";
 export function PasswordReset() {
+  const { action, setAction } = useActionManager();
+  const { isLoading, component } = action;
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPasswords, setNewPasswords] = useState({
     newPassword: "",
@@ -11,21 +16,19 @@ export function PasswordReset() {
     message: "a",
     styleClass: "update-inital-render-class",
   });
-  // console.log(
-  //   "old passwordis ",
-  //   currentPassword,
-  //   "new 1 password ",
-  //   newPasswords.newPassword,
-  //   "new 2 password ",
-  //   newPasswords.confirmNewPassword
-  // );
   async function PasswordResetHandler(e) {
     e.preventDefault();
     if (newPasswords.newPassword === newPasswords.confirmNewPassword) {
+      BeforeAsyncOperation({ action, setAction, component: "passwordReset" });
       const response = await UpdatePassword(
         currentPassword,
         newPasswords.newPassword
       );
+      AfterAsyncOperation({
+        action,
+        setAction,
+        textPassedToModal: "process completed",
+      });
       response.status === true
         ? setPasswordUpdateMessage({
             message: response.message,
@@ -46,6 +49,11 @@ export function PasswordReset() {
     <form onSubmit={PasswordResetHandler}>
       <div className="account-info password-div">
         <p className="label">Reset Password</p>
+        {isLoading && component === "passwordReset" && (
+          <div className="account-interaction-loader">
+            <SetLoader />
+          </div>
+        )}
         <p className={passwordUpdateMessage.styleClass}>
           {passwordUpdateMessage.message}
         </p>
