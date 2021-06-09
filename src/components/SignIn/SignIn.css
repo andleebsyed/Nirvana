@@ -7,6 +7,8 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
+  position: relative;
+  right: 2.5rem;
 }
 .login-main {
   border: none;
