@@ -1,11 +1,5 @@
-import { useState } from "react";
 import { useVideo } from "../Reducer/Reducer";
-import {
-  GetLikedVideos,
-  SaveToLiked,
-  RemoveFromLikedVideos,
-} from "../ApiCalls/ApiCalls";
-import { PopUpModal } from "../PopUpModal/PopUpModal";
+import { SaveToLiked, RemoveFromLikedVideos } from "../ApiCalls/ApiCalls";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { SetLoader } from "../Loader/Loader";
@@ -14,7 +8,7 @@ import { SetLoader } from "../Loader/Loader";
 export function UserLoggedIn({ videoInLiked, video, setShow }) {
   const { dispatch } = useVideo();
   const { action, setAction } = useActionManager();
-  const { isLoading, component, modalText, showModal } = action;
+  const { isLoading, component } = action;
   const userId = localStorage.getItem("userId");
   return (
     <>
@@ -71,10 +65,6 @@ export function UserLoggedIn({ videoInLiked, video, setShow }) {
         >
           <ion-icon name="create-outline"></ion-icon>
         </button>
-        <div>
-          {" "}
-          <PopUpModal props={{ showModal, modalText }} />
-        </div>
       </div>
     </>
   );

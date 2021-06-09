@@ -1,5 +1,5 @@
 import "./LibraryModal.css";
-import { useState, useRef, Component } from "react";
+import { useState, useRef } from "react";
 import {
   checkForIdInPlaylist,
   BeforeAsyncOperation,
@@ -11,7 +11,6 @@ import {
   AddNewPlaylist,
   DeleteFromPlaylist,
 } from "../ApiCalls/ApiCalls";
-import { PopUpModal } from "../PopUpModal/PopUpModal";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 import { SetLoader } from "../Loader/Loader";
 export function LibraryModal({ show, setShow, video }) {
@@ -19,11 +18,8 @@ export function LibraryModal({ show, setShow, video }) {
   const { playlists } = state;
   const [current, setCurrent] = useState("");
   const inputEl = useRef(null);
-  // const [showModal, setShowModal] = useState(false);
-  // const [modalText, setModalText] = useState("");
   const { action, setAction } = useActionManager();
-  // const [isLoading, SetLoader] = useState(false);
-  const { isLoading, showModal, modalText, component } = action;
+  const { isLoading, component } = action;
 
   async function keyPressHandler(e) {
     if (e.key === "Enter") {
@@ -35,9 +31,6 @@ export function LibraryModal({ show, setShow, video }) {
         setAction,
         textPassedToModal: `Added to ${playlistName}`,
       });
-      // setModalText(`Added to  ${playlistName}`);
-      // setShowModal(true);
-      // setTimeout(() => setShowModal(false), 1300);
     }
   }
 
@@ -50,10 +43,6 @@ export function LibraryModal({ show, setShow, video }) {
       setAction,
       textPassedToModal: `Added to ${playlistName}`,
     });
-
-    // setModalText(`Added to  ${playlistName}`);
-    // setShowModal(true);
-    // setTimeout(() => setShowModal(false), 1300);
   }
   async function checkboxHandler(playlist, video) {
     if (checkForIdInPlaylist(playlist.videos, video.id) === true) {
@@ -65,9 +54,6 @@ export function LibraryModal({ show, setShow, video }) {
         setAction,
         textPassedToModal: `Removed from ${playlist.playlistName}`,
       });
-      // setModalText(`Removed from ${playlist.playlistName}`);
-      // setShowModal(true);
-      // setTimeout(() => setShowModal(false), 1300);
     } else {
       BeforeAsyncOperation({ action, setAction, component: "checkbox" });
       await AddVideoToPlaylist(dispatch, video, playlist);
@@ -76,9 +62,6 @@ export function LibraryModal({ show, setShow, video }) {
         setAction,
         textPassedToModal: `Added to ${playlist.playlistName}`,
       });
-      // setModalText(`Added to  ${playlist.playlistName}`);
-      // setShowModal(true);
-      // setTimeout(() => setShowModal(false), 1300);
     }
   }
 
@@ -128,9 +111,6 @@ export function LibraryModal({ show, setShow, video }) {
               Add
             </button>
           </div>
-        </div>
-        <div>
-          <PopUpModal props={{ showModal, modalText }} />
         </div>
       </div>
     );

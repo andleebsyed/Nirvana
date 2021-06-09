@@ -9,7 +9,11 @@ import { useAuth } from "../Reducer/AuthReducer";
 import { UserNotLoggedIn } from "../VideoInteractions/UserNotLoggedIn";
 import { UserLoggedIn } from "../VideoInteractions/UserLoggedIn";
 import { SetLoader } from "../Loader/Loader";
+import { PopUpModal } from "../PopUpModal/PopUpModal";
+import { useActionManager } from "../Contexts/ActionManagementContext";
 export function VideoPlayer() {
+  const { action } = useActionManager();
+  const { modalText, showModal } = action;
   const { state } = useVideo();
   const { originalVideos, likedVideos } = state;
   const { stateAuth } = useAuth();
@@ -69,6 +73,9 @@ export function VideoPlayer() {
         <Notes video={video} />
 
         <LibraryModal {...props} />
+        <div>
+          <PopUpModal props={{ showModal, modalText }} />
+        </div>
       </div>
     );
   } else {
