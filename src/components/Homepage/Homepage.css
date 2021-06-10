@@ -36,15 +36,7 @@ body {
 }
 @media only screen and (max-width: 600px) {
   .homepage {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* padding-top: 1rem; */
     background-size: 350px;
-    background-position: top center;
-  }
-  .homepage p {
-    position: relative;
-    top: 0;
+    background-position: top right;
   }
 }
