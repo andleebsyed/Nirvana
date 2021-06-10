@@ -4,6 +4,7 @@ body {
   padding: 0px;
   --primary-color: #dc2626;
 }
+
 .sidebar {
   border: 3px;
   display: flex;
@@ -25,6 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 4rem;
+
+  width: 4rem;
 }
 
 .icon-text {
@@ -45,4 +48,38 @@ body {
 }
 .sidebar-icon-selected:hover {
   background-color: var(--primary-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+  }
+  .side-icon {
+    cursor: pointer;
+    flex-direction: column;
+    height: 4rem;
+  }
+  .sidebar-icon-selected {
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: bolder;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    font-size: 12px;
+  }
+  .sidebar-icon-selected:hover {
+    background-color: lightgray;
+  }
+  .sidebar-link:hover {
+    background-color: lightgray;
+  }
+  .adjustment {
+    position: relative;
+    top: 0.7rem;
+    font-size: 12px;
+  }
 }

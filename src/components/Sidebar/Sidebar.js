@@ -2,6 +2,8 @@ import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
 export function Sidebar() {
   return (
+    // <div className = "sidebar-outer">
+
     <div className="sidebar">
       <NavLink
         to="/"
@@ -41,5 +43,6 @@ export function Sidebar() {
         </div>
       </NavLink>
     </div>
+    // </div>
   );
 }

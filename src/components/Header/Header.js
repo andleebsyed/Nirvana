@@ -15,9 +15,9 @@ export function Header() {
   return (
     <header className="header-container">
       <div className="header-start">
-        <span className="menu-icon">
+        {/* <span className="menu-icon">
           <ion-icon name="menu-outline"></ion-icon>
-        </span>
+        </span> */}
         <Link to="/">
           <span className="logo-span">
             <svg
