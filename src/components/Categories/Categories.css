@@ -7,7 +7,9 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .categories-button {
@@ -17,12 +19,11 @@ body {
   width: 6rem;
   outline: none;
   border: none;
+  margin-top: 0.5rem;
+  padding-right: 0.7;
+  /* margin: 0.5rem; */
   background-color: lightgray;
-  /* background-color: white; */
 }
-/* .enabled {
-  background-color: grey;
-} */
 
 .selected {
   background-color: var(--primary-color);
@@ -42,4 +43,10 @@ body {
   border-radius: 1rem;
   height: 2rem;
   width: 6rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .buttons-outer {
+    justify-content: space-evenly;
+  }
 }

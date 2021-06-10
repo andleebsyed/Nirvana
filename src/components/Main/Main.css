@@ -2,8 +2,11 @@ body {
   --border-color: #e5e7eb;
 }
 .main-cards-container {
+  min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .cards-margin {

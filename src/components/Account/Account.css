@@ -13,7 +13,7 @@ body {
 }
 
 .logout-button-custom {
-  margin-top: 1rem;
+  margin-top: 1.8rem;
   height: 3rem;
   width: 5rem;
   cursor: pointer;
@@ -48,5 +48,7 @@ body {
 @media only screen and (max-width: 1024px) {
   .cards-container {
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 }
