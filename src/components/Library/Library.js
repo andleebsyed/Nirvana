@@ -28,11 +28,11 @@ export function Library() {
         <div className="library-section">
           <div className="section-heading">
             <h1 className="heading-intro">Playlists|</h1>
-            {/* {isLoading && component === "playlists" && ( */}
-            <div className="playlist-loader">
-              <SetLoader />
-            </div>
-            {/* )} */}
+            {isLoading && component === "playlists" && (
+              <div className="playlist-loader">
+                <SetLoader />
+              </div>
+            )}
           </div>
 
           <Playlists />
