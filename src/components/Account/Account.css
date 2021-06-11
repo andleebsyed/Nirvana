@@ -2,12 +2,14 @@ body {
   --primary-color: #dc2626;
   --secondary-color: #2563eb;
 }
-
+.outer-div {
+  max-width: 100vw;
+}
 .heading {
   display: flex;
   justify-content: space-between;
-  margin-left: 6vw;
-  margin-right: 6vw;
+  margin-left: 8vw;
+  margin-right: 8vw;
   margin-top: 1rem;
   border-bottom: 1px solid black;
 }
@@ -32,6 +34,7 @@ body {
 .cards-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 3rem;
 }
 /* for loaders in ProfileDetails AND PasswordReset */
@@ -47,8 +50,7 @@ body {
 
 @media only screen and (max-width: 1024px) {
   .cards-container {
+    /* display: flex; */
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
   }
 }
