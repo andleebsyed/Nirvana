@@ -45,6 +45,7 @@ export function AfterAsyncOperation({ action, setAction, textPassedToModal }) {
   setTimeout(() => {
     setAction({
       ...action,
+      isLoading: false,
       showModal: false,
       modalText: "",
     });
