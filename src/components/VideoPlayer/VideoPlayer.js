@@ -36,7 +36,7 @@ export function VideoPlayer() {
             <ReactPlayer
               url={video.url}
               controls={true}
-              width={"55vw"}
+              width={"100%"}
               height={"60vh"}
             />
           </div>

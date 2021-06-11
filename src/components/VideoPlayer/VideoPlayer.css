@@ -5,16 +5,14 @@ body {
 }
 .outer-main {
   display: flex;
-  justify-content: space-between;
-}
-.player {
+  justify-content: center;
 }
 .player-card {
   background-color: var(--main-bg-color);
   box-shadow: 0px 0px 8px 1px grey;
   margin-top: 1rem;
   width: 55vw;
-  margin-left: 3vw;
+  /* margin-left: 3vw; */
 }
 
 .liked {
@@ -103,4 +101,23 @@ ion-icon {
   justify-content: center;
   position: absolute;
   top: 1.2rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .outer-main {
+    flex-wrap: wrap;
+  }
+  .player-card {
+    /* background-color: var(--main-bg-color);
+    box-shadow: 0px 0px 8px 1px grey;
+    margin-top: 1rem; */
+    width: 80vw;
+    /* margin-left: 3vw; */
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .player-card {
+    width: 100vw;
+  }
 }
