@@ -21,7 +21,7 @@ export function Liked() {
       <div>
         <div className="liked-container">
           {likedVideos.map((video) => (
-            <div>
+            <div className="liked-video-card">
               <Card video={video} />
               <button
                 className=" remove-video-button trash-button"
