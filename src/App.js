@@ -13,9 +13,14 @@ import { SignIn } from "./components/SignIn/SignIn";
 import { SignUp } from "./components/SignUp/SignUp";
 import { NotFound } from "./components/NotFound/NotFound";
 import { useAuth } from "./components/Reducer/AuthReducer";
+import { TopLoadingBar } from "./components/TopLoadingBar/TopLoadingBar";
+import { useActionManager } from "./components/Contexts/ActionManagementContext";
 function App() {
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
+  const { action } = useActionManager();
+  const { isLoading } = action;
+  console.log("loading aaaqrah ahai kyaA", isLoading);
   console.log("user auth or not ", isUserAuthenticated);
   function PrivateRoute(props) {
     if (isUserAuthenticated) {
@@ -60,10 +65,18 @@ function App() {
       );
     }
   }
+
   return (
     <div className="main-outer-div">
       <div className="header">
         <Header />
+        <div>
+          {isLoading && (
+            <div className="horizontal-top-loader">
+              <TopLoadingBar />
+            </div>
+          )}
+        </div>
       </div>
       <div className="sidebar">
         <Sidebar />
