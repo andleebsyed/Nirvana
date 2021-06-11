@@ -13,7 +13,7 @@ export function Library() {
   const { originalVideos } = state;
   if (originalVideos.length > 0) {
     return (
-      <div>
+      <div className="library-outer">
         <div className=" library-section">
           <div className="liked-videos-heading">
             <h1 className="heading-intro">Liked Videos|</h1>
@@ -27,6 +27,11 @@ export function Library() {
         </div>
         <div className="library-section">
           <h1 className="heading-intro">Playlists|</h1>
+          {isLoading && component === "playlists" && (
+            <div className="playlist-loader">
+              <SetLoader />
+            </div>
+          )}
           <Playlists />
         </div>
         <div>

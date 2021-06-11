@@ -31,7 +31,7 @@ body {
   flex-wrap: wrap;
 }
 
-.playlist-loader {
+/* .playlist-loader {
   height: 3rem;
   width: 3rem;
   display: flex;
@@ -39,4 +39,11 @@ body {
   position: relative;
   left: 1rem;
   top: 1.8rem;
+} */
+
+@media only screen and (max-width: 800px) {
+  .video-container {
+    align-items: center;
+    justify-content: center;
+  }
 }

@@ -1,6 +1,9 @@
 body {
   --primary-color: #dc2626;
 }
+.library-outer {
+  min-height: 100vh;
+}
 .library-section {
   border-top: 1px solid var(--primary-color);
   border-bottom: 1px solid var(--primary-color);
@@ -26,4 +29,14 @@ body {
 
 .playlists {
   border-top: none;
+}
+
+.playlist-loader {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 7rem;
+  bottom: 3.8rem;
 }

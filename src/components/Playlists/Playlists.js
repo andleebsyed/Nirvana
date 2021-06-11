@@ -6,30 +6,32 @@ import { SetLoader } from "../Loader/Loader";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { useState } from "react";
+import { TopLoadingBar } from "../TopLoadingBar/TopLoadingBar";
+// import {}
 export function Playlists({ playlist }) {
   const { dispatch, state } = useVideo();
   const { playlists } = state;
   const { action, setAction } = useActionManager();
   const { isLoading, component } = action;
   const [playlistName, setPlaylistName] = useState("");
-
+  console.log("playlist name current", playlistName);
   if (playlists.length > 0) {
     return (
-      <>
+      <div className="playlists-container">
         {playlists.map((playlist) => (
-          <>
+          <div>
             <div className="single-playlist-show">
               <h1 style={{ fontWeight: "lighter", textAlign: "left" }}>
                 {playlist.playlistName}
               </h1>
               <button
                 onClick={async () => {
-                  setPlaylistName(playlist.playlistName);
                   BeforeAsyncOperation({
                     action,
                     setAction,
                     component: "playlists",
                   });
+                  setPlaylistName(playlist.playlistName);
 
                   await RemovePlaylist(playlist._id, dispatch);
                   AfterAsyncOperation({
@@ -42,18 +44,18 @@ export function Playlists({ playlist }) {
               >
                 <ion-icon name="trash"></ion-icon>
               </button>
-              {isLoading &&
+              {/* {isLoading &&
                 component === "playlists" &&
                 playlistName === playlist.playlistName && (
                   <div className="playlist-loader">
                     <SetLoader />
                   </div>
-                )}
+                )} */}
             </div>
             {playlist.videos.length > 0 ? (
               <div className="video-container">
                 {playlist.videos.map((video) => (
-                  <div>
+                  <div className="playlist-video">
                     <Card video={video} />
                     <button
                       className=" remove-video-button trash-button"
@@ -89,9 +91,9 @@ export function Playlists({ playlist }) {
                 </h1>
               </div>
             )}
-          </>
+          </div>
         ))}
-      </>
+      </div>
     );
   } else {
     return (
