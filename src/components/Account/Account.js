@@ -5,22 +5,28 @@ import { useVideo } from "../Reducer/Reducer";
 import { useAuth } from "../Reducer/AuthReducer";
 import { useState } from "react";
 import { SetLoader } from "../Loader/Loader";
+import { useActionManager } from "../Contexts/ActionManagementContext";
+import { TopLoadingBar } from "../TopLoadingBar/TopLoadingBar";
 export function Account() {
   const { dispatchAuth } = useAuth();
   const { dispatch } = useVideo();
+  const { action } = useActionManager();
+  const { isLoading } = action;
   const [username, setUsername] = useState(null);
 
   // passed to ProfilrDetails to get username from there and populate username on this page
   function getUser(comingUsername) {
+    // if (username === null) {
     setUsername(comingUsername);
+    // }
+    return "do nothingh";
   }
   return (
     <div className="outer-div">
-      {/* until username is fetched show loader */}
-      {!username ? <SetLoader /> : ""}
+      {!username && <SetLoader />}
 
       <div className="heading">
-        <h1 className="welcome-text">{username}</h1>
+        <h1 className="welcome-text">{username ? username : " ..."}</h1>
         <button
           onClick={() => {
             dispatchAuth({ type: "LOGOUT_USER" });

@@ -126,6 +126,7 @@ export function DataProvider({ children }) {
     setupAuthHeaderForServiceCalls(token);
   }, [token]);
   useEffect(() => {
+    console.log("am i omnipresent");
     setupAuthExceptionHandler(navigate, dispatchAuth);
   }, []);
 

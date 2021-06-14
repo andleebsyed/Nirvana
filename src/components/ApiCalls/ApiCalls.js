@@ -34,6 +34,7 @@ export async function UserSignUp(userDetails) {
       "https://video-library-api.andydev7.repl.co/users/signup",
       signUpDataFromView
     );
+    console.log({ response });
     if (response.status === 200) {
       if (response.data.status === true) {
         return (isSignUpSuccessfull = {
@@ -215,6 +216,7 @@ export async function GetAccountDetails() {
     const response = await axios.post(
       "https://video-library-api.andydev7.repl.co/account"
     );
+
     if (response.status === 200) {
       return response.data.accountDetails;
     }

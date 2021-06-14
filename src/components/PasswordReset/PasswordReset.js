@@ -5,8 +5,10 @@ import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 import { SetLoader } from "../Loader/Loader";
 export function PasswordReset() {
-  const { action, setAction } = useActionManager();
-  const { isLoading, component } = action;
+  // const { action, setAction } = useActionManager();
+  const [action, setAction] = useState({
+    isLoading: false,
+  });
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPasswords, setNewPasswords] = useState({
     newPassword: "",
@@ -19,15 +21,14 @@ export function PasswordReset() {
   async function PasswordResetHandler(e) {
     e.preventDefault();
     if (newPasswords.newPassword === newPasswords.confirmNewPassword) {
-      BeforeAsyncOperation({ action, setAction, component: "passwordReset" });
+      setAction({ isLoading: true });
+      // BeforeAsyncOperation({ action, setAction, component: "passwordReset" });
       const response = await UpdatePassword(
         currentPassword,
         newPasswords.newPassword
       );
-      AfterAsyncOperation({
-        action,
-        setAction,
-        textPassedToModal: "process completed",
+      setAction({
+        isLoading: false,
       });
       response.status === true
         ? setPasswordUpdateMessage({
@@ -49,7 +50,7 @@ export function PasswordReset() {
     <form onSubmit={PasswordResetHandler}>
       <div className="account-info password-div">
         <p className="label">Reset Password</p>
-        {isLoading && component === "passwordReset" && (
+        {action.isLoading && (
           <div className="account-interaction-loader">
             <SetLoader />
           </div>
