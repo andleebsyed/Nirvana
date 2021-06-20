@@ -36,7 +36,6 @@ export function Search() {
             <Link to="/explore">
               <button className="button-back">Explore</button>
             </Link>
-            {/* <Main videos={videos} /> */}
           </div>
         )}
       </div>

@@ -9,9 +9,6 @@ body {
   flex-direction: column;
   background-image: url("../../images/Homepage.svg");
   background-repeat: no-repeat;
-  /* width: 300px;
-  height: 300px; */
-
   align-items: center;
   justify-content: center;
 }

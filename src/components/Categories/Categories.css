@@ -21,14 +21,11 @@ body {
   border: none;
   margin-top: 0.5rem;
   padding-right: 0.7;
-  /* margin: 0.5rem; */
   background-color: lightgray;
 }
 
 .selected {
   background-color: var(--primary-color);
-
-  /* color: red; */
 }
 .selected button {
   color: white;

@@ -5,13 +5,9 @@ import { useVideo } from "../Reducer/Reducer";
 import { useAuth } from "../Reducer/AuthReducer";
 import { useState } from "react";
 import { SetLoader } from "../Loader/Loader";
-import { useActionManager } from "../Contexts/ActionManagementContext";
-import { TopLoadingBar } from "../TopLoadingBar/TopLoadingBar";
 export function Account() {
   const { dispatchAuth } = useAuth();
   const { dispatch } = useVideo();
-  const { action } = useActionManager();
-  const { isLoading } = action;
   const [username, setUsername] = useState(null);
 
   // passed to ProfileDetails to get username from there and populate username on this page
@@ -20,9 +16,6 @@ export function Account() {
   }
   return (
     <div className="outer-div">
-      {/* <div className="header">
-        <TopLoadingBar />
-      </div> */}
       {!username && <SetLoader />}
 
       <div className="heading">

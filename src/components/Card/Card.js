@@ -11,10 +11,8 @@ export function Card({ video }) {
           src={video.creatorThumbnail}
           alt="creator-thumbnail"
         />
-        {/* <div className="creator-name"> */}
         <p className="creator-name">{video.creatorName}</p>
       </div>
-      {/* </div> */}
     </Link>
   );
 }

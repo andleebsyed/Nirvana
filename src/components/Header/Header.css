@@ -6,7 +6,6 @@ body {
 }
 
 .header-container {
-  /* border-bottom: 2.5px solid rgb(146, 153, 167); */
   height: 3rem;
   display: flex;
   justify-content: space-between;

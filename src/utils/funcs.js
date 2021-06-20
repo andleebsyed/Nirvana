@@ -18,7 +18,6 @@ export function setupAuthExceptionHandler(navigate, dispatchAuth) {
     (response) => response,
     (error) => {
       if (error?.response?.status === UNAUTHORIZED) {
-        console.log("unauthorized i am ");
         dispatchAuth({ type: "LOGOUT_USER" });
         navigate("login");
       }

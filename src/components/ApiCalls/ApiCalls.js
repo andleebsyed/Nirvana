@@ -34,7 +34,6 @@ export async function UserSignUp(userDetails) {
       "https://video-library-api.andydev7.repl.co/users/signup",
       signUpDataFromView
     );
-    console.log({ response });
     if (response.status === 200) {
       if (response.data.status === true) {
         return (isSignUpSuccessfull = {
@@ -90,7 +89,6 @@ export async function SaveToLiked(dispatch, video) {
       "https://video-library-api.andydev7.repl.co/liked/add",
       data
     );
-    console.log("rsponse on add to like ", response);
     if (response.status === 200) {
       dispatch({
         type: "ADD_TO_LIKED_VIDEOS",
@@ -109,7 +107,6 @@ export async function RemoveFromLikedVideos(dispatch, video) {
       "https://video-library-api.andydev7.repl.co/liked/delete",
       data
     );
-    console.log("response from server is ", response);
     if (response.status === 200) {
       dispatch({
         type: "REMOVE_FROM_LIKED_VIDEOS",
@@ -129,7 +126,6 @@ export async function GetUserPlaylists() {
     if (response.status === 200) {
       return response.data.playlists;
     }
-    console.log("response in playlists ", response.playlists);
   } catch (error) {
     console.log("an error occured ", error.response.data);
   }
@@ -163,9 +159,7 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
       "https://video-library-api.andydev7.repl.co/playlists/newplaylist",
       data
     );
-    console.log("response on addign new playlist", response);
     if (response.status === 200) {
-      console.log("data on adding new wplaylist", response.data);
       dispatch({
         type: "ADD_NEW_PLAYLIST",
         payload: { newPlaylist: response.data.newPlaylist, video },
@@ -184,7 +178,6 @@ export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
       "https://video-library-api.andydev7.repl.co/playlists/removevideo",
       data
     );
-    console.log("respnse on dekletingf ", response);
     if (response.status === 200) {
       dispatch({
         type: "REMOVE_FROM_PLAYLIST",
@@ -232,7 +225,6 @@ export async function UpdateUserDetails(newUsername, newEmail) {
       "https://video-library-api.andydev7.repl.co/account/update",
       data
     );
-    console.log("response coming ", response);
     if (response.status === 200) {
       return { status: true, message: "User updated successfully" };
     }
@@ -256,12 +248,15 @@ export async function UpdateUserDetails(newUsername, newEmail) {
 
 export async function UpdatePassword(oldPassword, newPassword) {
   const data = { oldPassword, newPassword };
-  const response = await axios.post(
-    "https://video-library-api.andydev7.repl.co/password/update",
-    data
-  );
-  if (response.status === 200) {
-    return response.data;
+  try {
+    const response = await axios.post(
+      "https://video-library-api.andydev7.repl.co/password/update",
+      data
+    );
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    console.log("an error occurred while updating password", error);
   }
-  console.log("response on passwrd update is ", response);
 }

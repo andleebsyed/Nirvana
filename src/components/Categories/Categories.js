@@ -1,7 +1,6 @@
 import "./Categories.css";
 import { useVideo } from "../Reducer/Reducer";
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Categories() {
   const { state, dispatch } = useVideo();

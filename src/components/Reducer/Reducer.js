@@ -122,11 +122,12 @@ export function DataProvider({ children }) {
   const playlists = [{ playlist: { playlistName: "Watch Later" }, videos: [] }];
   const videos = [];
   const originalVideos = [];
+
   useEffect(() => {
     setupAuthHeaderForServiceCalls(token);
   }, [token]);
+
   useEffect(() => {
-    console.log("am i omnipresent");
     setupAuthExceptionHandler(navigate, dispatchAuth);
   }, []);
 

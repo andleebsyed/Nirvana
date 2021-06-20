@@ -4,8 +4,7 @@ import { useState } from "react";
 import { UserSignUp } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";
 export function SignUp() {
-  const { stateAuth, dispatchAuth } = useAuth();
-  const location = useLocation();
+  const { dispatchAuth } = useAuth();
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
     username: "",

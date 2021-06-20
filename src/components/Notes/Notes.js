@@ -6,7 +6,7 @@ import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { useActionManager } from "../Contexts/ActionManagementContext";
 export function Notes({ video }) {
   const { action, setAction } = useActionManager();
-  const { isLoading, showModal, modalText, component } = action;
+  const { isLoading, component } = action;
   const [notes, setNotes] = useState([]);
   useEffect(() => {
     async function ApiCall() {
@@ -16,16 +16,22 @@ export function Notes({ video }) {
     }
     ApiCall();
   }, [video._id]);
-  console.log("video  which we have is ", video);
 
   async function notesHandler(e) {
     const dataToApi = { note: e.target.value, videoId: video._id };
-    BeforeAsyncOperation({ action, setAction, component: "notes" });
-    const response = await AddNote(dataToApi);
-    console.log("response in notes comp ", response);
-    setNotes([...notes, e.target.value]);
-    AfterAsyncOperation({ action, setAction, textPassedToModal: "Note Added" });
-    e.target.value = "";
+    try {
+      BeforeAsyncOperation({ action, setAction, component: "notes" });
+      await AddNote(dataToApi);
+      setNotes([...notes, e.target.value]);
+      AfterAsyncOperation({
+        action,
+        setAction,
+        textPassedToModal: "Note Added",
+      });
+      e.target.value = "";
+    } catch (error) {
+      console.log("Error occurred while adding a note");
+    }
   }
   async function deleteHandler(note) {
     const dataToApi = { videoId: video._id, note: note };

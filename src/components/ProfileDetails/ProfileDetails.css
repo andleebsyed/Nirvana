@@ -69,13 +69,6 @@ body {
 .update-failure {
   color: var(--primary-color);
 }
-/* .top-loading-bar {
-  display: inline-block;
-  width: 100vw;
-  position: fixed;
-  left: -2rem;
-  right: 0;
-} */
 @media only screen and (max-width: 1024px) {
   .profile-details {
     width: 80vw;

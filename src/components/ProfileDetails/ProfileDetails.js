@@ -22,7 +22,6 @@ export function ProfileDetails({ props }) {
   useEffect(() => {
     async function ApiCall() {
       if (isUserAuthenticated) {
-        console.log("useeffect call");
         const response = await GetAccountDetails();
         if (response) {
           if (usernameEl.current !== null || undefined) {
