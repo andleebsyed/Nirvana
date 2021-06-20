@@ -1,5 +1,5 @@
 import "./SignUp.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UserSignUp } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";

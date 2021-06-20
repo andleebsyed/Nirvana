@@ -91,7 +91,7 @@ export function ProfileDetails({ props }) {
           />
         </div>
         <div className="holder">
-          <label className="labels-acc" for="email">
+          <label className="labels-acc" htmlFor="email">
             Email
           </label>
           <input

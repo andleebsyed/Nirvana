@@ -158,7 +158,6 @@ export function DataProvider({ children }) {
     async function Apicall() {
       if (token) {
         const userPlaylists = await GetUserPlaylists();
-        console.log("playlist fetch in useeffect ", userPlaylists);
         dispatch({
           type: "INITIAL_PLAYLISTS_RENDER",
           payload: { userPlaylists },
