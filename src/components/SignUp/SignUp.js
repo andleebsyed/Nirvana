@@ -14,12 +14,14 @@ export function SignUp() {
   });
   const [exisitingOne, setExistingOne] = useState("");
   const [displayError, setDisplayError] = useState("none");
-
+  const [signupButtonText, setSignUpButtonText] = useState("Sign Up");
   let isSignUpSuccessful;
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setSignUpButtonText("Signing up");
     isSignUpSuccessful = await UserSignUp(userDetails);
+    setSignUpButtonText("Sign Up");
     if (isSignUpSuccessful.status === false) {
       setExistingOne(isSignUpSuccessful.existingField);
       setDisplayError("block");
@@ -80,7 +82,7 @@ export function SignUp() {
         <input
           type="submit"
           className="button button-outline login-button"
-          value="Sign Up"
+          value={signupButtonText}
         />
         <p>
           Already have an account?{" "}
