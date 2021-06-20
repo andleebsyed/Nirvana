@@ -2,20 +2,15 @@ import "./ProfileDetails.css";
 import { useEffect, useState, useRef } from "react";
 import { useAuth } from "../Reducer/AuthReducer";
 import { GetAccountDetails, UpdateUserDetails } from "../ApiCalls/ApiCalls";
-import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
-import { useActionManager } from "../Contexts/ActionManagementContext";
 import { SetLoader } from "../Loader/Loader";
+import { TopLoadingBar } from "../TopLoadingBar/TopLoadingBar";
 export function ProfileDetails({ props }) {
-  // const { action, setAction } = useActionManager();
-  // const { isLoading, component, modalText, showModal } = action;
   const [action, setAction] = useState({
     isLoading: false,
   });
   const { getUser } = props;
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
-  // console.log("user auth or not for account", isUserAuthenticated);
-  // console.log("component call");
   const usernameEl = useRef(null);
   const emailEl = useRef(null);
   const [newUsername, setNewUsername] = useState("");
@@ -24,35 +19,27 @@ export function ProfileDetails({ props }) {
     message: "a",
     styleClass: "update-inital-render-class",
   });
-  // console.log({ updateMessage });
   useEffect(() => {
-    // let mounted = true;
     async function ApiCall() {
       if (isUserAuthenticated) {
         console.log("useeffect call");
         const response = await GetAccountDetails();
-        // if (mounted) {
         if (response) {
           if (usernameEl.current !== null || undefined) {
             usernameEl.current.value = response.username;
             emailEl.current.value = response.email;
             setNewUsername(response.username);
             setNewEmail(response.email);
-            // console.log("setting enai to ", response.email);
             getUser(response.username);
           }
         }
-        // }
       }
     }
     ApiCall();
-    // return function cleanup() {
-    //   mounted = false;
-    // };
   }, [isUserAuthenticated]);
+
   async function AccountUpdateHandler(e) {
     e.preventDefault();
-    // BeforeAsyncOperation({ action, setAction, component: "profile" });
     setAction({ isLoading: true });
     const response = await UpdateUserDetails(newUsername, newEmail);
     setAction({
@@ -72,18 +59,22 @@ export function ProfileDetails({ props }) {
           message: response.message,
           styleClass: "update-status update-failure",
         });
-
-    console.log({ updateMessage });
   }
 
   return (
     <form onSubmit={AccountUpdateHandler}>
       <div className="profile-details width-adjust">
         <p className="label">Account</p>
+
         {action.isLoading && (
-          <div className="account-interaction-loader">
-            <SetLoader />
-          </div>
+          <>
+            <div className="account-interaction-loader">
+              <SetLoader />
+            </div>
+            <div className="top-loading-bar">
+              <TopLoadingBar />
+            </div>
+          </>
         )}
         <p className={updateMessage.styleClass}>{updateMessage.message}</p>
         <div className="holder">

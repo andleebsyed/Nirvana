@@ -20,8 +20,6 @@ function App() {
   const { isUserAuthenticated } = stateAuth;
   const { action } = useActionManager();
   const { isLoading } = action;
-  // console.log("loading aaaqrah ahai kyaA", isLoading);
-  // console.log("user auth or not ", isUserAuthenticated);
   function PrivateRoute(props) {
     if (isUserAuthenticated) {
       return <Route {...props} />;

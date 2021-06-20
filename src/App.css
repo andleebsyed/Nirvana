@@ -45,10 +45,4 @@ body {
     width: 100%;
     background-color: lightgray;
   }
-  /* .categories {
-    grid-area: categories;
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 2px solid var(--border-color);
-  } */
 }

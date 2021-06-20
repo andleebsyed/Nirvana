@@ -37,6 +37,8 @@ body {
   align-items: center;
   margin-top: 3rem;
 }
+
+/* *************************** */
 /* for loaders in ProfileDetails AND PasswordReset */
 .account-interaction-loader {
   height: 3rem;
@@ -47,6 +49,14 @@ body {
   position: absolute;
   align-self: flex-end;
 }
+.top-loading-bar {
+  display: inline-block;
+  width: 100vw;
+  position: fixed;
+  left: -2rem;
+  right: 0;
+}
+/* **************************** */
 
 @media only screen and (max-width: 1024px) {
   .cards-container {

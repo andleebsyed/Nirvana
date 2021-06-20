@@ -1,11 +1,9 @@
 import "./PasswordReset.css";
 import { useState } from "react";
 import { UpdatePassword } from "../ApiCalls/ApiCalls";
-import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
-import { useActionManager } from "../Contexts/ActionManagementContext";
 import { SetLoader } from "../Loader/Loader";
+import { TopLoadingBar } from "../TopLoadingBar/TopLoadingBar";
 export function PasswordReset() {
-  // const { action, setAction } = useActionManager();
   const [action, setAction] = useState({
     isLoading: false,
   });
@@ -22,7 +20,6 @@ export function PasswordReset() {
     e.preventDefault();
     if (newPasswords.newPassword === newPasswords.confirmNewPassword) {
       setAction({ isLoading: true });
-      // BeforeAsyncOperation({ action, setAction, component: "passwordReset" });
       const response = await UpdatePassword(
         currentPassword,
         newPasswords.newPassword
@@ -51,9 +48,14 @@ export function PasswordReset() {
       <div className="account-info password-div">
         <p className="label">Reset Password</p>
         {action.isLoading && (
-          <div className="account-interaction-loader">
-            <SetLoader />
-          </div>
+          <>
+            <div className="account-interaction-loader">
+              <SetLoader />
+            </div>
+            <div className="top-loading-bar">
+              <TopLoadingBar />
+            </div>
+          </>
         )}
         <p className={passwordUpdateMessage.styleClass}>
           {passwordUpdateMessage.message}

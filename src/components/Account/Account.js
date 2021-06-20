@@ -14,15 +14,15 @@ export function Account() {
   const { isLoading } = action;
   const [username, setUsername] = useState(null);
 
-  // passed to ProfilrDetails to get username from there and populate username on this page
+  // passed to ProfileDetails to get username from there and populate username on this page
   function getUser(comingUsername) {
-    // if (username === null) {
     setUsername(comingUsername);
-    // }
-    return "do nothingh";
   }
   return (
     <div className="outer-div">
+      {/* <div className="header">
+        <TopLoadingBar />
+      </div> */}
       {!username && <SetLoader />}
 
       <div className="heading">
