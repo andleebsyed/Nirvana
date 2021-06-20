@@ -43,7 +43,7 @@ export async function UserSignUp(userDetails) {
         });
       } else if (response.data.status === false) {
         //  11000 is returned when we send data which is already there for common field
-        if (response.data.errorDetail.code === 11000) {
+        if (response.data.code === 11000) {
           isSignUpSuccessfull = {
             status: false,
             existingField: response.data.existingField,
