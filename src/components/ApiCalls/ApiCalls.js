@@ -1,4 +1,6 @@
 import axios from "axios";
+// const BASE_URL = "https://video-library-api.andydev7.repl.co/";
+const BASE_URL = "https://nirvana-backend.herokuapp.com/";
 export async function UserSignIn(username, password) {
   const dataFromView = {
     userDetails: {
@@ -7,10 +9,7 @@ export async function UserSignIn(username, password) {
     },
   };
   try {
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/users/signin",
-      dataFromView
-    );
+    const response = await axios.post(BASE_URL + "users/signin", dataFromView);
     if (response.status === 200) {
       const userResponseFromServer = {
         allowUser: response.data.allowUser,
@@ -31,7 +30,7 @@ export async function UserSignUp(userDetails) {
   let isSignUpSuccessfull;
   try {
     const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/users/signup",
+      BASE_URL + "users/signup",
       signUpDataFromView
     );
     if (response.status === 200) {
@@ -58,9 +57,7 @@ export async function UserSignUp(userDetails) {
 
 export async function GetVideos() {
   try {
-    const response = await axios.get(
-      "https://video-library-api.andydev7.repl.co/videos"
-    );
+    const response = await axios.get(BASE_URL + "videos");
     if (response.status === 200) {
       return response.data.videos;
     }
@@ -71,9 +68,7 @@ export async function GetVideos() {
 
 export async function GetLikedVideos() {
   try {
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/liked/all"
-    );
+    const response = await axios.post(BASE_URL + "liked/all");
     if (response.status === 200) {
       return response.data.likedVideos;
     }
@@ -85,10 +80,7 @@ export async function GetLikedVideos() {
 export async function SaveToLiked(dispatch, video) {
   try {
     const data = { videoId: video._id };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/liked/add",
-      data
-    );
+    const response = await axios.post(BASE_URL + "liked/add", data);
     if (response.status === 200) {
       dispatch({
         type: "ADD_TO_LIKED_VIDEOS",
@@ -103,10 +95,7 @@ export async function SaveToLiked(dispatch, video) {
 export async function RemoveFromLikedVideos(dispatch, video) {
   try {
     const data = { videoId: video._id };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/liked/delete",
-      data
-    );
+    const response = await axios.post(BASE_URL + "liked/delete", data);
     if (response.status === 200) {
       dispatch({
         type: "REMOVE_FROM_LIKED_VIDEOS",
@@ -120,9 +109,7 @@ export async function RemoveFromLikedVideos(dispatch, video) {
 
 export async function GetUserPlaylists() {
   try {
-    const response = await axios.post(
-      `https://video-library-api.andydev7.repl.co/playlists/all/`
-    );
+    const response = await axios.post(BASE_URL + "playlists/all/");
     if (response.status === 200) {
       return response.data.playlists;
     }
@@ -134,10 +121,7 @@ export async function GetUserPlaylists() {
 export async function AddVideoToPlaylist(dispatch, video, playlist) {
   try {
     const data = { playlistId: playlist._id, videoId: video._id };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/playlists/addvideo",
-      data
-    );
+    const response = await axios.post(BASE_URL + "playlists/addvideo", data);
     if (response.status === 200) {
       dispatch({
         type: "ADD_TO_PLAYLIST",
@@ -155,10 +139,7 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
       playlistName: playlistName,
       videoId: video._id,
     };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/playlists/newplaylist",
-      data
-    );
+    const response = await axios.post(BASE_URL + "playlists/newplaylist", data);
     if (response.status === 200) {
       dispatch({
         type: "ADD_NEW_PLAYLIST",
@@ -174,10 +155,7 @@ export async function AddNewPlaylist(dispatch, playlistName, video) {
 export async function DeleteFromPlaylist(videoId, playlistId, dispatch) {
   try {
     const data = { videoId, playlistId };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/playlists/removevideo",
-      data
-    );
+    const response = await axios.post(BASE_URL + "playlists/removevideo", data);
     if (response.status === 200) {
       dispatch({
         type: "REMOVE_FROM_PLAYLIST",
@@ -193,7 +171,7 @@ export async function RemovePlaylist(playlistId, dispatch) {
   try {
     const data = { playlistId };
     const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/playlists/removeplaylist",
+      BASE_URL + "playlists/removeplaylist",
       data
     );
     if (response.status === 200) {
@@ -206,9 +184,7 @@ export async function RemovePlaylist(playlistId, dispatch) {
 
 export async function GetAccountDetails() {
   try {
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/account"
-    );
+    const response = await axios.post(BASE_URL + "account");
 
     if (response.status === 200) {
       return response.data.accountDetails;
@@ -221,10 +197,7 @@ export async function GetAccountDetails() {
 export async function UpdateUserDetails(newUsername, newEmail) {
   try {
     const data = { newUsername, newEmail };
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/account/update",
-      data
-    );
+    const response = await axios.post(BASE_URL + "account/update", data);
     if (response.status === 200) {
       return { status: true, message: "User updated successfully" };
     }
@@ -249,10 +222,7 @@ export async function UpdateUserDetails(newUsername, newEmail) {
 export async function UpdatePassword(oldPassword, newPassword) {
   const data = { oldPassword, newPassword };
   try {
-    const response = await axios.post(
-      "https://video-library-api.andydev7.repl.co/password/update",
-      data
-    );
+    const response = await axios.post(BASE_URL + "password/update", data);
     if (response.status === 200) {
       return response.data;
     }
