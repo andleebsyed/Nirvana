@@ -4,15 +4,21 @@ import { AddNote, GetNotes, DeleteNote } from "../ApiCalls/Notes";
 import { SetLoader } from "../Loader/Loader";
 import { BeforeAsyncOperation, AfterAsyncOperation } from "../../utils/funcs";
 import { useActionManager } from "../Contexts/ActionManagementContext";
+import { useAuth } from "../Reducer/AuthReducer";
 export function Notes({ video }) {
   const { action, setAction } = useActionManager();
   const { isLoading, component } = action;
+  const { stateAuth } = useAuth();
+  const { isUserAuthenticated } = stateAuth;
   const [notes, setNotes] = useState([]);
+
   useEffect(() => {
     async function ApiCall() {
       const dataToApi = { videoId: video._id };
-      const response = await GetNotes(dataToApi);
-      response ? setNotes([...response]) : setNotes([]);
+      if (isUserAuthenticated) {
+        const response = await GetNotes(dataToApi);
+        response ? setNotes([...response]) : setNotes([]);
+      }
     }
     ApiCall();
   }, [video._id]);
