@@ -44,11 +44,9 @@ export function ProfileDetails({ props }) {
     setAction({
       isLoading: false,
     });
-    console.log("user respo ", response);
 
     response.status
       ? setUpdateMessage((updateMessage) => {
-          console.log("inside true case ", { updateMessage });
           return {
             message: response.message,
             styleClass: "update-status update-success",
