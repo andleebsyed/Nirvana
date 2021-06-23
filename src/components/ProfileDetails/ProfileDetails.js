@@ -45,17 +45,20 @@ export function ProfileDetails({ props }) {
       isLoading: false,
     });
 
-    response.status
-      ? setUpdateMessage((updateMessage) => {
-          return {
-            message: response.message,
-            styleClass: "update-status update-success",
-          };
-        })
-      : setUpdateMessage({
+    if (response.status) {
+      getUser(newUsername)
+      setUpdateMessage((updateMessage) => {
+        return {
           message: response.message,
-          styleClass: "update-status update-failure",
-        });
+          styleClass: "update-status update-success",
+        };
+      });
+    } else {
+      setUpdateMessage({
+        message: response.message,
+        styleClass: "update-status update-failure",
+      });
+    }
   }
 
   return (
