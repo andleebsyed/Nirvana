@@ -47,7 +47,7 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 0;
+  right: 1rem;
   align-self: flex-end;
 }
 .top-loading-bar {
