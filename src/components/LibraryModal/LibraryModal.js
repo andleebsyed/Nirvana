@@ -22,27 +22,37 @@ export function LibraryModal({ show, setShow, video }) {
   const { isLoading, component } = action;
 
   async function keyPressHandler(e) {
-    if (e.key === "Enter") {
+    if (current.length > 0 && current.trim()) {
+      if (e.key === "Enter") {
+        BeforeAsyncOperation({
+          action,
+          setAction,
+          component: "playlistsModal",
+        });
+        const playlistName = await AddNewPlaylist(dispatch, current, video);
+        e.target.value = "";
+        setCurrent("");
+        AfterAsyncOperation({
+          action,
+          setAction,
+          textPassedToModal: `Added to ${playlistName}`,
+        });
+      }
+    }
+  }
+
+  async function onClickHandler(e) {
+    if (current.length > 0 && current.trim()) {
       BeforeAsyncOperation({ action, setAction, component: "playlistsModal" });
       const playlistName = await AddNewPlaylist(dispatch, current, video);
-      e.target.value = "";
+      inputEl.current.value = "";
+      setCurrent("");
       AfterAsyncOperation({
         action,
         setAction,
         textPassedToModal: `Added to ${playlistName}`,
       });
     }
-  }
-
-  async function onClickHandler(e) {
-    BeforeAsyncOperation({ action, setAction, component: "playlistsModal" });
-    const playlistName = await AddNewPlaylist(dispatch, current, video);
-    inputEl.current.value = "";
-    AfterAsyncOperation({
-      action,
-      setAction,
-      textPassedToModal: `Added to ${playlistName}`,
-    });
   }
   async function checkboxHandler(playlist, video) {
     if (checkForIdInPlaylist(playlist.videos, video.id) === true) {
