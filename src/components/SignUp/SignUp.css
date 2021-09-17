@@ -56,6 +56,15 @@
   border: 2px solid var(--primary-color);
   font-weight: bold;
 }
+.guest-login {
+  background-color: var(--primary-color);
+  height: 3rem;
+  width: 12rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
 
 .login-heading {
   color: var(--primary-color);

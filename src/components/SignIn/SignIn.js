@@ -11,10 +11,24 @@ export function SignIn() {
   const [loginButtonText, setLoginButtonText] = useState("Sign In");
   let userResponseFromServer;
 
-  async function handleSubmit(e) {
+  async function handleSubmit({ e, guest }) {
     e.preventDefault();
     setLoginButtonText("Signing In...");
-    userResponseFromServer = await UserSignIn(username, password);
+    userResponseFromServer = await UserSignIn(
+      guest
+        ? {
+            userDetails: {
+              username: "peter_parker",
+              password: "Peterparker@123",
+            },
+          }
+        : {
+            userDetails: {
+              username,
+              password,
+            },
+          }
+    );
     setLoginButtonText("Sign In");
     if (userResponseFromServer.allowUser === false) {
       setDisplayError("block");
@@ -29,8 +43,13 @@ export function SignIn() {
       setDisplayError("none");
     }
   }
+  async function guestLoginHandler(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    await handleSubmit({ e, guest: true });
+  }
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={(e) => handleSubmit({ e })}>
       <div className="login-main">
         <h1 className="login-heading">Login</h1>
         <p
@@ -56,15 +75,22 @@ export function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <input type="submit" className="login-button" value={loginButtonText} />
-        <Link to="#" className="password-reset">
+        {/* <Link to="#" className="password-reset">
           Forgot Password?
-        </Link>
+        </Link> */}
         <p>
           Don't have an account?{" "}
           <Link className="signup-link" to="/signup">
             Sign up
           </Link>
         </p>
+        <button
+          type="submit"
+          className="guest-login"
+          onClick={(e) => guestLoginHandler(e)}
+        >
+          Login as Guest
+        </button>
       </div>
     </form>
   );

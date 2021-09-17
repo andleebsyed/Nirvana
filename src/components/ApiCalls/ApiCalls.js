@@ -1,14 +1,10 @@
 import axios from "axios";
 const BASE_URL = "https://nirvana-backend.herokuapp.com/";
-export async function UserSignIn(username, password) {
-  const dataFromView = {
-    userDetails: {
-      username: username,
-      password: password,
-    },
-  };
+export async function UserSignIn({ userDetails }) {
+  const dataFromView = { userDetails: userDetails };
   try {
     const response = await axios.post(BASE_URL + "users/signin", dataFromView);
+    console.log({ response });
     if (response.status === 200) {
       const userResponseFromServer = {
         allowUser: response.data.allowUser,
