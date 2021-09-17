@@ -4,7 +4,6 @@ export async function UserSignIn({ userDetails }) {
   const dataFromView = { userDetails: userDetails };
   try {
     const response = await axios.post(BASE_URL + "users/signin", dataFromView);
-    console.log({ response });
     if (response.status === 200) {
       const userResponseFromServer = {
         allowUser: response.data.allowUser,
@@ -17,7 +16,21 @@ export async function UserSignIn({ userDetails }) {
     console.log("error ocurred ", error.message);
   }
 }
-
+export async function GuestAccess() {
+  try {
+    const response = await axios.post(BASE_URL + "users/guest");
+    if (response.status === 200) {
+      const userResponseFromServer = {
+        allowUser: response.data.allowUser,
+        messageToShowOnView: response.data.message,
+        token: response.data.token,
+      };
+      return userResponseFromServer;
+    }
+  } catch (error) {
+    console.log("error ocurred ", error.message);
+  }
+}
 export async function UserSignUp(userDetails) {
   const signUpDataFromView = {
     userDetails: userDetails,

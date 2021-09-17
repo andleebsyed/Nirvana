@@ -1,7 +1,7 @@
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { UserSignIn } from "../ApiCalls/ApiCalls";
+import { GuestAccess, UserSignIn } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";
 export function SignIn() {
   const { dispatchAuth } = useAuth();
@@ -14,21 +14,17 @@ export function SignIn() {
   async function handleSubmit({ e, guest }) {
     e.preventDefault();
     setLoginButtonText("Signing In...");
-    userResponseFromServer = await UserSignIn(
-      guest
-        ? {
-            userDetails: {
-              username: "peter_parker",
-              password: "Peterparker@123",
-            },
-          }
-        : {
-            userDetails: {
-              username,
-              password,
-            },
-          }
-    );
+    if (guest) {
+      userResponseFromServer = await GuestAccess();
+    } else {
+      userResponseFromServer = await UserSignIn({
+        userDetails: {
+          username,
+          password,
+        },
+      });
+    }
+
     setLoginButtonText("Sign In");
     if (userResponseFromServer.allowUser === false) {
       setDisplayError("block");
@@ -75,9 +71,6 @@ export function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <input type="submit" className="login-button" value={loginButtonText} />
-        {/* <Link to="#" className="password-reset">
-          Forgot Password?
-        </Link> */}
         <p>
           Don't have an account?{" "}
           <Link className="signup-link" to="/signup">
@@ -89,7 +82,7 @@ export function SignIn() {
           className="guest-login"
           onClick={(e) => guestLoginHandler(e)}
         >
-          Login as Guest
+          Sign In as Guest
         </button>
       </div>
     </form>
