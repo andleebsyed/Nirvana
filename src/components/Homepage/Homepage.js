@@ -25,7 +25,7 @@ export function Homepage() {
           <button className="homepage-single-button">Explore</button>
         </Link>
         <Link to="/login">
-          <button className="homepage-single-button">Login</button>
+          <button className="homepage-single-button">Sign In</button>
         </Link>
       </div>
     </div>
