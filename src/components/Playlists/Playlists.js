@@ -15,7 +15,7 @@ export function Playlists({ playlist }) {
     return (
       <div className="playlists-container">
         {playlists.map((playlist) => (
-          <div>
+          <div key={playlist._id}>
             <div className="single-playlist-show">
               <h1 style={{ fontWeight: "lighter", textAlign: "left" }}>
                 {playlist.playlistName}

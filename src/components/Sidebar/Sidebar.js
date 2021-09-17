@@ -10,9 +10,9 @@ export function Sidebar() {
         activeClassName="sidebar-icon-selected"
       >
         <div className="side-icon">
-          <a className="adjustment">
+          <span className="adjustment">
             <ion-icon name="home-outline"></ion-icon>
-          </a>
+          </span>
           <span className="adjustment icon-text">Home</span>
         </div>
       </NavLink>
@@ -22,9 +22,9 @@ export function Sidebar() {
         activeClassName="sidebar-icon-selected"
       >
         <div className="side-icon">
-          <a className="adjustment">
+          <span className="adjustment">
             <ion-icon name="compass-outline"></ion-icon>
-          </a>
+          </span>
           <span className="adjustment icon-text">Explore</span>
         </div>
       </NavLink>
@@ -34,9 +34,9 @@ export function Sidebar() {
         activeClassName="sidebar-icon-selected"
       >
         <div className="side-icon">
-          <a className="adjustment">
+          <span className="adjustment">
             <ion-icon name="library-outline"></ion-icon>
-          </a>
+          </span>
           <span className="adjustment icon-text">Library</span>
         </div>
       </NavLink>

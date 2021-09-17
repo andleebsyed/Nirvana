@@ -22,7 +22,7 @@ export function Search() {
       type: "SEARCH_FOR_VIDEOS",
       payload: { searchKeyword: keyword },
     });
-  }, [originalVideos]);
+  }, [originalVideos, dispatch, keyword]);
   if (originalVideos.length > 0) {
     return (
       <div>

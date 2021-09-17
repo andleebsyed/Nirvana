@@ -9,7 +9,6 @@ export function Liked() {
   const { likedVideos } = state;
   const { action, setAction } = useActionManager();
   const userId = localStorage.getItem("userId");
-
   if (likedVideos.length === 0) {
     return (
       <div className="outer-liked-container">
@@ -21,7 +20,7 @@ export function Liked() {
       <div>
         <div className="liked-container">
           {likedVideos.map((video) => (
-            <div className="liked-video-card">
+            <div className="liked-video-card" key={video._id}>
               <Card video={video} />
               <button
                 className=" remove-video-button trash-button"

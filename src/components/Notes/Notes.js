@@ -21,7 +21,7 @@ export function Notes({ video }) {
       }
     }
     ApiCall();
-  }, [video._id]);
+  }, [video._id, isUserAuthenticated]);
 
   async function notesHandler(e) {
     const dataToApi = { note: e.target.value, videoId: video._id };

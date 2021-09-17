@@ -6,7 +6,7 @@ export function Categories() {
   const { state, dispatch } = useVideo();
   const { originalVideos } = state;
   let categories = ["All"];
-  originalVideos.map((video) => {
+  originalVideos.forEach((video) => {
     if (!categories.includes(video.category)) categories.push(video.category);
   });
   return (
@@ -18,6 +18,7 @@ export function Categories() {
             to={`/categories/${category.replace(/ /g, "")}`}
             className="categories-button"
             activeClassName="selected"
+            key={category}
           >
             <button
               onClick={() =>

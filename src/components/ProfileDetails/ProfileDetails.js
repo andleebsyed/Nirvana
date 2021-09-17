@@ -35,7 +35,7 @@ export function ProfileDetails({ props }) {
       }
     }
     ApiCall();
-  }, [isUserAuthenticated]);
+  }, [isUserAuthenticated, getUser]);
 
   async function AccountUpdateHandler(e) {
     e.preventDefault();
@@ -46,7 +46,7 @@ export function ProfileDetails({ props }) {
     });
 
     if (response.status) {
-      getUser(newUsername)
+      getUser(newUsername);
       setUpdateMessage((updateMessage) => {
         return {
           message: response.message,
@@ -78,7 +78,7 @@ export function ProfileDetails({ props }) {
         )}
         <p className={updateMessage.styleClass}>{updateMessage.message}</p>
         <div className="holder">
-          <label className="labels-acc" for="username">
+          <label className="labels-acc" htmlFor="username">
             Username
           </label>
           <input

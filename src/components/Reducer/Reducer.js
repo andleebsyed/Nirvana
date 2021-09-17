@@ -129,7 +129,7 @@ export function DataProvider({ children }) {
 
   useEffect(() => {
     setupAuthExceptionHandler(navigate, dispatchAuth);
-  }, []);
+  }, [dispatchAuth, navigate]);
 
   useEffect(() => {
     async function Apicall() {
@@ -151,7 +151,7 @@ export function DataProvider({ children }) {
       }
     }
     Apicall();
-  }, [stateAuth]);
+  }, [stateAuth, token]);
 
   // get all playlotst for authenticated user
   useEffect(() => {
@@ -165,7 +165,7 @@ export function DataProvider({ children }) {
       }
     }
     Apicall();
-  }, [stateAuth]);
+  }, [stateAuth, token]);
   const [state, dispatch] = useReducer(videosHandler, {
     likedVideos,
     watchLaterVideos,
