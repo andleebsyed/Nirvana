@@ -63,7 +63,7 @@ export function PasswordReset() {
 
         <div className="inline-inputs">
           <div className="holder internal-inline-div">
-            <label className="labels-acc" for="username">
+            <label className="labels-acc" htmlFor="username">
               Current Password
             </label>
             <input
@@ -75,7 +75,7 @@ export function PasswordReset() {
             />
           </div>
           <div className="holder internal-inline-div">
-            <label className="labels-acc new-passsword" for="username">
+            <label className="labels-acc new-passsword" htmlFor="username">
               New Password
             </label>
             <input
@@ -94,7 +94,7 @@ export function PasswordReset() {
         </div>
 
         <div className="holder">
-          <label className="labels-acc" for="username">
+          <label className="labels-acc" htmlFor="username">
             Confirm New Password
           </label>
           <input
