@@ -4,7 +4,9 @@ export function Main({ videos }) {
   return (
     <div className="main-cards-container cards-margin">
       {videos.map((video) => (
-        <Card video={video} />
+        <div key={video._id}>
+          <Card video={video} />
+        </div>
       ))}
     </div>
   );
