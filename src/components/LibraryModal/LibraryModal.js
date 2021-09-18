@@ -111,6 +111,7 @@ export function LibraryModal({ show, setShow, video }) {
               id="input"
               ref={inputEl}
               placeholder="Add new..."
+              style={{ outline: "none" }}
               onChange={(e) => setCurrent(e.target.value)}
               onKeyPress={(e) => keyPressHandler(e)}
             />

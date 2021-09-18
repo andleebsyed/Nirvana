@@ -46,14 +46,15 @@
 .modal-footer {
   box-sizing: border-box;
   position: absolute;
-  bottom: 0;
+  bottom: -24px;
   overflow: auto;
-  width: 100%;
 }
 
 .playlists {
   overflow: auto;
   height: 10rem;
+  padding-bottom: 25px;
+  background-color: white;
 }
 .single-playlist {
   margin-top: 1rem;

@@ -25,7 +25,6 @@ export function SignUp() {
       setExistingOne(isSignUpSuccessful.existingField);
       setDisplayError("block");
     } else if (isSignUpSuccessful.status === true) {
-      console.log("Signed up successfully");
       setDisplayError("none");
       dispatchAuth({
         type: "CHECK_IF_USER_AUTHENTICATED",
