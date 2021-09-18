@@ -86,7 +86,6 @@ function videosHandler(state, { type, payload }) {
       return { ...state, playlists: tempPlaylistsRemove };
     case "FILTER_OUT_CATEGORIES":
       if (payload.category === "All") {
-        console.log("see i am coming here");
         return { ...state, videos: originalVideos };
       } else
         return {

@@ -1,9 +1,10 @@
 import "./SignIn.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GuestAccess, UserSignIn } from "../ApiCalls/ApiCalls";
 import { useAuth } from "../Reducer/AuthReducer";
 export function SignIn() {
+  const navigate = useNavigate();
   const { dispatchAuth } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +38,7 @@ export function SignIn() {
         },
       });
       setDisplayError("none");
+      navigate("/explore");
     }
   }
   async function guestLoginHandler(e) {
