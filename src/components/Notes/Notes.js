@@ -11,7 +11,6 @@ export function Notes({ video }) {
   const { stateAuth } = useAuth();
   const { isUserAuthenticated } = stateAuth;
   const [notes, setNotes] = useState([]);
-
   useEffect(() => {
     async function ApiCall() {
       const dataToApi = { videoId: video._id };
@@ -62,7 +61,7 @@ export function Notes({ video }) {
       )}
       <div className="notes">
         {notes.map((note) => (
-          <div className="individual-note">
+          <div className="individual-note" key={note}>
             <p className="note-text">{note}</p>
             <button className="delete-note" onClick={() => deleteHandler(note)}>
               X

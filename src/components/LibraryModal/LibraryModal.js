@@ -95,7 +95,7 @@ export function LibraryModal({ show, setShow, video }) {
           </div>
           <div className="playlists">
             {playlists.map((playlist) => (
-              <div className="single-playlist">
+              <div className="single-playlist" key={playlist._id}>
                 <input
                   type="checkbox"
                   checked={checkForIdInPlaylist(playlist.videos, video.id)}
