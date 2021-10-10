@@ -48,16 +48,9 @@ export function Header() {
             <ion-icon className="search-icon" name="search-outline"></ion-icon>
           </button>
         </Link>
-
-        <button title="Upload Video" className="mic-button">
-          <ion-icon name="mic-outline"></ion-icon>
-        </button>
       </div>
 
       <div className="header-end">
-        <button className="bell-icon">
-          <ion-icon name="notifications-outline"></ion-icon>
-        </button>
         <Link to="/account" className="account">
           A
         </Link>
