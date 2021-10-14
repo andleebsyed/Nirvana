@@ -38,6 +38,7 @@ export function VideoPlayer() {
               controls={true}
               width={"100%"}
               height={"60vh"}
+              playing={true}
             />
           </div>
           <div className="video-label">
